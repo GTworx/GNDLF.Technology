@@ -52,8 +52,10 @@
     .brand{display:inline-flex; align-items:center; gap:12px;}
     .brand__mark{filter:drop-shadow(0 4px 12px rgba(212,175,55,.28)); flex:0 0 auto;}
     .brand__text{display:flex; flex-direction:column; line-height:1;}
-    .brand__name{font-weight:800; font-size:20px; letter-spacing:2px; color:var(--white);}
-    .brand__sub{font-size:9px; letter-spacing:4px; color:var(--gold); margin-top:3px;}
+    .brand__name{font-weight:800; font-size:21px; letter-spacing:2px;
+      background:linear-gradient(92deg,#f0d283 0%,#f4dfa0 38%,#ffffff 78%);
+      -webkit-background-clip:text; background-clip:text; color:transparent;}
+    .brand__sub{font-size:9px; letter-spacing:5.5px; color:var(--gold); margin-top:4px;}
     .nav__right{display:flex; align-items:center; gap:22px;}
     .nav__links{display:flex; align-items:center; gap:30px;}
     .lang{display:inline-flex; align-items:center; gap:2px; padding:3px; border-radius:999px;
@@ -225,21 +227,19 @@
         <stop offset="0%" stop-color="#f2d688"/><stop offset="45%" stop-color="#d4af37"/><stop offset="100%" stop-color="#b1821c"/>
       </linearGradient>
       <symbol id="gndlfMark" viewBox="0 0 120 120">
-        <circle cx="60" cy="60" r="59" fill="url(#gBg)"/>
-        <circle cx="60" cy="60" r="58.5" fill="none" stroke="#d4af37" stroke-opacity="0.28" stroke-width="1"/>
-        <path d="M80.5 79.9 A30 30 0 1 1 88.7 49.2" fill="none" stroke="url(#gGold)" stroke-width="12" stroke-linecap="round"/>
-        <path d="M55 53.5 L85 56.5 L85 60.5 L55 63.5 Z" fill="url(#gGold)"/>
-        <path d="M70 85.5 Q86 82 90.5 68.5" fill="none" stroke="url(#gGold)" stroke-width="5.5" stroke-linecap="round" opacity="0.9"/>
+        <path d="M86.87 86.87 A38 38 0 1 1 96.71 50.17" fill="none" stroke="url(#gGold)" stroke-width="12.5" stroke-linecap="round"/>
+        <path d="M58 53.5 L92 57 L92 62.5 L58 66.5 Z" fill="url(#gGold)"/>
+        <path d="M60 96.5 Q92 95 101 71.5" fill="none" stroke="url(#gGold)" stroke-width="6.5" stroke-linecap="round" opacity="0.92"/>
         <g fill="url(#gGold)">
-          <rect x="27" y="41" width="9.5" height="9.5" rx="1.6"/>
-          <rect x="17" y="50" width="7.5" height="7.5" rx="1.4" opacity="0.92"/>
-          <rect x="9"  y="59" width="6"  height="6"  rx="1.2" opacity="0.72"/>
-          <rect x="23" y="60" width="8"  height="8"  rx="1.5" opacity="0.9"/>
-          <rect x="14" y="69" width="5.5" height="5.5" rx="1.1" opacity="0.66"/>
-          <rect x="29" y="71" width="7"  height="7"  rx="1.3" opacity="0.85"/>
-          <rect x="21" y="79" width="5"  height="5"  rx="1"   opacity="0.6"/>
-          <rect x="34" y="82" width="4.5" height="4.5" rx="1" opacity="0.5"/>
-          <rect x="10" y="49" width="4"  height="4"  rx="1"  opacity="0.5"/>
+          <rect x="30" y="44" width="10"  height="10"  rx="1.7"/>
+          <rect x="19" y="53" width="8"   height="8"   rx="1.5" opacity="0.92"/>
+          <rect x="10" y="61" width="6.5" height="6.5" rx="1.3" opacity="0.72"/>
+          <rect x="26" y="63" width="8.5" height="8.5" rx="1.6" opacity="0.9"/>
+          <rect x="15" y="71" width="6"   height="6"   rx="1.2" opacity="0.66"/>
+          <rect x="31" y="73" width="7"   height="7"   rx="1.4" opacity="0.85"/>
+          <rect x="22" y="80" width="5.5" height="5.5" rx="1.1" opacity="0.6"/>
+          <rect x="36" y="84" width="5"   height="5"   rx="1"   opacity="0.5"/>
+          <rect x="9"  y="53" width="4.5" height="4.5" rx="1"   opacity="0.55"/>
         </g>
       </symbol>
     </defs>
@@ -248,7 +248,7 @@
   <header class="site-header" id="siteHeader">
     <div class="container nav">
       <a href="#top" class="brand" aria-label="GNDLF Technologies">
-        <svg class="brand__mark" width="44" height="44" aria-hidden="true"><use href="#gndlfMark"/></svg>
+        <svg class="brand__mark" width="48" height="48" aria-hidden="true"><use href="#gndlfMark"/></svg>
         <span class="brand__text"><span class="brand__name">GNDLF</span><span class="brand__sub">TECHNOLOGIES</span></span>
       </a>
       <div class="nav__right">
@@ -451,7 +451,7 @@
     <div class="container footer__grid">
       <div class="footer__brand">
         <a href="#top" class="brand">
-          <svg class="brand__mark" width="42" height="42" aria-hidden="true"><use href="#gndlfMark"/></svg>
+          <svg class="brand__mark" width="46" height="46" aria-hidden="true"><use href="#gndlfMark"/></svg>
           <span class="brand__text"><span class="brand__name">GNDLF</span><span class="brand__sub">TECHNOLOGIES</span></span>
         </a>
         <p class="footer__tag">Smart Solutions. Stronger Futures.</p>
