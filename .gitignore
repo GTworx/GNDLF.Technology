@@ -1,0 +1,8 @@
+# Bağımlılıklar
+node_modules/
+
+# Ortam değişkenleri — GİZLİ ANAHTARLARI ASLA COMMIT'LEMEYİN
+.env
+.env.local
+.env.*.local
+.vercel

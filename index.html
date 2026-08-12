@@ -485,6 +485,9 @@
         'form.name':'Ad Soyad','form.email':'E-posta','form.msg':'Mesajınız','form.send':'Gönder',
         'form.ph_name':'Adınız','form.ph_email':'ornek@sirket.com','form.ph_msg':'Nasıl yardımcı olabiliriz?',
         'form.thanks':'Teşekkürler{name}! Mesajınızı aldık, en kısa sürede info@gndlf.io üzerinden dönüş yapacağız.',
+        'form.sending':'Gönderiliyor…',
+        'form.error':'Gönderilemedi. Lütfen tekrar deneyin ya da info@gndlf.io adresine yazın.',
+        'form.offline':'Form yalnızca yayınlanmış sitede e-posta gönderir. Şimdilik info@gndlf.io adresine yazabilirsiniz.',
         'foot.col1':'Çözümler','foot.col2':'Kurumsal','foot.col3':'İletişim',
         'foot.sap':'SAP Çözümleri','foot.why':'Neden GNDLF','foot.contact':'İletişim','foot.rights':'Tüm hakları saklıdır.'
       },
@@ -517,6 +520,9 @@
         'form.name':'Full Name','form.email':'Email','form.msg':'Your Message','form.send':'Send',
         'form.ph_name':'Your name','form.ph_email':'you@company.com','form.ph_msg':'How can we help?',
         'form.thanks':'Thank you{name}! We received your message and will get back to you shortly at info@gndlf.io.',
+        'form.sending':'Sending…',
+        'form.error':'Could not send. Please try again or email info@gndlf.io.',
+        'form.offline':'The form sends email only on the published site. For now you can email info@gndlf.io.',
         'foot.col1':'Solutions','foot.col2':'Company','foot.col3':'Contact',
         'foot.sap':'SAP Solutions','foot.why':'Why GNDLF','foot.contact':'Contact','foot.rights':'All rights reserved.'
       }
@@ -666,11 +672,31 @@
       e.preventDefault();
       var form = e.target;
       var note = document.getElementById('ctaNote');
+      var btn = form.querySelector('button[type=submit]');
+      var L = I18N[currentLang] || I18N.tr;
       var name = (form.name.value || '').trim();
-      var tpl = (I18N[currentLang] || I18N.tr)['form.thanks'];
       note.hidden = false;
-      note.textContent = tpl.replace('{name}', name ? ' ' + name : '');
-      form.reset();
+      note.style.color = '';
+      note.textContent = L['form.sending'];
+      if (btn) btn.disabled = true;
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, email: form.email.value, message: form.message.value })
+      }).then(function (res) {
+        if (res.ok) {
+          note.textContent = L['form.thanks'].replace('{name}', name ? ' ' + name : '');
+          form.reset();
+        } else {
+          note.style.color = '#ff9b9b';
+          note.textContent = L['form.error'];
+        }
+      }).catch(function () {
+        note.style.color = '#ff9b9b';
+        note.textContent = L['form.offline'];
+      }).then(function () {
+        if (btn) btn.disabled = false;
+      });
       return false;
     };
 
