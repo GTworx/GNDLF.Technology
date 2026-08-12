@@ -6,32 +6,251 @@
   <title>GNDLF Technologies — Smart Solutions. Stronger Futures.</title>
   <meta name="description" content="GNDLF Technologies; yazılım, yapay zeka, güvenlik ve analitik alanlarında yenilikçi çözümlerle işletmelerin dijital dönüşümüne sürdürülebilir değer katar." />
   <meta name="theme-color" content="#0A1128" />
-
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="GNDLF Technologies — Smart Solutions. Stronger Futures." />
   <meta property="og:description" content="Teknoloji, güvenlik ve yapay zeka odaklı çözümlerle iş süreçlerinizi dönüştürüyoruz." />
   <meta property="og:url" content="https://www.gndlf.io" />
-
-  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%230A1128'/%3E%3Cpath d='M80 80 A30 30 0 1 1 89 49' fill='none' stroke='%23D4AF37' stroke-width='12' stroke-linecap='round'/%3E%3Cpath d='M56 54 L85 57 L85 61 L56 64 Z' fill='%23D4AF37'/%3E%3Crect x='24' y='46' width='8' height='8' rx='1.5' fill='%23D4AF37'/%3E%3Crect x='15' y='56' width='6' height='6' rx='1' fill='%23D4AF37'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    :root{
+      --navy:#0A1128; --navy-2:#0d1730; --slate:#1F2A44; --gold:#D4AF37; --gold-2:#e9c766;
+      --mist:#E6EBF2; --white:#FFFFFF; --ink:#0A1128; --text:#dfe4ee; --muted:#9aa6bd;
+      --line:rgba(214,175,55,0.16); --card-bg:rgba(255,255,255,0.035); --card-bd:rgba(255,255,255,0.09);
+      --radius:16px; --radius-sm:10px; --maxw:1180px; --shadow:0 24px 60px -24px rgba(0,0,0,0.65);
+      --ease:cubic-bezier(.22,.61,.36,1);
+    }
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth; scroll-padding-top:84px;}
+    body{margin:0; font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text); background:var(--navy); line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden;}
+    img{max-width:100%; display:block;}
+    a{color:inherit; text-decoration:none;}
+    .container{width:100%; max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+    h1,h2,h3,h4{line-height:1.15; margin:0; letter-spacing:-0.01em; font-weight:700;}
+    .grad-gold{background:linear-gradient(100deg,var(--gold) 0%,var(--gold-2) 60%,var(--gold) 100%);
+      -webkit-background-clip:text; background-clip:text; color:transparent;}
+
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:14px 26px;
+      border-radius:999px; font-weight:600; font-size:15px; cursor:pointer; border:1px solid transparent;
+      transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s,color .25s; white-space:nowrap;}
+    .btn--gold{background:linear-gradient(120deg,var(--gold),var(--gold-2)); color:var(--navy);
+      box-shadow:0 12px 30px -12px rgba(212,175,55,0.6);}
+    .btn--gold:hover{transform:translateY(-2px); box-shadow:0 18px 40px -12px rgba(212,175,55,0.75);}
+    .btn--ghost{background:transparent; color:var(--white); border-color:rgba(230,235,242,0.28);}
+    .btn--ghost:hover{border-color:var(--gold); color:var(--gold); transform:translateY(-2px);}
+    .btn--sm{padding:9px 18px; font-size:14px;}
+    .btn--block{width:100%;}
+
+    .site-header{position:fixed; inset:0 0 auto 0; z-index:60;
+      transition:background .35s,backdrop-filter .35s,border-color .35s,box-shadow .35s; border-bottom:1px solid transparent;}
+    .site-header.scrolled{background:rgba(10,17,40,0.82); backdrop-filter:blur(14px);
+      border-bottom-color:var(--line); box-shadow:0 10px 30px -20px rgba(0,0,0,.8);}
+    .nav{display:flex; align-items:center; justify-content:space-between; height:72px;}
+    .brand{display:inline-flex; align-items:center; gap:12px;}
+    .brand__mark{filter:drop-shadow(0 4px 12px rgba(212,175,55,.28)); flex:0 0 auto;}
+    .brand__text{display:flex; flex-direction:column; line-height:1;}
+    .brand__name{font-weight:800; font-size:20px; letter-spacing:2px; color:var(--white);}
+    .brand__sub{font-size:9px; letter-spacing:4px; color:var(--gold); margin-top:3px;}
+    .nav__right{display:flex; align-items:center; gap:22px;}
+    .nav__links{display:flex; align-items:center; gap:30px;}
+    .lang{display:inline-flex; align-items:center; gap:2px; padding:3px; border-radius:999px;
+      border:1px solid rgba(230,235,242,0.22); background:rgba(255,255,255,0.03);}
+    .lang__btn{border:0; background:transparent; cursor:pointer; color:var(--muted); font-family:inherit;
+      font-weight:600; font-size:12.5px; letter-spacing:.5px; padding:5px 11px; border-radius:999px; transition:background .2s,color .2s;}
+    .lang__btn:hover{color:var(--white);}
+    .lang__btn.is-active{background:linear-gradient(120deg,var(--gold),var(--gold-2)); color:var(--navy);}
+    .nav__links a{font-size:15px; font-weight:500; color:var(--text); transition:color .2s; position:relative;}
+    .nav__links a:not(.btn):hover{color:var(--gold);}
+    .nav__links a:not(.btn)::after{content:""; position:absolute; left:0; bottom:-6px; height:2px; width:0;
+      background:var(--gold); transition:width .25s var(--ease);}
+    .nav__links a:not(.btn):hover::after,.nav__links a.active::after{width:100%;}
+    .nav__toggle{display:none; flex-direction:column; gap:5px; background:none; border:0; cursor:pointer; padding:8px;}
+    .nav__toggle span{width:26px; height:2px; background:var(--white); border-radius:2px; transition:transform .3s var(--ease),opacity .3s;}
+    .nav__toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .nav__toggle.open span:nth-child(2){opacity:0;}
+    .nav__toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+    .hero{position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden; padding-top:72px;}
+    .hero__bg{position:absolute; inset:0; z-index:0;}
+    #networkCanvas{position:absolute; inset:0; width:100%; height:100%;}
+    .hero::before{content:""; position:absolute; inset:0; z-index:1;
+      background:radial-gradient(1100px 620px at 78% 18%,rgba(212,175,55,0.10),transparent 60%),
+      linear-gradient(180deg,var(--navy) 0%,#0b1430 55%,var(--navy) 100%);}
+    .hero__glow{position:absolute; right:-8%; top:8%; width:620px; height:620px; z-index:1;
+      background:radial-gradient(circle,rgba(212,175,55,0.16),transparent 62%); filter:blur(10px); pointer-events:none;}
+    .hero__inner{position:relative; z-index:2; padding:60px 24px;}
+    .hero__content{max-width:720px;}
+    .hero__eyebrow{color:var(--gold); font-weight:600; letter-spacing:5px; font-size:13px; margin:0 0 18px;}
+    .hero__title{font-size:clamp(2.4rem,6.2vw,4.4rem); font-weight:800; letter-spacing:-0.02em; color:var(--white);}
+    .hero__lead{margin:26px 0 34px; font-size:clamp(1rem,1.6vw,1.2rem); color:var(--muted); max-width:620px;}
+    .hero__actions{display:flex; gap:14px; flex-wrap:wrap;}
+
+    .values{position:relative; z-index:3; margin-top:-1px; background:linear-gradient(180deg,var(--slate),#16203a);
+      border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+    .values__grid{display:grid; grid-template-columns:repeat(5,1fr); gap:8px; padding:40px 24px;}
+    .value{text-align:center; padding:18px 14px; border-radius:var(--radius-sm); transition:background .3s;}
+    .value:hover{background:rgba(255,255,255,0.04);}
+    .value__icon{display:inline-grid; place-items:center; width:52px; height:52px; margin:0 auto 14px;
+      border-radius:14px; background:rgba(212,175,55,0.12); color:var(--gold); border:1px solid rgba(212,175,55,.3);}
+    .value__icon svg{width:26px; height:26px;}
+    .value h3{font-size:15px; color:var(--white); margin-bottom:6px;}
+    .value p{font-size:13px; color:var(--muted); margin:0;}
+
+    .section{padding:96px 0; position:relative;}
+    .section--alt{background:linear-gradient(180deg,#0b1430,#0a1024);}
+    .section__head{max-width:720px; margin:0 auto 56px; text-align:center;}
+    .kicker{display:inline-block; color:var(--gold); font-weight:700; letter-spacing:4px; font-size:12px;
+      padding:6px 16px; border:1px solid var(--line); border-radius:999px; margin-bottom:18px;}
+    .section__head h2{font-size:clamp(1.7rem,3.4vw,2.6rem); color:var(--white);}
+    .section__head p{color:var(--muted); margin:16px 0 0; font-size:1.05rem;}
+
+    .cards{display:grid; gap:22px;}
+    .cards--solutions{grid-template-columns:repeat(3,1fr);}
+    .cards--sap{grid-template-columns:repeat(3,1fr);}
+    .card{background:var(--card-bg); border:1px solid var(--card-bd); border-radius:var(--radius);
+      padding:30px 26px; position:relative; overflow:hidden;
+      transition:transform .35s var(--ease),border-color .35s,box-shadow .35s,background .35s;}
+    .card::before{content:""; position:absolute; inset:0 0 auto 0; height:3px;
+      background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0; transition:opacity .35s;}
+    .card:hover{transform:translateY(-6px); border-color:rgba(212,175,55,0.45); box-shadow:var(--shadow); background:rgba(255,255,255,0.05);}
+    .card:hover::before{opacity:1;}
+    .card__icon{display:grid; place-items:center; width:62px; height:62px; border-radius:16px; margin-bottom:20px;
+      background:linear-gradient(140deg,rgba(212,175,55,.18),rgba(212,175,55,.04)); border:1px solid rgba(212,175,55,.32); color:var(--gold);}
+    .card__icon svg{width:30px; height:30px;}
+    .card h3{color:var(--white); font-size:1.2rem; margin-bottom:12px;}
+    .card__desc{color:var(--muted); font-size:0.95rem; margin:0 0 18px;}
+    .card__list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px;}
+    .card__list li{font-size:0.92rem; color:var(--text); padding-left:22px; position:relative;}
+    .card__list li::before{content:""; position:absolute; left:2px; top:9px; width:7px; height:7px; border-radius:2px;
+      background:var(--gold); box-shadow:0 0 0 3px rgba(212,175,55,.12);}
+    .card--sap h3{font-size:1.05rem; padding-bottom:14px; margin-bottom:14px; border-bottom:1px solid var(--line);}
+
+    .sap-badges{display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:44px;}
+    .sap-badge{display:inline-flex; align-items:center; gap:10px; padding:12px 22px; border-radius:999px;
+      background:rgba(255,255,255,0.04); border:1px solid var(--card-bd); color:var(--text); font-weight:600; font-size:0.9rem;}
+    .sap-badge span{display:inline-grid; place-items:center; color:var(--gold);}
+    .sap-badge svg{width:20px; height:20px;}
+    .sap-badge b{font-weight:600;}
+    .sap-tm{max-width:780px; margin:30px auto 0; text-align:center; color:var(--muted); font-size:0.78rem; opacity:.82;}
+
+    .why-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:18px;}
+    .why{text-align:center; padding:32px 18px; border-radius:var(--radius); background:var(--card-bg);
+      border:1px solid var(--card-bd); transition:transform .3s var(--ease),border-color .3s;}
+    .why:hover{transform:translateY(-5px); border-color:rgba(212,175,55,.4);}
+    .why__icon{display:inline-grid; place-items:center; width:56px; height:56px; margin-bottom:16px;
+      border-radius:50%; background:rgba(212,175,55,0.1); border:1px solid rgba(212,175,55,.3); color:var(--gold);}
+    .why__icon svg{width:26px; height:26px;}
+    .why h3{color:var(--white); font-size:1.05rem; margin-bottom:8px;}
+    .why p{color:var(--muted); font-size:0.9rem; margin:0;}
+
+    .cta{padding:90px 0; position:relative;
+      background:radial-gradient(700px 400px at 15% 20%,rgba(212,175,55,0.12),transparent 60%),
+      linear-gradient(180deg,var(--navy),#0c1533); border-top:1px solid var(--line);}
+    .cta__inner{display:grid; grid-template-columns:1.05fr 0.95fr; gap:54px; align-items:center;}
+    .cta__text h2{font-size:clamp(1.7rem,3.4vw,2.5rem); color:var(--white);}
+    .cta__text p{color:var(--muted); margin:18px 0 26px; font-size:1.05rem;}
+    .cta__links{display:flex; flex-direction:column; gap:12px;}
+    .cta__link{display:inline-flex; align-items:center; gap:12px; color:var(--text); font-weight:600; width:fit-content; transition:color .2s;}
+    .cta__link:hover{color:var(--gold);}
+    .cta__link svg{width:22px; height:22px; color:var(--gold);}
+    .cta__form{background:rgba(255,255,255,0.04); border:1px solid var(--card-bd); border-radius:var(--radius); padding:30px; box-shadow:var(--shadow);}
+    .field{margin-bottom:16px;}
+    .field label{display:block; font-size:13px; font-weight:600; color:var(--text); margin-bottom:6px;}
+    .field input,.field textarea{width:100%; padding:12px 14px; border-radius:var(--radius-sm);
+      background:rgba(10,17,40,0.55); border:1px solid rgba(255,255,255,0.12); color:var(--white);
+      font-family:inherit; font-size:15px; transition:border-color .2s,box-shadow .2s; resize:vertical;}
+    .field input:focus,.field textarea:focus{outline:none; border-color:var(--gold); box-shadow:0 0 0 3px rgba(212,175,55,0.16);}
+    .field input::placeholder,.field textarea::placeholder{color:#6b7896;}
+    .cta__note{margin:14px 0 0; font-size:14px; color:var(--gold-2); text-align:center;}
+
+    .site-footer{background:#070c1d; border-top:1px solid var(--line); padding-top:60px;}
+    .footer__grid{display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; padding-bottom:44px;}
+    .footer__brand .brand{margin-bottom:18px;}
+    .footer__tag{color:var(--gold); font-weight:600; margin:0 0 8px; letter-spacing:.5px;}
+    .footer__desc{color:var(--muted); font-size:0.9rem; margin:0;}
+    .footer__col h4{color:var(--white); font-size:0.95rem; margin-bottom:16px; letter-spacing:.5px;}
+    .footer__col a{display:block; color:var(--muted); font-size:0.9rem; margin-bottom:10px; transition:color .2s;}
+    .footer__col a:hover{color:var(--gold);}
+    .footer__legal{border-top:1px solid rgba(255,255,255,0.07); padding:20px 24px 0; color:var(--muted); font-size:0.76rem; opacity:.8; text-align:center;}
+    .footer__bottom{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;
+      padding:18px 24px 26px; color:var(--muted); font-size:0.85rem;}
+    .footer__pill{color:var(--gold); letter-spacing:3px; font-weight:600; font-size:0.72rem;}
+
+    .js .reveal{opacity:0; transform:translateY(26px); transition:opacity .7s var(--ease),transform .7s var(--ease);}
+    .js .reveal.in{opacity:1; transform:none;}
+
+    @media (max-width:1024px){
+      .cards--solutions,.cards--sap{grid-template-columns:repeat(2,1fr);}
+      .values__grid{grid-template-columns:repeat(3,1fr);}
+      .why-grid{grid-template-columns:repeat(3,1fr);}
+    }
+    @media (max-width:820px){
+      .nav__toggle{display:flex;}
+      .nav__links{position:fixed; inset:72px 0 auto 0; flex-direction:column; align-items:stretch; gap:0;
+        background:rgba(10,17,40,0.97); backdrop-filter:blur(16px); border-bottom:1px solid var(--line);
+        padding:10px 24px 24px; transform:translateY(-120%); transition:transform .38s var(--ease); box-shadow:var(--shadow);}
+      .nav__links.open{transform:translateY(0);}
+      .nav__links a{padding:14px 4px; border-bottom:1px solid rgba(255,255,255,0.06);}
+      .nav__cta{margin-top:12px;}
+      .cta__inner{grid-template-columns:1fr; gap:34px;}
+      .footer__grid{grid-template-columns:1fr 1fr;}
+    }
+    @media (max-width:620px){
+      .values__grid{grid-template-columns:repeat(2,1fr);}
+      .cards--solutions,.cards--sap{grid-template-columns:1fr;}
+      .why-grid{grid-template-columns:repeat(2,1fr);}
+      .section{padding:68px 0;}
+      .footer__grid{grid-template-columns:1fr; gap:28px;}
+      .footer__bottom{flex-direction:column; text-align:center;}
+    }
+    @media (prefers-reduced-motion:reduce){
+      *{animation:none !important; transition:none !important;}
+      .reveal{opacity:1; transform:none;}
+      html{scroll-behavior:auto;}
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ============ HEADER ============ -->
+  <!-- GNDLF logo (reusable inline SVG) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <radialGradient id="gBg" cx="50%" cy="42%" r="65%">
+        <stop offset="0%" stop-color="#17264d"/><stop offset="60%" stop-color="#0c1533"/><stop offset="100%" stop-color="#070c1d"/>
+      </radialGradient>
+      <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#f2d688"/><stop offset="45%" stop-color="#d4af37"/><stop offset="100%" stop-color="#b1821c"/>
+      </linearGradient>
+      <symbol id="gndlfMark" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="59" fill="url(#gBg)"/>
+        <circle cx="60" cy="60" r="58.5" fill="none" stroke="#d4af37" stroke-opacity="0.28" stroke-width="1"/>
+        <path d="M80.5 79.9 A30 30 0 1 1 88.7 49.2" fill="none" stroke="url(#gGold)" stroke-width="12" stroke-linecap="round"/>
+        <path d="M55 53.5 L85 56.5 L85 60.5 L55 63.5 Z" fill="url(#gGold)"/>
+        <path d="M70 85.5 Q86 82 90.5 68.5" fill="none" stroke="url(#gGold)" stroke-width="5.5" stroke-linecap="round" opacity="0.9"/>
+        <g fill="url(#gGold)">
+          <rect x="27" y="41" width="9.5" height="9.5" rx="1.6"/>
+          <rect x="17" y="50" width="7.5" height="7.5" rx="1.4" opacity="0.92"/>
+          <rect x="9"  y="59" width="6"  height="6"  rx="1.2" opacity="0.72"/>
+          <rect x="23" y="60" width="8"  height="8"  rx="1.5" opacity="0.9"/>
+          <rect x="14" y="69" width="5.5" height="5.5" rx="1.1" opacity="0.66"/>
+          <rect x="29" y="71" width="7"  height="7"  rx="1.3" opacity="0.85"/>
+          <rect x="21" y="79" width="5"  height="5"  rx="1"   opacity="0.6"/>
+          <rect x="34" y="82" width="4.5" height="4.5" rx="1" opacity="0.5"/>
+          <rect x="10" y="49" width="4"  height="4"  rx="1"  opacity="0.5"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
   <header class="site-header" id="siteHeader">
     <div class="container nav">
       <a href="#top" class="brand" aria-label="GNDLF Technologies">
-        <img src="assets/img/logo-mark.svg" alt="" class="brand__mark" width="40" height="40" />
-        <span class="brand__text">
-          <span class="brand__name">GNDLF</span>
-          <span class="brand__sub">TECHNOLOGIES</span>
-        </span>
+        <svg class="brand__mark" width="44" height="44" aria-hidden="true"><use href="#gndlfMark"/></svg>
+        <span class="brand__text"><span class="brand__name">GNDLF</span><span class="brand__sub">TECHNOLOGIES</span></span>
       </a>
-
       <div class="nav__right">
         <nav class="nav__links" id="navLinks" aria-label="Ana menü">
           <a href="#cozumler" data-i18n="nav.solutions">Çözümler</a>
@@ -40,38 +259,24 @@
           <a href="#iletisim" data-i18n="nav.contact">İletişim</a>
           <a href="#iletisim" class="btn btn--gold btn--sm nav__cta" data-i18n="nav.cta">Bize Ulaşın</a>
         </nav>
-
         <div class="lang" role="group" aria-label="Dil / Language">
           <button type="button" class="lang__btn is-active" data-set-lang="tr">TR</button>
           <button type="button" class="lang__btn" data-set-lang="en">EN</button>
         </div>
-
-        <button class="nav__toggle" id="navToggle" aria-label="Menü" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
+        <button class="nav__toggle" id="navToggle" aria-label="Menü" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>
   </header>
 
   <main id="top">
 
-    <!-- ============ HERO ============ -->
     <section class="hero" id="hero">
-      <div class="hero__bg" aria-hidden="true">
-        <canvas id="networkCanvas"></canvas>
-        <div class="hero__glow"></div>
-      </div>
+      <div class="hero__bg" aria-hidden="true"><canvas id="networkCanvas"></canvas><div class="hero__glow"></div></div>
       <div class="container hero__inner">
         <div class="hero__content reveal">
           <p class="hero__eyebrow">GNDLF TECHNOLOGIES</p>
-          <h1 class="hero__title">
-            <span class="grad-gold">SMART SOLUTIONS.</span><br />
-            <span>STRONGER FUTURES.</span>
-          </h1>
-          <p class="hero__lead" data-i18n="hero.lead">
-            Teknoloji, güvenlik ve yapay zeka odaklı çözümlerimizle iş süreçlerinizi
-            dönüştürüyor, verimliliğinizi artırıyor ve sürdürülebilir bir gelecek inşa ediyoruz.
-          </p>
+          <h1 class="hero__title"><span class="grad-gold">SMART SOLUTIONS.</span><br /><span>STRONGER FUTURES.</span></h1>
+          <p class="hero__lead" data-i18n="hero.lead">Teknoloji, güvenlik ve yapay zeka odaklı çözümlerimizle iş süreçlerinizi dönüştürüyor, verimliliğinizi artırıyor ve sürdürülebilir bir gelecek inşa ediyoruz.</p>
           <div class="hero__actions">
             <a href="#cozumler" class="btn btn--gold" data-i18n="hero.cta1">Çözümlerimizi Keşfedin</a>
             <a href="#iletisim" class="btn btn--ghost" data-i18n="hero.cta2">Bize Ulaşın</a>
@@ -80,38 +285,31 @@
       </div>
     </section>
 
-    <!-- ============ VALUE STRIP ============ -->
     <section class="values" aria-label="Değerlerimiz">
       <div class="container values__grid">
         <div class="value reveal">
-          <span class="value__icon">${ICON_ENTERPRISE}</span>
-          <h3>Enterprise Focused</h3>
-          <p data-i18n="val.1">Kurumsal ihtiyaçlara özel çözümler.</p>
+          <span class="value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M7 21h10"/><path d="M12 17v4"/><path d="M7 12l3-3 2 2 4-4"/></svg></span>
+          <h3>Enterprise Focused</h3><p data-i18n="val.1">Kurumsal ihtiyaçlara özel çözümler.</p>
         </div>
         <div class="value reveal">
-          <span class="value__icon">${ICON_SHIELD}</span>
-          <h3>Secure &amp; Reliable</h3>
-          <p data-i18n="val.2">Güvenli, ölçeklenebilir ve yüksek erişilebilir.</p>
+          <span class="value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9.2 12l2 2 3.6-3.6"/></svg></span>
+          <h3>Secure &amp; Reliable</h3><p data-i18n="val.2">Güvenli, ölçeklenebilir ve yüksek erişilebilir.</p>
         </div>
         <div class="value reveal">
-          <span class="value__icon">${ICON_INNOVATE}</span>
-          <h3>Innovative Technology</h3>
-          <p data-i18n="val.3">Yapay zeka ve otomasyon destekli uygulamalar.</p>
+          <span class="value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.3 1 2.5h6c0-1.2.3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg></span>
+          <h3>Innovative Technology</h3><p data-i18n="val.3">Yapay zeka ve otomasyon destekli uygulamalar.</p>
         </div>
         <div class="value reveal">
-          <span class="value__icon">${ICON_TEAM}</span>
-          <h3>Expert Team</h3>
-          <p data-i18n="val.4">Deneyimli ve uzman kadromuzla yanınızdayız.</p>
+          <span class="value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 6.2a3 3 0 0 1 0 5.6"/><path d="M17 14.5a6 6 0 0 1 4 5.5"/></svg></span>
+          <h3>Expert Team</h3><p data-i18n="val.4">Deneyimli ve uzman kadromuzla yanınızdayız.</p>
         </div>
         <div class="value reveal">
-          <span class="value__icon">${ICON_GLOBE}</span>
-          <h3>Global Vision</h3>
-          <p data-i18n="val.5">Dünya standartlarında çözümler.</p>
+          <span class="value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18"/></svg></span>
+          <h3>Global Vision</h3><p data-i18n="val.5">Dünya standartlarında çözümler.</p>
         </div>
       </div>
     </section>
 
-    <!-- ============ SOLUTIONS ============ -->
     <section class="section" id="cozumler">
       <div class="container">
         <header class="section__head reveal">
@@ -119,65 +317,41 @@
           <h2 data-i18n="sol.h2">Uçtan uca dijital çözüm ailesi</h2>
           <p data-i18n="sol.p">İşletmenizin her katmanı için tasarlanmış, yapay zeka ile güçlendirilmiş ürün ve hizmetler.</p>
         </header>
-
         <div class="cards cards--solutions">
           <article class="card reveal">
-            <div class="card__icon">${ICON_ENTERPRISE}</div>
+            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M7 21h10"/><path d="M12 17v4"/><path d="M7 12l3-3 2 2 4-4"/></svg></div>
             <h3>Enterprise Solutions</h3>
             <p class="card__desc" data-i18n="sol.d1">İş süreçlerinizi izleyin, maliyetlerinizi kontrol edin, projelerinizi yönetin ve test süreçlerinizi yapay zeka ile otomatikleştirin.</p>
-            <ul class="card__list">
-              <li>GNDLF Monitoring</li>
-              <li>GNDLF Ctrl-Cost</li>
-              <li>GNDLF PMO Cockpit</li>
-              <li>GNDLF AI Test Automation</li>
-            </ul>
+            <ul class="card__list"><li>GNDLF Monitoring</li><li>GNDLF Ctrl-Cost</li><li>GNDLF PMO Cockpit</li><li>GNDLF AI Test Automation</li></ul>
           </article>
-
           <article class="card reveal">
-            <div class="card__icon">${ICON_SHIELD}</div>
+            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9.2 12l2 2 3.6-3.6"/></svg></div>
             <h3>Security &amp; Compliance</h3>
             <p class="card__desc" data-i18n="sol.d2">Sistemlerinizi test edin, zafiyetleri belirleyin ve verilerinizi koruyarak mevzuata uyumu sağlayın.</p>
-            <ul class="card__list">
-              <li>GNDLF Security Scanner &amp; Pentest</li>
-              <li>GNDLF Data Masking</li>
-            </ul>
+            <ul class="card__list"><li>GNDLF Security Scanner &amp; Pentest</li><li>GNDLF Data Masking</li></ul>
           </article>
-
           <article class="card reveal">
-            <div class="card__icon">${ICON_AI}</div>
+            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="2.5"/><path d="M9.5 3.5V6M14.5 3.5V6M9.5 18v2.5M14.5 18v2.5M3.5 9.5H6M3.5 14.5H6M18 9.5h2.5M18 14.5h2.5"/><circle cx="12" cy="12" r="1.6"/></svg></div>
             <h3>AI &amp; Talent Solutions</h3>
             <p class="card__desc" data-i18n="sol.d3">Yapay zeka destekli çözümlerimizle yetenek yönetimini, mülakatları ve bilgi yönetimini dönüştürün.</p>
-            <ul class="card__list">
-              <li>MeetBadi AI Note Taker</li>
-              <li>TalentBadi Enneagram</li>
-              <li>TalentBadi LLM Wiki Jobs</li>
-              <li>TalentBadi AI Interviews</li>
-              <li>TalentBadi HR</li>
-            </ul>
+            <ul class="card__list"><li>MeetBadi AI Note Taker</li><li>TalentBadi Enneagram</li><li>TalentBadi LLM Wiki Jobs</li><li>TalentBadi AI Interviews</li><li>TalentBadi HR</li></ul>
           </article>
-
           <article class="card reveal">
-            <div class="card__icon">${ICON_ANALYTICS}</div>
+            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M9 20V4M14 20v-7M19 20V8"/></svg></div>
             <h3>Analytics &amp; Optimization</h3>
             <p class="card__desc" data-i18n="sol.d4">Verilerinizi analiz edin, performansınızı artırın ve stratejik kararlarınızı güçlendirin.</p>
-            <ul class="card__list">
-              <li>ST03</li>
-            </ul>
+            <ul class="card__list"><li>ST03</li></ul>
           </article>
-
           <article class="card reveal">
-            <div class="card__icon">${ICON_LEARN}</div>
+            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4L2 9l10 5 8-4v6"/><path d="M6 11.5V16c0 1.1 2.7 3 6 3s6-1.9 6-3v-4.5"/></svg></div>
             <h3>Learning &amp; Education</h3>
             <p class="card__desc" data-i18n="sol.d5">Teknoloji ve iş dünyasına yönelik uzmanlık eğitimleri ile ekibinizi güçlendirin.</p>
-            <ul class="card__list">
-              <li>Sooezy.Academy</li>
-            </ul>
+            <ul class="card__list"><li>Sooezy.Academy</li></ul>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ============ SAP ============ -->
     <section class="section section--alt" id="sap">
       <div class="container">
         <header class="section__head reveal">
@@ -185,56 +359,38 @@
           <h2 data-i18n="sap.h2">SAP ERP altyapınızı uçtan uca dijitalleştirin</h2>
           <p data-i18n="sap.p">GNDLF, SAP ERP altyapınızı daha verimli, güvenli ve uyumlu hale getirir; iş süreçlerinizi uçtan uca dijitalleştirerek rekabette öne geçmenizi sağlar.</p>
         </header>
-
         <div class="cards cards--sap">
           <article class="card card--sap reveal">
             <h3 data-i18n="sap.t1">E-Dönüşüm Paketleri</h3>
-            <ul class="card__list">
-              <li>e-Fatura</li><li>e-Arşiv Fatura</li><li>e-İrsaliye</li><li>e-Defter</li>
-              <li>e-Mutabakat</li><li>e-Beyanname</li><li>e-Ekstre</li><li>Toplu Ödeme</li>
-            </ul>
+            <ul class="card__list"><li>e-Fatura</li><li>e-Arşiv Fatura</li><li>e-İrsaliye</li><li>e-Defter</li><li>e-Mutabakat</li><li>e-Beyanname</li><li>e-Ekstre</li><li>Toplu Ödeme</li></ul>
           </article>
           <article class="card card--sap reveal">
             <h3 data-i18n="sap.t2">Finansal Çözümler</h3>
-            <ul class="card__list">
-              <li>e-Mutabakat</li><li>Otomatik Denkleştirme</li><li>Otomatik Muhasebeleştirme</li>
-              <li>Gelen e-Fatura Onay Mekanizması</li><li>Personel Masraf Yönetimi</li>
-              <li>Müşteri &amp; Satıcı Yaşlandırma</li><li>Tahsilat Yönetim Sistemi</li>
-            </ul>
+            <ul class="card__list"><li>e-Mutabakat</li><li>Otomatik Denkleştirme</li><li>Otomatik Muhasebeleştirme</li><li>Gelen e-Fatura Onay Mekanizması</li><li>Personel Masraf Yönetimi</li><li>Müşteri &amp; Satıcı Yaşlandırma</li><li>Tahsilat Yönetim Sistemi</li></ul>
           </article>
           <article class="card card--sap reveal">
             <h3 data-i18n="sap.t3">Veri &amp; Risk Yönetimi</h3>
-            <ul class="card__list">
-              <li>Data Masking</li><li>KVKK Paketi</li><li>Risk Management</li>
-              <li>Enflasyon Muhasebesi Paketi</li>
-            </ul>
+            <ul class="card__list"><li>Data Masking</li><li>KVKK Paketi</li><li>Risk Management</li><li>Enflasyon Muhasebesi Paketi</li></ul>
           </article>
           <article class="card card--sap reveal">
             <h3 data-i18n="sap.t4">Tedarik &amp; Dış Ticaret</h3>
-            <ul class="card__list">
-              <li>İthalat Paketi</li><li>İhracat Paketi</li><li>e-Müstahsil</li>
-              <li>MES Entegrasyonu</li>
-            </ul>
+            <ul class="card__list"><li>İthalat Paketi</li><li>İhracat Paketi</li><li>e-Müstahsil</li><li>MES Entegrasyonu</li></ul>
           </article>
           <article class="card card--sap reveal">
             <h3 data-i18n="sap.t5">Finansal Operasyonlar &amp; Raporlama</h3>
-            <ul class="card__list">
-              <li>DBS</li><li>Online DBS</li><li>Tahsilat Yönetim Sistemi</li>
-              <li>Müşteri &amp; Satıcı Yaşlandırma Raporu</li>
-            </ul>
+            <ul class="card__list"><li>DBS</li><li>Online DBS</li><li>Tahsilat Yönetim Sistemi</li><li>Müşteri &amp; Satıcı Yaşlandırma Raporu</li></ul>
           </article>
         </div>
-
         <div class="sap-badges reveal">
-          <div class="sap-badge"><span>${ICON_FAST}</span><b data-i18n="sap.b1">Hızlı Entegrasyon</b></div>
-          <div class="sap-badge"><span>${ICON_SHIELD}</span><b data-i18n="sap.b2">Mevzuata Uyumlu</b></div>
-          <div class="sap-badge"><span>${ICON_ANALYTICS}</span><b data-i18n="sap.b3">Yüksek Performans</b></div>
-          <div class="sap-badge"><span>${ICON_SCALE}</span><b data-i18n="sap.b4">Ölçeklenebilir Yapı</b></div>
+          <div class="sap-badge"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span><b data-i18n="sap.b1">Hızlı Entegrasyon</b></div>
+          <div class="sap-badge"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9.2 12l2 2 3.6-3.6"/></svg></span><b data-i18n="sap.b2">Mevzuata Uyumlu</b></div>
+          <div class="sap-badge"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M9 20V4M14 20v-7M19 20V8"/></svg></span><b data-i18n="sap.b3">Yüksek Performans</b></div>
+          <div class="sap-badge"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg></span><b data-i18n="sap.b4">Ölçeklenebilir Yapı</b></div>
         </div>
+        <p class="sap-tm" data-i18n="sap.tm">SAP, ECC ve S/4HANA, SAP SE'nin tescilli ticari markalarıdır. GNDLF, SAP SE ile bağlı veya iştirak ilişkisi içinde değildir.</p>
       </div>
     </section>
 
-    <!-- ============ WHY GNDLF ============ -->
     <section class="section" id="neden">
       <div class="container">
         <header class="section__head reveal">
@@ -243,59 +399,46 @@
         </header>
         <div class="why-grid">
           <div class="why reveal">
-            <span class="why__icon">${ICON_SHIELD}</span>
-            <h3 data-i18n="why.t1">Güvenilir</h3>
-            <p data-i18n="why.d1">Veri güvenliği ve sürekliliği odaklı çözümler sunarız.</p>
+            <span class="why__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9.2 12l2 2 3.6-3.6"/></svg></span>
+            <h3 data-i18n="why.t1">Güvenilir</h3><p data-i18n="why.d1">Veri güvenliği ve sürekliliği odaklı çözümler sunarız.</p>
           </div>
           <div class="why reveal">
-            <span class="why__icon">${ICON_INNOVATE}</span>
-            <h3 data-i18n="why.t2">Yenilikçi</h3>
-            <p data-i18n="why.d2">AI ve otomasyon teknolojileri ile işinizi geleceğe taşırız.</p>
+            <span class="why__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.3 1 2.5h6c0-1.2.3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg></span>
+            <h3 data-i18n="why.t2">Yenilikçi</h3><p data-i18n="why.d2">AI ve otomasyon teknolojileri ile işinizi geleceğe taşırız.</p>
           </div>
           <div class="why reveal">
-            <span class="why__icon">${ICON_TEAM}</span>
-            <h3 data-i18n="why.t3">Uzman Kadro</h3>
-            <p data-i18n="why.d3">Deneyimli ekibimizle projelerinize değer katarız.</p>
+            <span class="why__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 6.2a3 3 0 0 1 0 5.6"/><path d="M17 14.5a6 6 0 0 1 4 5.5"/></svg></span>
+            <h3 data-i18n="why.t3">Uzman Kadro</h3><p data-i18n="why.d3">Deneyimli ekibimizle projelerinize değer katarız.</p>
           </div>
           <div class="why reveal">
-            <span class="why__icon">${ICON_ANALYTICS}</span>
-            <h3 data-i18n="why.t4">Sonuç Odaklı</h3>
-            <p data-i18n="why.d4">Ölçülebilir sonuçlar ve ROI odaklı çalışırız.</p>
+            <span class="why__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M9 20V4M14 20v-7M19 20V8"/></svg></span>
+            <h3 data-i18n="why.t4">Sonuç Odaklı</h3><p data-i18n="why.d4">Ölçülebilir sonuçlar ve ROI odaklı çalışırız.</p>
           </div>
           <div class="why reveal">
-            <span class="why__icon">${ICON_GLOBE}</span>
-            <h3 data-i18n="why.t5">Küresel Yaklaşım</h3>
-            <p data-i18n="why.d5">Yerel ihtiyaçları global standartlarla buluştururuz.</p>
+            <span class="why__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18"/></svg></span>
+            <h3 data-i18n="why.t5">Küresel Yaklaşım</h3><p data-i18n="why.d5">Yerel ihtiyaçları global standartlarla buluştururuz.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ CTA / CONTACT ============ -->
     <section class="cta" id="iletisim">
       <div class="container cta__inner reveal">
         <div class="cta__text">
           <h2 data-i18n="cta.h2">İşinizi birlikte geleceğe taşıyalım</h2>
-          <p data-i18n="cta.p">Daha akıllı, daha güvenli ve daha verimli bir gelecek için yanınızdayız.
-             Projelerinizi konuşmak için bize ulaşın.</p>
+          <p data-i18n="cta.p">Daha akıllı, daha güvenli ve daha verimli bir gelecek için yanınızdayız. Projelerinizi konuşmak için bize ulaşın.</p>
           <div class="cta__links">
-            <a href="mailto:info@gndlf.io" class="cta__link">${ICON_MAIL}<span>info@gndlf.io</span></a>
-            <a href="https://www.gndlf.io" class="cta__link" target="_blank" rel="noopener">${ICON_GLOBE}<span>www.gndlf.io</span></a>
+            <a href="mailto:info@gndlf.io" class="cta__link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg><span>info@gndlf.io</span></a>
+            <a href="https://www.gndlf.io" class="cta__link" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18"/></svg><span>www.gndlf.io</span></a>
           </div>
         </div>
         <form class="cta__form" onsubmit="return handleContact(event)">
-          <div class="field">
-            <label for="c-name" data-i18n="form.name">Ad Soyad</label>
-            <input id="c-name" name="name" type="text" required data-ph="form.ph_name" placeholder="Adınız" />
-          </div>
-          <div class="field">
-            <label for="c-email" data-i18n="form.email">E-posta</label>
-            <input id="c-email" name="email" type="email" required data-ph="form.ph_email" placeholder="ornek@sirket.com" />
-          </div>
-          <div class="field">
-            <label for="c-msg" data-i18n="form.msg">Mesajınız</label>
-            <textarea id="c-msg" name="message" rows="3" required data-ph="form.ph_msg" placeholder="Nasıl yardımcı olabiliriz?"></textarea>
-          </div>
+          <div class="field"><label for="c-name" data-i18n="form.name">Ad Soyad</label>
+            <input id="c-name" name="name" type="text" required data-ph="form.ph_name" placeholder="Adınız" /></div>
+          <div class="field"><label for="c-email" data-i18n="form.email">E-posta</label>
+            <input id="c-email" name="email" type="email" required data-ph="form.ph_email" placeholder="ornek@sirket.com" /></div>
+          <div class="field"><label for="c-msg" data-i18n="form.msg">Mesajınız</label>
+            <textarea id="c-msg" name="message" rows="3" required data-ph="form.ph_msg" placeholder="Nasıl yardımcı olabiliriz?"></textarea></div>
           <button type="submit" class="btn btn--gold btn--block" data-i18n="form.send">Gönder</button>
           <p class="cta__note" id="ctaNote" hidden></p>
         </form>
@@ -304,46 +447,275 @@
 
   </main>
 
-  <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
     <div class="container footer__grid">
       <div class="footer__brand">
         <a href="#top" class="brand">
-          <img src="assets/img/logo-mark.svg" alt="" class="brand__mark" width="38" height="38" />
-          <span class="brand__text">
-            <span class="brand__name">GNDLF</span>
-            <span class="brand__sub">TECHNOLOGIES</span>
-          </span>
+          <svg class="brand__mark" width="42" height="42" aria-hidden="true"><use href="#gndlfMark"/></svg>
+          <span class="brand__text"><span class="brand__name">GNDLF</span><span class="brand__sub">TECHNOLOGIES</span></span>
         </a>
         <p class="footer__tag">Smart Solutions. Stronger Futures.</p>
         <p class="footer__desc">Technology · Security · AI · SAP · Analytics · Education</p>
       </div>
       <div class="footer__col">
         <h4 data-i18n="foot.col1">Çözümler</h4>
-        <a href="#cozumler">Enterprise Solutions</a>
-        <a href="#cozumler">Security &amp; Compliance</a>
-        <a href="#cozumler">AI &amp; Talent</a>
-        <a href="#cozumler">Analytics</a>
-        <a href="#cozumler">Learning</a>
+        <a href="#cozumler">Enterprise Solutions</a><a href="#cozumler">Security &amp; Compliance</a>
+        <a href="#cozumler">AI &amp; Talent</a><a href="#cozumler">Analytics</a><a href="#cozumler">Learning</a>
       </div>
       <div class="footer__col">
         <h4 data-i18n="foot.col2">Kurumsal</h4>
-        <a href="#sap" data-i18n="foot.sap">SAP Çözümleri</a>
-        <a href="#neden" data-i18n="foot.why">Neden GNDLF</a>
-        <a href="#iletisim" data-i18n="foot.contact">İletişim</a>
+        <a href="#sap" data-i18n="foot.sap">SAP Çözümleri</a><a href="#neden" data-i18n="foot.why">Neden GNDLF</a><a href="#iletisim" data-i18n="foot.contact">İletişim</a>
       </div>
       <div class="footer__col">
         <h4 data-i18n="foot.col3">İletişim</h4>
-        <a href="mailto:info@gndlf.io">info@gndlf.io</a>
-        <a href="https://www.gndlf.io" target="_blank" rel="noopener">www.gndlf.io</a>
+        <a href="mailto:info@gndlf.io">info@gndlf.io</a><a href="https://www.gndlf.io" target="_blank" rel="noopener">www.gndlf.io</a>
       </div>
     </div>
+    <p class="container footer__legal" data-i18n="sap.tm">SAP, ECC ve S/4HANA, SAP SE'nin tescilli ticari markalarıdır. GNDLF, SAP SE ile bağlı veya iştirak ilişkisi içinde değildir.</p>
     <div class="container footer__bottom">
       <span>© <span id="year"></span> GNDLF Technologies. <span data-i18n="foot.rights">Tüm hakları saklıdır.</span></span>
       <span class="footer__pill">SMART SOLUTIONS · STRONGER FUTURES</span>
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var I18N = {
+      tr: {
+        'nav.solutions':'Çözümler','nav.why':'Neden GNDLF','nav.contact':'İletişim','nav.cta':'Bize Ulaşın',
+        'hero.lead':'Teknoloji, güvenlik ve yapay zeka odaklı çözümlerimizle iş süreçlerinizi dönüştürüyor, verimliliğinizi artırıyor ve sürdürülebilir bir gelecek inşa ediyoruz.',
+        'hero.cta1':'Çözümlerimizi Keşfedin','hero.cta2':'Bize Ulaşın',
+        'val.1':'Kurumsal ihtiyaçlara özel çözümler.','val.2':'Güvenli, ölçeklenebilir ve yüksek erişilebilir.',
+        'val.3':'Yapay zeka ve otomasyon destekli uygulamalar.','val.4':'Deneyimli ve uzman kadromuzla yanınızdayız.','val.5':'Dünya standartlarında çözümler.',
+        'sol.kicker':'ÇÖZÜMLERİMİZ','sol.h2':'Uçtan uca dijital çözüm ailesi',
+        'sol.p':'İşletmenizin her katmanı için tasarlanmış, yapay zeka ile güçlendirilmiş ürün ve hizmetler.',
+        'sol.d1':'İş süreçlerinizi izleyin, maliyetlerinizi kontrol edin, projelerinizi yönetin ve test süreçlerinizi yapay zeka ile otomatikleştirin.',
+        'sol.d2':'Sistemlerinizi test edin, zafiyetleri belirleyin ve verilerinizi koruyarak mevzuata uyumu sağlayın.',
+        'sol.d3':'Yapay zeka destekli çözümlerimizle yetenek yönetimini, mülakatları ve bilgi yönetimini dönüştürün.',
+        'sol.d4':'Verilerinizi analiz edin, performansınızı artırın ve stratejik kararlarınızı güçlendirin.',
+        'sol.d5':'Teknoloji ve iş dünyasına yönelik uzmanlık eğitimleri ile ekibinizi güçlendirin.',
+        'sap.kicker':'SAP ÇÖZÜMLERİMİZ','sap.h2':'SAP ERP altyapınızı uçtan uca dijitalleştirin',
+        'sap.p':'GNDLF, SAP ERP altyapınızı daha verimli, güvenli ve uyumlu hale getirir; iş süreçlerinizi uçtan uca dijitalleştirerek rekabette öne geçmenizi sağlar.',
+        'sap.t1':'E-Dönüşüm Paketleri','sap.t2':'Finansal Çözümler','sap.t3':'Veri & Risk Yönetimi','sap.t4':'Tedarik & Dış Ticaret','sap.t5':'Finansal Operasyonlar & Raporlama',
+        'sap.b1':'Hızlı Entegrasyon','sap.b2':'Mevzuata Uyumlu','sap.b3':'Yüksek Performans','sap.b4':'Ölçeklenebilir Yapı',
+        'sap.tm':'SAP, ECC ve S/4HANA, SAP SE’nin tescilli ticari markalarıdır. GNDLF, SAP SE ile bağlı veya iştirak ilişkisi içinde değildir.',
+        'why.kicker':'NEDEN GNDLF?','why.h2':'Geleceğe birlikte taşıyalım',
+        'why.t1':'Güvenilir','why.d1':'Veri güvenliği ve sürekliliği odaklı çözümler sunarız.',
+        'why.t2':'Yenilikçi','why.d2':'AI ve otomasyon teknolojileri ile işinizi geleceğe taşırız.',
+        'why.t3':'Uzman Kadro','why.d3':'Deneyimli ekibimizle projelerinize değer katarız.',
+        'why.t4':'Sonuç Odaklı','why.d4':'Ölçülebilir sonuçlar ve ROI odaklı çalışırız.',
+        'why.t5':'Küresel Yaklaşım','why.d5':'Yerel ihtiyaçları global standartlarla buluştururuz.',
+        'cta.h2':'İşinizi birlikte geleceğe taşıyalım',
+        'cta.p':'Daha akıllı, daha güvenli ve daha verimli bir gelecek için yanınızdayız. Projelerinizi konuşmak için bize ulaşın.',
+        'form.name':'Ad Soyad','form.email':'E-posta','form.msg':'Mesajınız','form.send':'Gönder',
+        'form.ph_name':'Adınız','form.ph_email':'ornek@sirket.com','form.ph_msg':'Nasıl yardımcı olabiliriz?',
+        'form.thanks':'Teşekkürler{name}! Mesajınızı aldık, en kısa sürede info@gndlf.io üzerinden dönüş yapacağız.',
+        'foot.col1':'Çözümler','foot.col2':'Kurumsal','foot.col3':'İletişim',
+        'foot.sap':'SAP Çözümleri','foot.why':'Neden GNDLF','foot.contact':'İletişim','foot.rights':'Tüm hakları saklıdır.'
+      },
+      en: {
+        'nav.solutions':'Solutions','nav.why':'Why GNDLF','nav.contact':'Contact','nav.cta':'Get in Touch',
+        'hero.lead':'With our technology, security and AI-focused solutions, we transform your business processes, boost your efficiency and build a sustainable future.',
+        'hero.cta1':'Explore Our Solutions','hero.cta2':'Get in Touch',
+        'val.1':'Tailored solutions for enterprise needs.','val.2':'Secure, scalable and highly available.',
+        'val.3':'AI and automation-powered applications.','val.4':'By your side with our experienced expert team.','val.5':'World-class solutions.',
+        'sol.kicker':'OUR SOLUTIONS','sol.h2':'An end-to-end digital solution family',
+        'sol.p':'AI-powered products and services designed for every layer of your business.',
+        'sol.d1':'Monitor your business processes, control costs, manage projects and automate testing with artificial intelligence.',
+        'sol.d2':'Test your systems, identify vulnerabilities and ensure regulatory compliance by protecting your data.',
+        'sol.d3':'Transform talent management, interviews and knowledge management with our AI-powered solutions.',
+        'sol.d4':'Analyze your data, improve performance and strengthen your strategic decisions.',
+        'sol.d5':'Empower your team with expert training tailored to technology and business.',
+        'sap.kicker':'OUR SAP SOLUTIONS','sap.h2':'Digitalize your SAP ERP end-to-end',
+        'sap.p':'GNDLF makes your SAP ERP infrastructure more efficient, secure and compliant; by digitalizing your processes end-to-end, it helps you get ahead of the competition.',
+        'sap.t1':'E-Transformation Packages','sap.t2':'Financial Solutions','sap.t3':'Data & Risk Management','sap.t4':'Procurement & Foreign Trade','sap.t5':'Financial Operations & Reporting',
+        'sap.b1':'Fast Integration','sap.b2':'Regulatory Compliant','sap.b3':'High Performance','sap.b4':'Scalable Architecture',
+        'sap.tm':'SAP, ECC and S/4HANA are trademarks of SAP SE. GNDLF is not affiliated with SAP SE.',
+        'why.kicker':'WHY GNDLF?','why.h2':"Let's move into the future together",
+        'why.t1':'Reliable','why.d1':'We deliver solutions focused on data security and continuity.',
+        'why.t2':'Innovative','why.d2':'We carry your business into the future with AI and automation.',
+        'why.t3':'Expert Team','why.d3':'We add value to your projects with our experienced team.',
+        'why.t4':'Results-Driven','why.d4':'We work with measurable results and ROI in focus.',
+        'why.t5':'Global Approach','why.d5':'We meet local needs with global standards.',
+        'cta.h2':"Let's move your business into the future together",
+        'cta.p':"We're by your side for a smarter, safer and more efficient future. Get in touch to discuss your projects.",
+        'form.name':'Full Name','form.email':'Email','form.msg':'Your Message','form.send':'Send',
+        'form.ph_name':'Your name','form.ph_email':'you@company.com','form.ph_msg':'How can we help?',
+        'form.thanks':'Thank you{name}! We received your message and will get back to you shortly at info@gndlf.io.',
+        'foot.col1':'Solutions','foot.col2':'Company','foot.col3':'Contact',
+        'foot.sap':'SAP Solutions','foot.why':'Why GNDLF','foot.contact':'Contact','foot.rights':'All rights reserved.'
+      }
+    };
+
+    var currentLang = 'tr';
+
+    function applyLang(lang) {
+      var dict = I18N[lang] || I18N.tr;
+      currentLang = I18N[lang] ? lang : 'tr';
+      document.documentElement.lang = currentLang;
+      var els = document.querySelectorAll('[data-i18n]');
+      for (var i = 0; i < els.length; i++) {
+        var v = dict[els[i].getAttribute('data-i18n')];
+        if (v != null) els[i].textContent = v;
+      }
+      var phs = document.querySelectorAll('[data-ph]');
+      for (var j = 0; j < phs.length; j++) {
+        var p = dict[phs[j].getAttribute('data-ph')];
+        if (p != null) phs[j].setAttribute('placeholder', p);
+      }
+      var btns = document.querySelectorAll('.lang__btn');
+      for (var k = 0; k < btns.length; k++) {
+        btns[k].classList.toggle('is-active', btns[k].getAttribute('data-set-lang') === currentLang);
+      }
+      try { localStorage.setItem('gndlf-lang', currentLang); } catch (e) {}
+    }
+
+    function initLang() {
+      var saved = null;
+      try { saved = localStorage.getItem('gndlf-lang'); } catch (e) {}
+      var start = saved || ((navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en');
+      applyLang(start);
+      var btns = document.querySelectorAll('.lang__btn');
+      for (var i = 0; i < btns.length; i++) {
+        (function (b) { b.addEventListener('click', function () { applyLang(b.getAttribute('data-set-lang')); }); })(btns[i]);
+      }
+    }
+
+    function initHeader() {
+      var header = document.getElementById('siteHeader');
+      var onScroll = function () { header.classList.toggle('scrolled', window.scrollY > 24); };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+
+    function initMenu() {
+      var toggle = document.getElementById('navToggle');
+      var links = document.getElementById('navLinks');
+      if (!toggle || !links) return;
+      var close = function () { toggle.classList.remove('open'); links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); };
+      toggle.addEventListener('click', function () {
+        var open = toggle.classList.toggle('open');
+        links.classList.toggle('open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+      var a = links.querySelectorAll('a');
+      for (var i = 0; i < a.length; i++) a[i].addEventListener('click', close);
+    }
+
+    function initReveal() {
+      var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+      if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e, i) {
+          if (e.isIntersecting) { setTimeout(function () { e.target.classList.add('in'); }, (i % 6) * 60); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(function (e) { io.observe(e); });
+      var sweep = function () {
+        var vh = window.innerHeight || document.documentElement.clientHeight;
+        els.forEach(function (e) {
+          if (e.classList.contains('in')) return;
+          var r = e.getBoundingClientRect();
+          if (r.top < vh * 0.92 && r.bottom > 0) { e.classList.add('in'); io.unobserve(e); }
+        });
+      };
+      requestAnimationFrame(sweep);
+      window.addEventListener('load', sweep);
+      window.addEventListener('scroll', sweep, { passive: true });
+    }
+
+    function initScrollSpy() {
+      var ids = ['cozumler', 'sap', 'neden', 'iletisim'];
+      var sections = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+      var links = {};
+      var as = document.querySelectorAll('.nav__links a[href^="#"]');
+      for (var i = 0; i < as.length; i++) links[as[i].getAttribute('href').slice(1)] = as[i];
+      if (!('IntersectionObserver' in window)) return;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            for (var key in links) links[key].classList.remove('active');
+            if (links[e.target.id]) links[e.target.id].classList.add('active');
+          }
+        });
+      }, { threshold: 0.5 });
+      sections.forEach(function (s) { io.observe(s); });
+    }
+
+    function initNetwork() {
+      var canvas = document.getElementById('networkCanvas');
+      if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var ctx = canvas.getContext('2d');
+      var w, h, dpr, nodes = [], raf;
+      var GOLD = 'rgba(212,175,55,';
+      function size() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = canvas.clientWidth; h = canvas.clientHeight;
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        var count = Math.max(28, Math.min(72, Math.floor((w * h) / 22000)));
+        nodes = [];
+        for (var i = 0; i < count; i++) nodes.push({
+          x: Math.random() * w, y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35, r: Math.random() * 1.6 + 0.6
+        });
+      }
+      function frame() {
+        ctx.clearRect(0, 0, w, h);
+        for (var i = 0; i < nodes.length; i++) {
+          var n = nodes[i];
+          n.x += n.vx; n.y += n.vy;
+          if (n.x < 0 || n.x > w) n.vx *= -1;
+          if (n.y < 0 || n.y > h) n.vy *= -1;
+          for (var j = i + 1; j < nodes.length; j++) {
+            var m = nodes[j], dx = n.x - m.x, dy = n.y - m.y, d = Math.sqrt(dx * dx + dy * dy);
+            if (d < 130) { ctx.strokeStyle = GOLD + (0.16 * (1 - d / 130)) + ')'; ctx.lineWidth = 0.6;
+              ctx.beginPath(); ctx.moveTo(n.x, n.y); ctx.lineTo(m.x, m.y); ctx.stroke(); }
+          }
+        }
+        for (var k = 0; k < nodes.length; k++) {
+          ctx.fillStyle = GOLD + '0.55)';
+          ctx.beginPath(); ctx.arc(nodes[k].x, nodes[k].y, nodes[k].r, 0, Math.PI * 2); ctx.fill();
+        }
+        raf = requestAnimationFrame(frame);
+      }
+      size(); frame();
+      var t;
+      window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(size, 180); });
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) cancelAnimationFrame(raf); else raf = requestAnimationFrame(frame);
+      });
+    }
+
+    window.handleContact = function (e) {
+      e.preventDefault();
+      var form = e.target;
+      var note = document.getElementById('ctaNote');
+      var name = (form.name.value || '').trim();
+      var tpl = (I18N[currentLang] || I18N.tr)['form.thanks'];
+      note.hidden = false;
+      note.textContent = tpl.replace('{name}', name ? ' ' + name : '');
+      form.reset();
+      return false;
+    };
+
+    function boot() {
+      document.documentElement.classList.add('js');
+      initLang();
+      initHeader();
+      initMenu();
+      initReveal();
+      initScrollSpy();
+      initNetwork();
+      var y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+    else boot();
+  })();
+  </script>
 </body>
 </html>
