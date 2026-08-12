@@ -78,7 +78,6 @@
     .nav__toggle.open span:nth-child(2){opacity:0;}
     .nav__toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
-    .hero__logo{display:block; height:104px; aspect-ratio:3.402 / 1; width:auto; max-width:100%; background:var(--logo) left center/contain no-repeat; margin:0 0 26px; filter:drop-shadow(0 10px 26px rgba(212,175,55,.20));}
     .hero{position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden; padding-top:72px;}
     .hero__bg{position:absolute; inset:0; z-index:0;}
     #networkCanvas{position:absolute; inset:0; width:100%; height:100%;}
@@ -209,8 +208,7 @@
       .cards--solutions,.cards--sap{grid-template-columns:1fr;}
       .why-grid{grid-template-columns:repeat(2,1fr);}
       .section{padding:68px 0;}
-      .hero__logo{height:66px; margin-bottom:20px;}
-      .footer__grid{grid-template-columns:1fr; gap:28px;}
+        .footer__grid{grid-template-columns:1fr; gap:28px;}
       .footer__bottom{flex-direction:column; text-align:center;}
     }
     @media (prefers-reduced-motion:reduce){
@@ -250,7 +248,7 @@
       <div class="hero__bg" aria-hidden="true"><canvas id="networkCanvas"></canvas><div class="hero__glow"></div></div>
       <div class="container hero__inner">
         <div class="hero__content reveal">
-          <span class="hero__logo" role="img" aria-label="GNDLF Technologies"></span>
+          <p class="hero__eyebrow">GNDLF TECHNOLOGIES</p>
           <h1 class="hero__title"><span class="grad-gold">SMART SOLUTIONS.</span><br /><span>STRONGER FUTURES.</span></h1>
           <p class="hero__lead" data-i18n="hero.lead">Teknoloji, güvenlik ve yapay zeka odaklı çözümlerimizle iş süreçlerinizi dönüştürüyor, verimliliğinizi artırıyor ve sürdürülebilir bir gelecek inşa ediyoruz.</p>
           <div class="hero__actions">
