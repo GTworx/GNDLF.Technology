@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GNDLF Technologies — Smart Solutions. Stronger Futures.</title>
+  <meta name="description" content="GNDLF Technologies; yazılım, yapay zeka, güvenlik ve analitik alanlarında yenilikçi çözümlerle işletmelerin dijital dönüşümüne sürdürülebilir değer katar." />
+  <meta name="theme-color" content="#0A1128" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="GNDLF Technologies — Smart Solutions. Stronger Futures." />
+  <meta property="og:description" content="Teknoloji, güvenlik ve yapay zeka odaklı çözümlerle iş süreçlerinizi dönüştürüyoruz." />
+  <meta property="og:url" content="https://www.gndlf.io" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav">
+      <a href="#top" class="brand" aria-label="GNDLF Technologies">
+        <img src="assets/img/logo-mark.svg" alt="" class="brand__mark" width="40" height="40" />
+        <span class="brand__text">
+          <span class="brand__name">GNDLF</span>
+          <span class="brand__sub">TECHNOLOGIES</span>
+        </span>
+      </a>
+
+      <div class="nav__right">
+        <nav class="nav__links" id="navLinks" aria-label="Ana menü">
+          <a href="#cozumler" data-i18n="nav.solutions">Çözümler</a>
+          <a href="#sap">SAP</a>
+          <a href="#neden" data-i18n="nav.why">Neden GNDLF</a>
+          <a href="#iletisim" data-i18n="nav.contact">İletişim</a>
+          <a href="#iletisim" class="btn btn--gold btn--sm nav__cta" data-i18n="nav.cta">Bize Ulaşın</a>
+        </nav>
+
+        <div class="lang" role="group" aria-label="Dil / Language">
+          <button type="button" class="lang__btn is-active" data-set-lang="tr">TR</button>
+          <button type="button" class="lang__btn" data-set-lang="en">EN</button>
+        </div>
+
+        <button class="nav__toggle" id="navToggle" aria-label="Menü" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <canvas id="networkCanvas"></canvas>
+        <div class="hero__glow"></div>
+      </div>
+      <div class="container hero__inner">
+        <div class="hero__content reveal">
+          <p class="hero__eyebrow">GNDLF TECHNOLOGIES</p>
+          <h1 class="hero__title">
+            <span class="grad-gold">SMART SOLUTIONS.</span><br />
+            <span>STRONGER FUTURES.</span>
+          </h1>
+          <p class="hero__lead" data-i18n="hero.lead">
+            Teknoloji, güvenlik ve yapay zeka odaklı çözümlerimizle iş süreçlerinizi
+            dönüştürüyor, verimliliğinizi artırıyor ve sürdürülebilir bir gelecek inşa ediyoruz.
+          </p>
+          <div class="hero__actions">
+            <a href="#cozumler" class="btn btn--gold" data-i18n="hero.cta1">Çözümlerimizi Keşfedin</a>
+            <a href="#iletisim" class="btn btn--ghost" data-i18n="hero.cta2">Bize Ulaşın</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VALUE STRIP ============ -->
+    <section class="values" aria-label="Değerlerimiz">
+      <div class="container values__grid">
+        <div class="value reveal">
+          <span class="value__icon">${ICON_ENTERPRISE}</span>
+          <h3>Enterprise Focused</h3>
+          <p data-i18n="val.1">Kurumsal ihtiyaçlara özel çözümler.</p>
+        </div>
+        <div class="value reveal">
+          <span class="value__icon">${ICON_SHIELD}</span>
+          <h3>Secure &amp; Reliable</h3>
+          <p data-i18n="val.2">Güvenli, ölçeklenebilir ve yüksek erişilebilir.</p>
+        </div>
+        <div class="value reveal">
+          <span class="value__icon">${ICON_INNOVATE}</span>
+          <h3>Innovative Technology</h3>
+          <p data-i18n="val.3">Yapay zeka ve otomasyon destekli uygulamalar.</p>
+        </div>
+        <div class="value reveal">
+          <span class="value__icon">${ICON_TEAM}</span>
+          <h3>Expert Team</h3>
+          <p data-i18n="val.4">Deneyimli ve uzman kadromuzla yanınızdayız.</p>
+        </div>
+        <div class="value reveal">
+          <span class="value__icon">${ICON_GLOBE}</span>
+          <h3>Global Vision</h3>
+          <p data-i18n="val.5">Dünya standartlarında çözümler.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SOLUTIONS ============ -->
+    <section class="section" id="cozumler">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="kicker" data-i18n="sol.kicker">ÇÖZÜMLERİMİZ</span>
+          <h2 data-i18n="sol.h2">Uçtan uca dijital çözüm ailesi</h2>
+          <p data-i18n="sol.p">İşletmenizin her katmanı için tasarlanmış, yapay zeka ile güçlendirilmiş ürün ve hizmetler.</p>
+        </header>
+
+        <div class="cards cards--solutions">
+          <article class="card reveal">
+            <div class="card__icon">${ICON_ENTERPRISE}</div>
+            <h3>Enterprise Solutions</h3>
+            <p class="card__desc" data-i18n="sol.d1">İş süreçlerinizi izleyin, maliyetlerinizi kontrol edin, projelerinizi yönetin ve test süreçlerinizi yapay zeka ile otomatikleştirin.</p>
+            <ul class="card__list">
+              <li>GNDLF Monitoring</li>
+              <li>GNDLF Ctrl-Cost</li>
+              <li>GNDLF PMO Cockpit</li>
+              <li>GNDLF AI Test Automation</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <div class="card__icon">${ICON_SHIELD}</div>
+            <h3>Security &amp; Compliance</h3>
+            <p class="card__desc" data-i18n="sol.d2">Sistemlerinizi test edin, zafiyetleri belirleyin ve verilerinizi koruyarak mevzuata uyumu sağlayın.</p>
+            <ul class="card__list">
+              <li>GNDLF Security Scanner &amp; Pentest</li>
+              <li>GNDLF Data Masking</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <div class="card__icon">${ICON_AI}</div>
+            <h3>AI &amp; Talent Solutions</h3>
+            <p class="card__desc" data-i18n="sol.d3">Yapay zeka destekli çözümlerimizle yetenek yönetimini, mülakatları ve bilgi yönetimini dönüştürün.</p>
+            <ul class="card__list">
+              <li>MeetBadi AI Note Taker</li>
+              <li>TalentBadi Enneagram</li>
+              <li>TalentBadi LLM Wiki Jobs</li>
+              <li>TalentBadi AI Interviews</li>
+              <li>TalentBadi HR</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <div class="card__icon">${ICON_ANALYTICS}</div>
+            <h3>Analytics &amp; Optimization</h3>
+            <p class="card__desc" data-i18n="sol.d4">Verilerinizi analiz edin, performansınızı artırın ve stratejik kararlarınızı güçlendirin.</p>
+            <ul class="card__list">
+              <li>ST03</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <div class="card__icon">${ICON_LEARN}</div>
+            <h3>Learning &amp; Education</h3>
+            <p class="card__desc" data-i18n="sol.d5">Teknoloji ve iş dünyasına yönelik uzmanlık eğitimleri ile ekibinizi güçlendirin.</p>
+            <ul class="card__list">
+              <li>Sooezy.Academy</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SAP ============ -->
+    <section class="section section--alt" id="sap">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="kicker" data-i18n="sap.kicker">SAP ÇÖZÜMLERİMİZ</span>
+          <h2 data-i18n="sap.h2">SAP ERP altyapınızı uçtan uca dijitalleştirin</h2>
+          <p data-i18n="sap.p">GNDLF, SAP ERP altyapınızı daha verimli, güvenli ve uyumlu hale getirir; iş süreçlerinizi uçtan uca dijitalleştirerek rekabette öne geçmenizi sağlar.</p>
+        </header>
+
+        <div class="cards cards--sap">
+          <article class="card card--sap reveal">
+            <h3 data-i18n="sap.t1">E-Dönüşüm Paketleri</h3>
+            <ul class="card__list">
+              <li>e-Fatura</li><li>e-Arşiv Fatura</li><li>e-İrsaliye</li><li>e-Defter</li>
+              <li>e-Mutabakat</li><li>e-Beyanname</li><li>e-Ekstre</li><li>Toplu Ödeme</li>
+            </ul>
+          </article>
+          <article class="card card--sap reveal">
+            <h3 data-i18n="sap.t2">Finansal Çözümler</h3>
+            <ul class="card__list">
+              <li>e-Mutabakat</li><li>Otomatik Denkleştirme</li><li>Otomatik Muhasebeleştirme</li>
+              <li>Gelen e-Fatura Onay Mekanizması</li><li>Personel Masraf Yönetimi</li>
+              <li>Müşteri &amp; Satıcı Yaşlandırma</li><li>Tahsilat Yönetim Sistemi</li>
+            </ul>
+          </article>
+          <article class="card card--sap reveal">
+            <h3 data-i18n="sap.t3">Veri &amp; Risk Yönetimi</h3>
+            <ul class="card__list">
+              <li>Data Masking</li><li>KVKK Paketi</li><li>Risk Management</li>
+              <li>Enflasyon Muhasebesi Paketi</li>
+            </ul>
+          </article>
+          <article class="card card--sap reveal">
+            <h3 data-i18n="sap.t4">Tedarik &amp; Dış Ticaret</h3>
+            <ul class="card__list">
+              <li>İthalat Paketi</li><li>İhracat Paketi</li><li>e-Müstahsil</li>
+              <li>MES Entegrasyonu</li>
+            </ul>
+          </article>
+          <article class="card card--sap reveal">
+            <h3 data-i18n="sap.t5">Finansal Operasyonlar &amp; Raporlama</h3>
+            <ul class="card__list">
+              <li>DBS</li><li>Online DBS</li><li>Tahsilat Yönetim Sistemi</li>
+              <li>Müşteri &amp; Satıcı Yaşlandırma Raporu</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="sap-badges reveal">
+          <div class="sap-badge"><span>${ICON_FAST}</span><b data-i18n="sap.b1">Hızlı Entegrasyon</b></div>
+          <div class="sap-badge"><span>${ICON_SHIELD}</span><b data-i18n="sap.b2">Mevzuata Uyumlu</b></div>
+          <div class="sap-badge"><span>${ICON_ANALYTICS}</span><b data-i18n="sap.b3">Yüksek Performans</b></div>
+          <div class="sap-badge"><span>${ICON_SCALE}</span><b data-i18n="sap.b4">Ölçeklenebilir Yapı</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHY GNDLF ============ -->
+    <section class="section" id="neden">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="kicker" data-i18n="why.kicker">NEDEN GNDLF?</span>
+          <h2 data-i18n="why.h2">Geleceğe birlikte taşıyalım</h2>
+        </header>
+        <div class="why-grid">
+          <div class="why reveal">
+            <span class="why__icon">${ICON_SHIELD}</span>
+            <h3 data-i18n="why.t1">Güvenilir</h3>
+            <p data-i18n="why.d1">Veri güvenliği ve sürekliliği odaklı çözümler sunarız.</p>
+          </div>
+          <div class="why reveal">
+            <span class="why__icon">${ICON_INNOVATE}</span>
+            <h3 data-i18n="why.t2">Yenilikçi</h3>
+            <p data-i18n="why.d2">AI ve otomasyon teknolojileri ile işinizi geleceğe taşırız.</p>
+          </div>
+          <div class="why reveal">
+            <span class="why__icon">${ICON_TEAM}</span>
+            <h3 data-i18n="why.t3">Uzman Kadro</h3>
+            <p data-i18n="why.d3">Deneyimli ekibimizle projelerinize değer katarız.</p>
+          </div>
+          <div class="why reveal">
+            <span class="why__icon">${ICON_ANALYTICS}</span>
+            <h3 data-i18n="why.t4">Sonuç Odaklı</h3>
+            <p data-i18n="why.d4">Ölçülebilir sonuçlar ve ROI odaklı çalışırız.</p>
+          </div>
+          <div class="why reveal">
+            <span class="why__icon">${ICON_GLOBE}</span>
+            <h3 data-i18n="why.t5">Küresel Yaklaşım</h3>
+            <p data-i18n="why.d5">Yerel ihtiyaçları global standartlarla buluştururuz.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA / CONTACT ============ -->
+    <section class="cta" id="iletisim">
+      <div class="container cta__inner reveal">
+        <div class="cta__text">
+          <h2 data-i18n="cta.h2">İşinizi birlikte geleceğe taşıyalım</h2>
+          <p data-i18n="cta.p">Daha akıllı, daha güvenli ve daha verimli bir gelecek için yanınızdayız.
+             Projelerinizi konuşmak için bize ulaşın.</p>
+          <div class="cta__links">
+            <a href="mailto:info@gndlf.io" class="cta__link">${ICON_MAIL}<span>info@gndlf.io</span></a>
+            <a href="https://www.gndlf.io" class="cta__link" target="_blank" rel="noopener">${ICON_GLOBE}<span>www.gndlf.io</span></a>
+          </div>
+        </div>
+        <form class="cta__form" onsubmit="return handleContact(event)">
+          <div class="field">
+            <label for="c-name" data-i18n="form.name">Ad Soyad</label>
+            <input id="c-name" name="name" type="text" required data-ph="form.ph_name" placeholder="Adınız" />
+          </div>
+          <div class="field">
+            <label for="c-email" data-i18n="form.email">E-posta</label>
+            <input id="c-email" name="email" type="email" required data-ph="form.ph_email" placeholder="ornek@sirket.com" />
+          </div>
+          <div class="field">
+            <label for="c-msg" data-i18n="form.msg">Mesajınız</label>
+            <textarea id="c-msg" name="message" rows="3" required data-ph="form.ph_msg" placeholder="Nasıl yardımcı olabiliriz?"></textarea>
+          </div>
+          <button type="submit" class="btn btn--gold btn--block" data-i18n="form.send">Gönder</button>
+          <p class="cta__note" id="ctaNote" hidden></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a href="#top" class="brand">
+          <img src="assets/img/logo-mark.svg" alt="" class="brand__mark" width="38" height="38" />
+          <span class="brand__text">
+            <span class="brand__name">GNDLF</span>
+            <span class="brand__sub">TECHNOLOGIES</span>
+          </span>
+        </a>
+        <p class="footer__tag">Smart Solutions. Stronger Futures.</p>
+        <p class="footer__desc">Technology · Security · AI · SAP · Analytics · Education</p>
+      </div>
+      <div class="footer__col">
+        <h4 data-i18n="foot.col1">Çözümler</h4>
+        <a href="#cozumler">Enterprise Solutions</a>
+        <a href="#cozumler">Security &amp; Compliance</a>
+        <a href="#cozumler">AI &amp; Talent</a>
+        <a href="#cozumler">Analytics</a>
+        <a href="#cozumler">Learning</a>
+      </div>
+      <div class="footer__col">
+        <h4 data-i18n="foot.col2">Kurumsal</h4>
+        <a href="#sap" data-i18n="foot.sap">SAP Çözümleri</a>
+        <a href="#neden" data-i18n="foot.why">Neden GNDLF</a>
+        <a href="#iletisim" data-i18n="foot.contact">İletişim</a>
+      </div>
+      <div class="footer__col">
+        <h4 data-i18n="foot.col3">İletişim</h4>
+        <a href="mailto:info@gndlf.io">info@gndlf.io</a>
+        <a href="https://www.gndlf.io" target="_blank" rel="noopener">www.gndlf.io</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© <span id="year"></span> GNDLF Technologies. <span data-i18n="foot.rights">Tüm hakları saklıdır.</span></span>
+      <span class="footer__pill">SMART SOLUTIONS · STRONGER FUTURES</span>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
