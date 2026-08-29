@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -234,8 +234,8 @@
           <a href="#iletisim" class="btn btn--gold btn--sm nav__cta" data-i18n="nav.cta">Bize Ulaşın</a>
         </nav>
         <div class="lang" role="group" aria-label="Dil / Language">
-          <button type="button" class="lang__btn is-active" data-set-lang="tr">TR</button>
-          <button type="button" class="lang__btn" data-set-lang="en">EN</button>
+          <button type="button" class="lang__btn" data-set-lang="tr">TR</button>
+          <button type="button" class="lang__btn is-active" data-set-lang="en">EN</button>
         </div>
         <button class="nav__toggle" id="navToggle" aria-label="Menü" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
@@ -528,11 +528,11 @@
       }
     };
 
-    var currentLang = 'tr';
+    var currentLang = 'en';
 
     function applyLang(lang) {
-      var dict = I18N[lang] || I18N.tr;
-      currentLang = I18N[lang] ? lang : 'tr';
+      var dict = I18N[lang] || I18N.en;
+      currentLang = I18N[lang] ? lang : 'en';
       document.documentElement.lang = currentLang;
       var els = document.querySelectorAll('[data-i18n]');
       for (var i = 0; i < els.length; i++) {
@@ -554,7 +554,7 @@
     function initLang() {
       var saved = null;
       try { saved = localStorage.getItem('gndlf-lang'); } catch (e) {}
-      var start = saved || ((navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en');
+      var start = saved || 'en';
       applyLang(start);
       var btns = document.querySelectorAll('.lang__btn');
       for (var i = 0; i < btns.length; i++) {
@@ -673,7 +673,7 @@
       var form = e.target;
       var note = document.getElementById('ctaNote');
       var btn = form.querySelector('button[type=submit]');
-      var L = I18N[currentLang] || I18N.tr;
+      var L = I18N[currentLang] || I18N.en;
       var name = (form.name.value || '').trim();
       note.hidden = false;
       note.style.color = '';
