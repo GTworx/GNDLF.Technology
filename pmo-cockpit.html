@@ -7,32 +7,32 @@
 <meta name="description" content="GNDLF PMO Cockpit — an active AI agent that turns meeting speech into structured, validated, governed project variables. Extraction, validation and telemetry in one enterprise PMO cockpit.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%230A1128'/%3E%3Cpath d='M80 80 A30 30 0 1 1 89 49' fill='none' stroke='%23D4AF37' stroke-width='12' stroke-linecap='round'/%3E%3Cpath d='M56 54 L85 57 L85 61 L56 64 Z' fill='%23D4AF37'/%3E%3Crect x='24' y='46' width='8' height='8' rx='1.5' fill='%23D4AF37'/%3E%3Crect x='15' y='56' width='6' height='6' rx='1' fill='%23D4AF37'/%3E%3C/svg%3E">
 <style>
   :root{
-    --ink:#111820;
-    --body:#5b6067;
-    --muted:#7a828b;
-    --blue:#0088cc;
-    --blue-2:#22b8e6;
-    --blue-dark:#0074ad;
-    --navy:#0a1a2b;
-    --navy-2:#0d2438;
-    --line:#e7eaee;
-    --bg:#ffffff;
-    --bg-alt:#f5f8fb;
-    --dark:#0b1420;
+    --ink:#f2f5fa;
+    --body:#c3ccd8;
+    --muted:#93a0b3;
+    --blue:#D4AF37;
+    --blue-2:#E9C766;
+    --blue-dark:#B8891F;
+    --navy:#0A1128;
+    --navy-2:#0d1730;
+    --line:rgba(255,255,255,.10);
+    --bg:#0A1128;
+    --bg-alt:#0d1730;
+    --dark:#070c1d;
     --radius:8px;
     --wrap:1160px;
     --shadow-sm:0 1px 2px rgba(16,24,32,.05), 0 6px 20px rgba(16,24,32,.06);
     --shadow-lg:0 30px 60px -20px rgba(10,26,43,.35), 0 12px 26px -12px rgba(10,26,43,.25);
-    --grad:linear-gradient(120deg,#0088cc,#22b8e6);
+    --grad:linear-gradient(120deg,#D4AF37,#E9C766);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
-    margin:0;font-family:"Open Sans",Arial,sans-serif;color:var(--body);
+    margin:0;font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--body);
     background:var(--bg);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden
   }
   a{color:var(--blue);text-decoration:none}
@@ -53,8 +53,8 @@
   /* Buttons */
   .btn{display:inline-flex;align-items:center;gap:9px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;
     font-size:13.5px;padding:15px 28px;border-radius:var(--radius);cursor:pointer;border:2px solid transparent;transition:.18s ease;white-space:nowrap}
-  .btn--primary{background:var(--grad);color:#fff;box-shadow:0 10px 24px -8px rgba(0,136,204,.6)}
-  .btn--primary:hover{color:#fff;transform:translateY(-2px);box-shadow:0 16px 30px -8px rgba(0,136,204,.7)}
+  .btn--primary{background:var(--grad);color:#fff;box-shadow:0 10px 24px -8px rgba(212,175,55,.6)}
+  .btn--primary:hover{color:#fff;transform:translateY(-2px);box-shadow:0 16px 30px -8px rgba(212,175,55,.7)}
   .btn--ghost{background:transparent;color:var(--ink);border-color:#d3d9e0}
   .btn--ghost:hover{border-color:var(--blue);color:var(--blue)}
   .btn--light{background:#fff;color:var(--ink)}
@@ -69,7 +69,7 @@
   .nav{display:flex;align-items:center;gap:26px;height:72px;position:relative}
   .brand{display:flex;align-items:center;gap:12px;margin-right:auto;text-decoration:none}
   .brandmark{width:40px;height:40px;flex:0 0 40px;border-radius:12px;background:var(--grad);color:#fff;
-    display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px -8px rgba(0,136,204,.7)}
+    display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px -8px rgba(212,175,55,.7)}
   .brandmark svg{width:24px;height:24px;display:block}
   .wordmark{line-height:1}
   .kicker{display:block;font-size:9.5px;font-weight:800;letter-spacing:.36em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
@@ -89,14 +89,14 @@
 
   /* HERO */
   .hero{position:relative;overflow:hidden;padding:82px 0 90px;background:
-    radial-gradient(1000px 520px at 88% -8%, rgba(34,184,230,.16), transparent 60%),
-    radial-gradient(760px 480px at -6% 108%, rgba(0,136,204,.10), transparent 55%),#fff}
+    radial-gradient(1000px 520px at 88% -8%, rgba(212,175,55,.16), transparent 60%),
+    radial-gradient(760px 480px at -6% 108%, rgba(212,175,55,.10), transparent 55%),#fff}
   .hero::before{content:"";position:absolute;inset:0;
     background-image:linear-gradient(rgba(10,26,43,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(10,26,43,.035) 1px,transparent 1px);
     background-size:44px 44px;mask-image:radial-gradient(700px 500px at 78% 40%,#000,transparent 75%);pointer-events:none}
   .hero .wrap{position:relative;display:grid;grid-template-columns:1.03fr 1.12fr;gap:56px;align-items:center}
   .hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--blue-dark);
-    background:rgba(0,136,204,.08);border:1px solid rgba(0,136,204,.22);padding:6px 14px;border-radius:40px;margin-bottom:20px}
+    background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.22);padding:6px 14px;border-radius:40px;margin-bottom:20px}
   .hero-badge .d{width:7px;height:7px;border-radius:50%;background:#12c26a;box-shadow:0 0 0 0 rgba(18,194,106,.6);animation:pulse 2s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(18,194,106,.5)}70%{box-shadow:0 0 0 8px rgba(18,194,106,0)}100%{box-shadow:0 0 0 0 rgba(18,194,106,0)}}
   .hero h1{font-size:54px;line-height:1.06;letter-spacing:-.03em;color:var(--ink)}
@@ -119,7 +119,7 @@
   .stats .l{font-size:13.5px;color:var(--muted);margin-top:8px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
 
   /* VIDEO */
-  .browser{border-radius:16px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--line);background:#0b1420}
+  .browser{border-radius:16px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--line);background:#070c1d}
   .browser .bar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#0e1a29}
   .browser .bar i{width:11px;height:11px;border-radius:50%;display:inline-block}
   .browser .bar .u{margin-left:14px;flex:1;height:22px;border-radius:6px;background:rgba(255,255,255,.06);display:flex;align-items:center;padding:0 12px;color:#8aa0b6;font-size:12px}
@@ -131,25 +131,25 @@
   .video-meta a{font-weight:700}
 
   /* DARK architecture band */
-  .section--dark{position:relative;background:radial-gradient(900px 500px at 82% -10%,rgba(34,184,230,.14),transparent 60%),linear-gradient(180deg,#0a1a2b,#0b1420);color:#c4cfdb;overflow:hidden}
+  .section--dark{position:relative;background:radial-gradient(900px 500px at 82% -10%,rgba(212,175,55,.14),transparent 60%),linear-gradient(180deg,#0A1128,#070c1d);color:#c4cfdb;overflow:hidden}
   .section--dark::before{content:"";position:absolute;inset:0;
     background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
     background-size:46px 46px;mask-image:radial-gradient(760px 460px at 60% 30%,#000,transparent 78%);pointer-events:none}
   .section--dark .wrap{position:relative}
   .section--dark h2{color:#fff}
   .section--dark .lead{color:#9fb0c2}
-  .section--dark .eyebrow{color:#22b8e6}
+  .section--dark .eyebrow{color:#E9C766}
   .pipe-wrap{margin:44px 0 8px;overflow-x:auto}
   .pipe-wrap svg{min-width:860px;width:100%;height:auto;display:block}
   .layers{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
   .layer{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:28px 26px;transition:.2s ease;backdrop-filter:blur(4px)}
-  .layer:hover{border-color:rgba(34,184,230,.5);transform:translateY(-3px);box-shadow:0 24px 50px -24px rgba(0,0,0,.7)}
-  .layer .num{font-size:12px;font-weight:800;color:#22b8e6;letter-spacing:.14em}
+  .layer:hover{border-color:rgba(212,175,55,.5);transform:translateY(-3px);box-shadow:0 24px 50px -24px rgba(0,0,0,.7)}
+  .layer .num{font-size:12px;font-weight:800;color:#E9C766;letter-spacing:.14em}
   .layer h3{margin-top:10px;color:#fff;text-transform:uppercase;letter-spacing:.02em;font-size:19px}
   .layer .cap{margin:4px 0 0;color:#8ba0b4;font-size:14px}
   .layer ul{margin:16px 0 0;padding:0;list-style:none}
   .layer li{position:relative;padding-left:24px;margin-bottom:11px;font-size:14.5px;color:#b9c6d4}
-  .layer li::before{content:"";position:absolute;left:0;top:8px;width:9px;height:9px;border-radius:50%;background:var(--grad);box-shadow:0 0 10px rgba(34,184,230,.8)}
+  .layer li::before{content:"";position:absolute;left:0;top:8px;width:9px;height:9px;border-radius:50%;background:var(--grad);box-shadow:0 0 10px rgba(212,175,55,.8)}
 
   /* FEATURE grid */
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px}
@@ -157,19 +157,19 @@
   .card::after{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:.25s}
   .card:hover{border-color:#c7e6f5;box-shadow:var(--shadow-lg);transform:translateY(-4px)}
   .card:hover::after{transform:scaleX(1)}
-  .ic{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,rgba(0,136,204,.12),rgba(34,184,230,.14));color:var(--blue);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .ic{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,rgba(212,175,55,.12),rgba(212,175,55,.14));color:var(--blue);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
   .ic svg{width:24px;height:24px}
   .card h3{font-size:17.5px;letter-spacing:-.01em}
   .card p{margin:6px 0 0;font-size:14.5px}
 
   /* SPLIT (test assistant) */
   .split{display:grid;grid-template-columns:1.05fr 1fr;gap:52px;align-items:center}
-  .badge{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);background:rgba(0,136,204,.10);padding:6px 13px;border-radius:40px;margin-bottom:16px}
+  .badge{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);background:rgba(212,175,55,.10);padding:6px 13px;border-radius:40px;margin-bottom:16px}
   .flow{background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:var(--shadow-lg)}
   .flow .step{display:flex;align-items:center;gap:15px;padding:17px 18px;border-radius:11px;transition:.2s}
   .flow .step:hover{background:var(--bg-alt)}
   .flow .step + .step{border-top:1px solid var(--line)}
-  .flow .dot{width:38px;height:38px;border-radius:11px;flex:0 0 38px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;box-shadow:0 8px 18px -8px rgba(0,136,204,.7)}
+  .flow .dot{width:38px;height:38px;border-radius:11px;flex:0 0 38px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;box-shadow:0 8px 18px -8px rgba(212,175,55,.7)}
   .flow .step:last-child .dot{background:var(--ink);box-shadow:none}
   .flow .t{font-weight:800;color:var(--ink);font-size:14.5px;text-transform:uppercase;letter-spacing:.03em}
   .flow .d{font-size:13.5px;color:var(--muted)}
@@ -181,8 +181,8 @@
   .dash-visual .browser{position:relative}
 
   /* CTA band */
-  .band{position:relative;overflow:hidden;background:linear-gradient(120deg,#0088cc 0%,#0a6fa3 55%,#0a1a2b 130%);color:#fff;text-align:center;padding:82px 0}
-  .band::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 20% 20%,rgba(255,255,255,.14),transparent 40%),radial-gradient(circle at 80% 80%,rgba(34,184,230,.3),transparent 45%);pointer-events:none}
+  .band{position:relative;overflow:hidden;background:linear-gradient(120deg,#D4AF37 0%,#8a6a1a 55%,#0A1128 130%);color:#fff;text-align:center;padding:82px 0}
+  .band::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 20% 20%,rgba(255,255,255,.14),transparent 40%),radial-gradient(circle at 80% 80%,rgba(212,175,55,.3),transparent 45%);pointer-events:none}
   .band .wrap{position:relative}
   .band h2{color:#fff;font-size:40px}
   .band .lead{color:rgba(255,255,255,.92);margin:0 auto}
@@ -194,7 +194,7 @@
   .field{margin-bottom:16px}
   .field label{display:block;font-size:13px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.04em;margin-bottom:7px}
   .field input,.field select,.field textarea{width:100%;font-family:inherit;font-size:15px;color:var(--ink);padding:13px 15px;border:1px solid #d6dce2;border-radius:10px;background:#fff;transition:.15s}
-  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,136,204,.16)}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(212,175,55,.16)}
   .field textarea{min-height:120px;resize:vertical}
   .form .btn{width:100%;justify-content:center}
   .form small{display:block;color:var(--muted);font-size:12.5px;margin-top:12px;line-height:1.55}
@@ -212,7 +212,7 @@
   footer .tag{color:#7f8b9a;margin-top:14px;max-width:34ch}
   footer h4{color:#fff;text-transform:uppercase;letter-spacing:.08em;font-size:12px;margin:0 0 14px}
   footer a{color:#9aa6b4;display:block;margin-bottom:9px}
-  footer a:hover{color:#22b8e6}
+  footer a:hover{color:#E9C766}
   .foot-bottom{border-top:1px solid #1c2836;margin-top:46px;padding-top:22px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#6f7c8b;font-size:13px}
 
   /* Reveal on scroll (progressive) */
@@ -258,6 +258,30 @@
     .nav{gap:14px}
     .stats .n{font-size:30px}
   }
+
+  /* ===== GNDLF lacivert+altın uyarlaması ===== */
+  body{background:var(--bg);color:var(--body);}
+  header{background:rgba(10,17,40,.82)!important;border-bottom-color:var(--line)!important;}
+  .brandmark{background:#16213f!important;color:#fff!important;box-shadow:none!important;}
+  .btn--primary{color:#0A1128!important;}
+  .btn--light,.btn--onblue{background:linear-gradient(120deg,#D4AF37,#E9C766)!important;color:#0A1128!important;}
+  .btn--ghost{color:var(--ink);border-color:rgba(255,255,255,.28);}
+  .btn--ghost:hover{border-color:var(--blue);color:var(--blue);}
+  .stats{background:var(--bg)!important;border-top-color:var(--line)!important;}
+  .stats .s{border-left-color:var(--line)!important;}
+  .card,.flow,.form{background:#0e1830!important;border-color:var(--line)!important;}
+  .card:hover{border-color:rgba(212,175,55,.5)!important;}
+  .card p,.flow .d,.video-meta,.form small,.recips{color:var(--muted)!important;}
+  .field input,.field select,.field textarea{background:#0a1330!important;color:var(--ink)!important;border-color:rgba(255,255,255,.14)!important;}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue)!important;}
+  .recips code{background:#0e1830!important;border-color:var(--line)!important;color:var(--ink)!important;}
+  .lang{border-color:rgba(255,255,255,.22)!important;}
+  .flow .step:hover{background:rgba(255,255,255,.04)!important;}
+  .hero{background:radial-gradient(1000px 520px at 88% -8%,rgba(212,175,55,.14),transparent 60%),radial-gradient(760px 480px at -6% 108%,rgba(212,175,55,.08),transparent 55%),var(--bg)!important;}
+  .hero::before{background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px)!important;}
+  .hero .lead{color:#aeb8c6!important;}
+  .band{background:linear-gradient(120deg,#0d1730 0%,#0A1128 55%,#161a2e 120%)!important;}
+  footer a:hover{color:var(--blue)!important;}
 </style>
 </head>
 <body class="no-js">
@@ -329,10 +353,10 @@
             <stop offset="0" stop-color="#0e2136"/><stop offset="1" stop-color="#0a1420"/>
           </linearGradient>
           <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stop-color="#0088cc"/><stop offset="1" stop-color="#22b8e6"/>
+            <stop offset="0" stop-color="#D4AF37"/><stop offset="1" stop-color="#E9C766"/>
           </linearGradient>
           <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#22b8e6" stop-opacity=".55"/><stop offset="1" stop-color="#22b8e6" stop-opacity="0"/>
+            <stop offset="0" stop-color="#E9C766" stop-opacity=".55"/><stop offset="1" stop-color="#E9C766" stop-opacity="0"/>
           </linearGradient>
         </defs>
         <rect x="6" y="6" width="628" height="458" rx="18" fill="url(#wnd)" stroke="rgba(255,255,255,.09)"/>
@@ -343,7 +367,7 @@
         <line x1="18" y1="60" x2="622" y2="60" stroke="rgba(255,255,255,.07)"/>
         <!-- sidebar -->
         <rect x="20" y="74" width="52" height="374" rx="12" fill="rgba(255,255,255,.04)"/>
-        <rect x="34" y="92" width="24" height="8" rx="4" fill="#22b8e6"/>
+        <rect x="34" y="92" width="24" height="8" rx="4" fill="#E9C766"/>
         <rect x="34" y="120" width="24" height="8" rx="4" fill="rgba(255,255,255,.18)"/>
         <rect x="34" y="148" width="24" height="8" rx="4" fill="rgba(255,255,255,.18)"/>
         <rect x="34" y="176" width="24" height="8" rx="4" fill="rgba(255,255,255,.18)"/>
@@ -371,9 +395,9 @@
         <text x="102" y="196" fill="#9fb2c6" font-size="12" font-family="Open Sans" letter-spacing="1">TIMELINE · SCHEDULE TELEMETRY</text>
         <g>
           <rect x="102" y="212" width="150" height="12" rx="6" fill="url(#bar)"/>
-          <rect x="266" y="212" width="120" height="12" rx="6" fill="rgba(34,184,230,.35)"/>
+          <rect x="266" y="212" width="120" height="12" rx="6" fill="rgba(212,175,55,.35)"/>
           <rect x="102" y="238" width="90" height="12" rx="6" fill="url(#bar)"/>
-          <rect x="206" y="238" width="150" height="12" rx="6" fill="rgba(34,184,230,.35)"/>
+          <rect x="206" y="238" width="150" height="12" rx="6" fill="rgba(212,175,55,.35)"/>
           <rect x="102" y="264" width="220" height="12" rx="6" fill="url(#bar)"/>
           <!-- slipping task in amber past deadline -->
           <rect x="102" y="290" width="300" height="12" rx="6" fill="#febc2e" opacity=".85"/>
@@ -381,13 +405,13 @@
           <text x="410" y="300" fill="#febc2e" font-size="10" font-family="Open Sans">SLIP</text>
         </g>
         <!-- today line -->
-        <line x1="392" y1="206" x2="392" y2="310" stroke="#22b8e6" stroke-width="1.5" stroke-dasharray="3 4"/>
-        <text x="366" y="204" fill="#22b8e6" font-size="10" font-family="Open Sans">TODAY</text>
+        <line x1="392" y1="206" x2="392" y2="310" stroke="#E9C766" stroke-width="1.5" stroke-dasharray="3 4"/>
+        <text x="366" y="204" fill="#E9C766" font-size="10" font-family="Open Sans">TODAY</text>
         <!-- forecast area chart -->
         <rect x="86" y="336" width="230" height="112" rx="12" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.06)"/>
         <text x="102" y="358" fill="#9fb2c6" font-size="11" font-family="Open Sans" letter-spacing="1">RESOURCE FORECAST</text>
         <path d="M102 428 L134 412 L166 418 L198 396 L230 404 L262 380 L296 388 L296 440 L102 440 Z" fill="url(#area)"/>
-        <path d="M102 428 L134 412 L166 418 L198 396 L230 404 L262 380 L296 388" fill="none" stroke="#22b8e6" stroke-width="2"/>
+        <path d="M102 428 L134 412 L166 418 L198 396 L230 404 L262 380 L296 388" fill="none" stroke="#E9C766" stroke-width="2"/>
         <!-- workload bars -->
         <rect x="328" y="336" width="230" height="112" rx="12" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.06)"/>
         <text x="344" y="358" fill="#9fb2c6" font-size="11" font-family="Open Sans" letter-spacing="1">TEAM WORKLOAD</text>
@@ -401,12 +425,12 @@
         </g>
         <!-- floating "meeting -> tasks" card -->
         <g>
-          <rect x="34" y="378" width="238" height="72" rx="13" fill="#12233a" stroke="rgba(34,184,230,.4)"/>
-          <circle cx="66" cy="414" r="18" fill="rgba(34,184,230,.16)"/>
-          <path d="M66 405 a5 5 0 0 1 5 5 v4 a5 5 0 0 1 -10 0 v-4 a5 5 0 0 1 5 -5 Z M58 415 a8 8 0 0 0 16 0 M66 423 v5" fill="none" stroke="#22b8e6" stroke-width="1.6" stroke-linecap="round"/>
+          <rect x="34" y="378" width="238" height="72" rx="13" fill="#12233a" stroke="rgba(212,175,55,.4)"/>
+          <circle cx="66" cy="414" r="18" fill="rgba(212,175,55,.16)"/>
+          <path d="M66 405 a5 5 0 0 1 5 5 v4 a5 5 0 0 1 -10 0 v-4 a5 5 0 0 1 5 -5 Z M58 415 a8 8 0 0 0 16 0 M66 423 v5" fill="none" stroke="#E9C766" stroke-width="1.6" stroke-linecap="round"/>
           <text x="96" y="405" fill="#fff" font-size="12.5" font-family="Open Sans" font-weight="700">Meeting → 5 tasks</text>
           <text x="96" y="422" fill="#8aa0b6" font-size="10.5" font-family="Open Sans">extracted &amp; assigned</text>
-          <g class="wv" transform="translate(96,430)" fill="#22b8e6">
+          <g class="wv" transform="translate(96,430)" fill="#E9C766">
             <rect x="0" y="0" width="3" height="12" rx="1.5" style="animation-delay:0s"/>
             <rect x="7" y="0" width="3" height="12" rx="1.5" style="animation-delay:.1s"/>
             <rect x="14" y="0" width="3" height="12" rx="1.5" style="animation-delay:.2s"/>
@@ -485,7 +509,7 @@
             <stop offset="0" stop-color="rgba(255,255,255,.09)"/><stop offset="1" stop-color="rgba(255,255,255,.03)"/>
           </linearGradient>
           <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stop-color="#0088cc"/><stop offset="1" stop-color="#22b8e6"/>
+            <stop offset="0" stop-color="#D4AF37"/><stop offset="1" stop-color="#E9C766"/>
           </linearGradient>
         </defs>
         <!-- connectors -->
@@ -495,7 +519,7 @@
           <line x1="650" y1="105" x2="710" y2="105"/>
           <line x1="880" y1="105" x2="940" y2="105"/>
         </g>
-        <g stroke="#22b8e6" stroke-width="2.5" stroke-dasharray="2 8" stroke-linecap="round" fill="none" class="flowdot" opacity=".9">
+        <g stroke="#E9C766" stroke-width="2.5" stroke-dasharray="2 8" stroke-linecap="round" fill="none" class="flowdot" opacity=".9">
           <line x1="190" y1="105" x2="250" y2="105"/>
           <line x1="420" y1="105" x2="480" y2="105"/>
           <line x1="650" y1="105" x2="710" y2="105"/>
@@ -505,30 +529,30 @@
         <!-- NODE 1: Meetings & APIs -->
         <g>
           <rect x="20" y="55" width="170" height="100" rx="16" fill="url(#node)" stroke="rgba(255,255,255,.14)"/>
-          <g transform="translate(90,84)" fill="none" stroke="#22b8e6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <g transform="translate(90,84)" fill="none" stroke="#E9C766" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="-13" y="-9" width="26" height="18" rx="3"/><path d="M-13 -4 L0 4 L13 -4"/>
           </g>
           <text x="105" y="128" text-anchor="middle" fill="#fff" font-size="14" font-weight="800" font-family="Open Sans" data-i18n="pl_in_t">Meetings &amp; APIs</text>
         </g>
         <!-- NODE 2: Extraction -->
         <g>
-          <rect x="250" y="55" width="170" height="100" rx="16" fill="url(#node)" stroke="rgba(34,184,230,.4)"/>
-          <g transform="translate(320,84)" fill="none" stroke="#22b8e6" stroke-width="2" stroke-linecap="round"><path d="M-12 -8 H12 M-12 0 H4 M-12 8 H8"/></g>
-          <text x="335" y="112" text-anchor="middle" fill="#22b8e6" font-size="11" font-family="Open Sans">01</text>
+          <rect x="250" y="55" width="170" height="100" rx="16" fill="url(#node)" stroke="rgba(212,175,55,.4)"/>
+          <g transform="translate(320,84)" fill="none" stroke="#E9C766" stroke-width="2" stroke-linecap="round"><path d="M-12 -8 H12 M-12 0 H4 M-12 8 H8"/></g>
+          <text x="335" y="112" text-anchor="middle" fill="#E9C766" font-size="11" font-family="Open Sans">01</text>
           <text x="335" y="132" text-anchor="middle" fill="#fff" font-size="14" font-weight="800" font-family="Open Sans" data-i18n="l1_h">Extraction</text>
         </g>
         <!-- NODE 3: Validation -->
         <g>
-          <rect x="480" y="55" width="170" height="100" rx="16" fill="url(#node)" stroke="rgba(34,184,230,.4)"/>
-          <g transform="translate(550,84)" fill="none" stroke="#22b8e6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 -12 L11 -7 V2 c0 7 -6 10 -11 12 c-5 -2 -11 -5 -11 -12 V-7 Z"/><path d="M-5 -1 L-1 3 L6 -5"/></g>
-          <text x="565" y="112" text-anchor="middle" fill="#22b8e6" font-size="11" font-family="Open Sans">02</text>
+          <rect x="480" y="55" width="170" height="100" rx="16" fill="url(#node)" stroke="rgba(212,175,55,.4)"/>
+          <g transform="translate(550,84)" fill="none" stroke="#E9C766" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 -12 L11 -7 V2 c0 7 -6 10 -11 12 c-5 -2 -11 -5 -11 -12 V-7 Z"/><path d="M-5 -1 L-1 3 L6 -5"/></g>
+          <text x="565" y="112" text-anchor="middle" fill="#E9C766" font-size="11" font-family="Open Sans">02</text>
           <text x="565" y="132" text-anchor="middle" fill="#fff" font-size="14" font-weight="800" font-family="Open Sans" data-i18n="l2_h">Validation</text>
         </g>
         <!-- NODE 4: Telemetry -->
         <g>
-          <rect x="710" y="55" width="170" height="100" rx="16" fill="url(#node)" stroke="rgba(34,184,230,.4)"/>
-          <g transform="translate(780,86)" fill="none" stroke="#22b8e6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M-13 6 V-2 M-5 6 V-8 M3 6 V-4 M11 6 V-11"/></g>
-          <text x="795" y="112" text-anchor="middle" fill="#22b8e6" font-size="11" font-family="Open Sans">03</text>
+          <rect x="710" y="55" width="170" height="100" rx="16" fill="url(#node)" stroke="rgba(212,175,55,.4)"/>
+          <g transform="translate(780,86)" fill="none" stroke="#E9C766" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M-13 6 V-2 M-5 6 V-8 M3 6 V-4 M11 6 V-11"/></g>
+          <text x="795" y="112" text-anchor="middle" fill="#E9C766" font-size="11" font-family="Open Sans">03</text>
           <text x="795" y="132" text-anchor="middle" fill="#fff" font-size="14" font-weight="800" font-family="Open Sans" data-i18n="l3_h">Telemetry</text>
         </g>
         <!-- NODE 5: Dashboard -->
@@ -658,8 +682,8 @@
         </div>
         <svg viewBox="0 0 640 400" role="img" aria-label="Company-wide portfolio view">
           <defs>
-            <linearGradient id="barb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0088cc"/><stop offset="1" stop-color="#22b8e6"/></linearGradient>
-            <linearGradient id="areab" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0088cc" stop-opacity=".35"/><stop offset="1" stop-color="#0088cc" stop-opacity="0"/></linearGradient>
+            <linearGradient id="barb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D4AF37"/><stop offset="1" stop-color="#E9C766"/></linearGradient>
+            <linearGradient id="areab" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D4AF37" stop-opacity=".35"/><stop offset="1" stop-color="#D4AF37" stop-opacity="0"/></linearGradient>
           </defs>
           <rect x="0" y="0" width="640" height="400" fill="#0d1b2b"/>
           <!-- header row -->
@@ -669,8 +693,8 @@
           <rect x="28" y="92" width="372" height="150" rx="12" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.06)"/>
           <text x="44" y="116" fill="#9fb2c6" font-size="11" font-family="Open Sans" letter-spacing="1">COMPANY-WIDE PROGRESS</text>
           <path d="M44 224 L96 200 L148 208 L200 176 L252 186 L304 150 L356 160 L384 148 L384 232 L44 232 Z" fill="url(#areab)"/>
-          <path d="M44 224 L96 200 L148 208 L200 176 L252 186 L304 150 L356 160 L384 148" fill="none" stroke="#22b8e6" stroke-width="2.5"/>
-          <circle cx="384" cy="148" r="4" fill="#22b8e6"/>
+          <path d="M44 224 L96 200 L148 208 L200 176 L252 186 L304 150 L356 160 L384 148" fill="none" stroke="#E9C766" stroke-width="2.5"/>
+          <circle cx="384" cy="148" r="4" fill="#E9C766"/>
           <!-- risk donut -->
           <rect x="412" y="92" width="200" height="150" rx="12" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.06)"/>
           <text x="428" y="116" fill="#9fb2c6" font-size="11" font-family="Open Sans" letter-spacing="1">RISK PROFILE</text>
@@ -701,7 +725,7 @@
             <text x="28" y="376" fill="#cdd8e4" font-size="13">Compliance audit</text>
             <rect x="210" y="367" width="250" height="8" rx="4" fill="rgba(255,255,255,.1)"/>
             <rect x="210" y="367" width="120" height="8" rx="4" fill="url(#barb)"/>
-            <rect x="486" y="363" width="78" height="18" rx="9" fill="rgba(34,184,230,.18)"/><text x="497" y="376" fill="#22b8e6" font-size="10">IN REVIEW</text>
+            <rect x="486" y="363" width="78" height="18" rx="9" fill="rgba(212,175,55,.18)"/><text x="497" y="376" fill="#E9C766" font-size="10">IN REVIEW</text>
           </g>
         </svg>
       </div>
