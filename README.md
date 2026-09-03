@@ -35,33 +35,43 @@ Canlı bir adreste yayınlamak için `index.html`'i herhangi bir statik hostinge
 (GitHub Pages, Netlify, Vercel) yükleyin. GitHub Pages: **Settings → Pages →
 Source: `main` / root**.
 
-## İletişim formu → e-posta (Resend)
+## İletişim formu → e-posta (Brevo)
 
 "Bize Ulaşın" formu, `api/contact.js` sunucusuz (serverless) fonksiyonu
-üzerinden **Resend** ile e-posta gönderir. API anahtarı **koda yazılmaz**;
-barındırma panelinde ortam değişkeni olarak tanımlanır.
+üzerinden **Brevo** ile e-posta gönderir. API anahtarı **koda yazılmaz**;
+barındırma panelinde ortam değişkeni olarak tanımlanır. Mesajlar varsayılan
+olarak `oya@gndlf.io` ve `gokhan@gndlf.io` adreslerine gider.
 
-> ⚠️ **Güvenlik:** Resend API anahtarı gizlidir, tarayıcıya/HTML'e asla
-> konmaz. Anahtar bir yerde açığa çıktıysa Resend panelinden **yenileyin
+> ⚠️ **Güvenlik:** Brevo API anahtarı gizlidir, tarayıcıya/HTML'e asla
+> konmaz. Anahtar bir yerde açığa çıktıysa Brevo panelinden **yenileyin
 > (rotate)** ve yeni anahtarı kullanın.
 
-### Vercel ile yayınlama (önerilen — form dahil çalışır)
+### Netlify ile yayınlama (önerilen — form dahil çalışır)
+
+1. https://app.netlify.com → **Add new site → Import an existing project** →
+   bu repoyu seçin → **Deploy**.
+   (`netlify.toml` sayesinde statik `index.html` kök dizinden, `netlify/functions/contact.js`
+   otomatik fonksiyon olarak yayınlanır ve `/api/contact` isteği ona yönlendirilir.)
+2. Site → **Site configuration → Environment variables** → şunları ekleyin:
+   - `BREVO_API_KEY` = Brevo API anahtarınız
+   - `CONTACT_TO` = `oya@gndlf.io,gokhan@gndlf.io` (mesajların gideceği adresler)
+   - `CONTACT_FROM` = `GNDLF Web <info@gndlf.io>` (alan adı Brevo'da doğrulandıysa)
+3. **Redeploy** edin (Deploys → Trigger deploy). Artık form gerçek e-posta gönderir.
+
+### Vercel ile yayınlama (alternatif)
 
 1. https://vercel.com → GitHub ile giriş → **Add New → Project** →
-   `oya-paktas/gndlf-website` reposunu içe aktarın → **Deploy**.
+   bu repoyu içe aktarın → **Deploy**.
    (Statik `index.html` kök dizinden, `api/contact.js` otomatik fonksiyon olarak yayınlanır.)
-2. Proje → **Settings → Environment Variables** → şunları ekleyin:
-   - `RESEND_API_KEY` = Resend anahtarınız (yeni/rotate edilmiş)
-   - `CONTACT_TO` = `info@gndlf.io` (mesajların geleceği adres)
-   - `CONTACT_FROM` = `GNDLF Web <onboarding@resend.dev>` (test) ya da alan adı
-     doğrulandıysa `GNDLF Web <noreply@gndlf.io>`
-3. **Redeploy** edin. Artık form gerçek e-posta gönderir.
+2. Proje → **Settings → Environment Variables** → aynı üç değişkeni ekleyin
+   (`BREVO_API_KEY`, `CONTACT_TO`, `CONTACT_FROM`).
+3. **Redeploy** edin.
 
 ### Alan adı doğrulama (kendi adresinizden göndermek için)
 
-Resend → **Domains** → `gndlf.io` ekleyip DNS kayıtlarını doğrulayın. Doğrulanana
-kadar `onboarding@resend.dev` göndereni yalnızca Resend hesabınızın e-postasına
-teslim edebilir.
+Brevo → **Senders, Domains & Dedicated IPs → Domains** → `gndlf.io` ekleyip
+DNS kayıtlarını doğrulayın. Doğrulanana kadar yalnızca Brevo hesabınızda
+doğrulanmış bir gönderen adresi kullanabilirsiniz.
 
 > Not: **GitHub Pages** sunucusuz fonksiyon çalıştıramaz; formun e-posta
 > göndermesi için Vercel/Netlify gibi bir host gerekir. Yerelde (çift tıklama)

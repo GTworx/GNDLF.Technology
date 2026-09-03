@@ -1,14 +1,13 @@
-// GNDLF — İletişim formu → Brevo ile e-posta
-// Sunucusuz (serverless) fonksiyon. Vercel / Netlify (Node 18+) uyumludur.
+// GNDLF — İletişim formu → Brevo ile e-posta (Netlify Functions)
 //
 // GİZLİ ANAHTAR KODA YAZILMAZ. Aşağıdaki değerler ortam değişkeninden okunur:
-//   BREVO_API_KEY   (zorunlu)  -> Brevo API anahtarınız (host panelinde tanımlayın)
+//   BREVO_API_KEY   (zorunlu)  -> Netlify: Site configuration > Environment variables
 //   CONTACT_TO      (ops.)     -> alıcı e-posta(lar), virgülle ayrılmış
 //                                  (varsayılan: oya@gndlf.io, gokhan@gndlf.io)
 //   CONTACT_FROM    (ops.)     -> gönderen (varsayılan: GNDLF Web <info@gndlf.io>)
 //
 // Not: CONTACT_FROM için kendi alan adınızı (gndlf.io) Brevo'da doğrulamanız
-// gerekir (Senders & IP > Domains).
+// gerekir (Senders, Domains & Dedicated IPs > Domains).
 
 function escapeHtml(s) {
   return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
@@ -22,41 +21,28 @@ function parseSender(from) {
   return { name: 'GNDLF Web', email: from || 'info@gndlf.io' };
 }
 
-async function readBody(req) {
-  if (req.body && typeof req.body === 'object') return req.body;      // Vercel: otomatik parse
-  return await new Promise(function (resolve) {
-    var data = '';
-    req.on('data', function (c) { data += c; });
-    req.on('end', function () { try { resolve(JSON.parse(data || '{}')); } catch (e) { resolve({}); } });
-    req.on('error', function () { resolve({}); });
-  });
-}
-
-module.exports = async function handler(req, res) {
-  if (req.method !== 'POST') {
-    res.statusCode = 405;
-    res.setHeader('Allow', 'POST');
-    return res.end(JSON.stringify({ error: 'Method not allowed' }));
+exports.handler = async function (event) {
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, headers: { Allow: 'POST' }, body: JSON.stringify({ error: 'Method not allowed' }) };
   }
 
   var apiKey = process.env.BREVO_API_KEY;
   if (!apiKey) {
-    res.statusCode = 500;
-    return res.end(JSON.stringify({ error: 'E-posta servisi yapılandırılmamış (BREVO_API_KEY tanımlı değil).' }));
+    return { statusCode: 500, body: JSON.stringify({ error: 'E-posta servisi yapılandırılmamış (BREVO_API_KEY tanımlı değil).' }) };
   }
 
-  var body = await readBody(req);
+  var body;
+  try { body = JSON.parse(event.body || '{}'); } catch (e) { body = {}; }
+
   var name = (body.name || '').toString().trim();
   var email = (body.email || '').toString().trim();
   var message = (body.message || '').toString().trim();
 
   if (!name || !email || !message) {
-    res.statusCode = 400;
-    return res.end(JSON.stringify({ error: 'Lütfen tüm alanları doldurun.' }));
+    return { statusCode: 400, body: JSON.stringify({ error: 'Lütfen tüm alanları doldurun.' }) };
   }
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || message.length > 5000) {
-    res.statusCode = 400;
-    return res.end(JSON.stringify({ error: 'Geçersiz e-posta veya mesaj.' }));
+    return { statusCode: 400, body: JSON.stringify({ error: 'Geçersiz e-posta veya mesaj.' }) };
   }
 
   var TO = (process.env.CONTACT_TO || 'oya@gndlf.io,gokhan@gndlf.io')
@@ -87,14 +73,10 @@ module.exports = async function handler(req, res) {
     });
     if (!r.ok) {
       var detail = await r.text();
-      res.statusCode = 502;
-      return res.end(JSON.stringify({ error: 'E-posta gönderilemedi.', detail: detail }));
+      return { statusCode: 502, body: JSON.stringify({ error: 'E-posta gönderilemedi.', detail: detail }) };
     }
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    return res.end(JSON.stringify({ ok: true }));
+    return { statusCode: 200, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ok: true }) };
   } catch (e) {
-    res.statusCode = 500;
-    return res.end(JSON.stringify({ error: 'Sunucu hatası.' }));
+    return { statusCode: 500, body: JSON.stringify({ error: 'Sunucu hatası.' }) };
   }
 };
