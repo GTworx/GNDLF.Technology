@@ -589,7 +589,7 @@
     function initLang() {
       var saved = null;
       try { saved = localStorage.getItem('gndlf-lang'); } catch (e) {}
-      var start = saved || ((navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en');
+      var start = saved || 'en';
       applyLang(start);
       var btns = document.querySelectorAll('.lang__btn');
       for (var i = 0; i < btns.length; i++) {
