@@ -1,0 +1,1043 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GNDLF PMO Cockpit — AI-Driven PMO</title>
+<meta name="description" content="GNDLF PMO Cockpit — an active AI agent that turns meeting speech into structured, validated, governed project variables. Extraction, validation and telemetry in one enterprise PMO cockpit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%230A1128'/%3E%3Cpath d='M80 80 A30 30 0 1 1 89 49' fill='none' stroke='%23D4AF37' stroke-width='12' stroke-linecap='round'/%3E%3Cpath d='M56 54 L85 57 L85 61 L56 64 Z' fill='%23D4AF37'/%3E%3Crect x='24' y='46' width='8' height='8' rx='1.5' fill='%23D4AF37'/%3E%3Crect x='15' y='56' width='6' height='6' rx='1' fill='%23D4AF37'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#f2f5fa;
+    --body:#c3ccd8;
+    --muted:#93a0b3;
+    --blue:#D4AF37;
+    --blue-2:#E9C766;
+    --blue-dark:#B8891F;
+    --navy:#0A1128;
+    --navy-2:#0d1730;
+    --line:rgba(255,255,255,.10);
+    --bg:#0A1128;
+    --bg-alt:#0d1730;
+    --dark:#070c1d;
+    --radius:8px;
+    --wrap:1160px;
+    --shadow-sm:0 1px 2px rgba(16,24,32,.05), 0 6px 20px rgba(16,24,32,.06);
+    --shadow-lg:0 30px 60px -20px rgba(10,26,43,.35), 0 12px 26px -12px rgba(10,26,43,.25);
+    --grad:linear-gradient(120deg,#D4AF37,#E9C766);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--body);
+    background:var(--bg);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden
+  }
+  a{color:var(--blue);text-decoration:none}
+  a:hover{color:var(--blue-dark)}
+  img,svg{max-width:100%}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+  h1,h2,h3,h4{color:var(--ink);font-weight:800;line-height:1.14;margin:0 0 .5em;letter-spacing:-.015em}
+  h2{font-size:36px}
+  h3{font-size:20px}
+  .eyebrow{font-size:12.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--blue);margin:0 0 16px}
+  .section{padding:96px 0}
+  .section--alt{background:var(--bg-alt);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .lead{font-size:19px;color:var(--muted);max-width:760px}
+  .center{text-align:center}
+  .center .lead{margin-left:auto;margin-right:auto}
+
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;
+    font-size:13.5px;padding:15px 28px;border-radius:var(--radius);cursor:pointer;border:2px solid transparent;transition:.18s ease;white-space:nowrap}
+  .btn--primary{background:var(--grad);color:#fff;box-shadow:0 10px 24px -8px rgba(212,175,55,.6)}
+  .btn--primary:hover{color:#fff;transform:translateY(-2px);box-shadow:0 16px 30px -8px rgba(212,175,55,.7)}
+  .btn--ghost{background:transparent;color:var(--ink);border-color:#d3d9e0}
+  .btn--ghost:hover{border-color:var(--blue);color:var(--blue)}
+  .btn--light{background:#fff;color:var(--ink)}
+  .btn--light:hover{color:var(--blue)}
+  .btn--onblue{background:#fff;color:var(--blue)}
+  .btn--onblue:hover{transform:translateY(-2px)}
+  .btn--outline-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+  .btn--outline-light:hover{border-color:#fff;color:#fff}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;gap:26px;height:72px;position:relative}
+  .brand{display:flex;align-items:center;gap:12px;margin-right:auto;text-decoration:none}
+  .brandmark{width:40px;height:40px;flex:0 0 40px;border-radius:12px;background:var(--grad);color:#fff;
+    display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px -8px rgba(212,175,55,.7)}
+  .brandmark svg{width:24px;height:24px;display:block}
+  .wordmark{line-height:1}
+  .kicker{display:block;font-size:9.5px;font-weight:800;letter-spacing:.36em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+  .wname{font-size:20px;font-weight:800;letter-spacing:-.01em;color:var(--ink)}
+  .wname .c{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .logo{font-weight:300;font-size:26px;letter-spacing:.42em;color:var(--ink);text-transform:uppercase;padding-left:.42em}
+  .foot-brand{display:flex;align-items:center;gap:12px}
+  .foot-brand .brandmark{box-shadow:none}
+  .nav-links{display:flex;gap:24px}
+  .nav-links a{color:var(--ink);font-weight:600;font-size:14px;text-transform:uppercase;letter-spacing:.04em}
+  .nav-links a:hover{color:var(--blue)}
+  .lang{display:flex;border:1px solid #d3d9e0;border-radius:40px;overflow:hidden}
+  .lang button{border:0;background:transparent;padding:6px 12px;font-family:inherit;font-weight:800;font-size:12px;letter-spacing:.05em;color:var(--muted);cursor:pointer}
+  .lang button.active{background:var(--grad);color:#fff}
+  .nav .btn{padding:11px 18px}
+  .menu-toggle{display:none;border:0;background:transparent;cursor:pointer;font-size:24px;color:var(--ink);line-height:1}
+
+  /* HERO */
+  .hero{position:relative;overflow:hidden;padding:82px 0 90px;background:
+    radial-gradient(1000px 520px at 88% -8%, rgba(212,175,55,.16), transparent 60%),
+    radial-gradient(760px 480px at -6% 108%, rgba(212,175,55,.10), transparent 55%),#fff}
+  .hero::before{content:"";position:absolute;inset:0;
+    background-image:linear-gradient(rgba(10,26,43,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(10,26,43,.035) 1px,transparent 1px);
+    background-size:44px 44px;mask-image:radial-gradient(700px 500px at 78% 40%,#000,transparent 75%);pointer-events:none}
+  .hero .wrap{position:relative;display:grid;grid-template-columns:1.03fr 1.12fr;gap:56px;align-items:center}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--blue-dark);
+    background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.22);padding:6px 14px;border-radius:40px;margin-bottom:20px}
+  .hero-badge .d{width:7px;height:7px;border-radius:50%;background:#12c26a;box-shadow:0 0 0 0 rgba(18,194,106,.6);animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(18,194,106,.5)}70%{box-shadow:0 0 0 8px rgba(18,194,106,0)}100%{box-shadow:0 0 0 0 rgba(18,194,106,0)}}
+  .hero h1{font-size:54px;line-height:1.06;letter-spacing:-.03em;color:var(--ink)}
+  .hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hero .lead{margin-top:20px;font-size:19.5px;color:#565d66}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+  .hero-note{margin-top:24px;font-size:13.5px;color:var(--muted);display:flex;gap:20px;flex-wrap:wrap}
+  .hero-note span{display:inline-flex;align-items:center;gap:8px}
+  .tick{color:var(--blue);font-weight:800}
+  .hero-visual{position:relative}
+  .hero-visual .glow{position:absolute;inset:-6% -4% -10% -4%;background:var(--grad);filter:blur(46px);opacity:.28;border-radius:30px;z-index:0}
+  .hero-visual svg{position:relative;z-index:1;display:block;width:100%;height:auto;border-radius:16px;box-shadow:var(--shadow-lg)}
+
+  /* STATS strip */
+  .stats{border-top:1px solid var(--line);background:#fff}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  .stats .s{padding:30px 24px;text-align:center;border-left:1px solid var(--line)}
+  .stats .s:first-child{border-left:0}
+  .stats .n{font-size:38px;font-weight:800;letter-spacing:-.02em;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+  .stats .l{font-size:13.5px;color:var(--muted);margin-top:8px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+
+  /* VIDEO */
+  .browser{border-radius:16px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--line);background:#070c1d}
+  .browser .bar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#0e1a29}
+  .browser .bar i{width:11px;height:11px;border-radius:50%;display:inline-block}
+  .browser .bar .u{margin-left:14px;flex:1;height:22px;border-radius:6px;background:rgba(255,255,255,.06);display:flex;align-items:center;padding:0 12px;color:#8aa0b6;font-size:12px}
+  .video-frame{position:relative;padding-top:56.25%;background:#000}
+  .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .video-glow{position:relative}
+  .video-glow::before{content:"";position:absolute;inset:2% 6% -6% 6%;background:var(--grad);filter:blur(50px);opacity:.22;border-radius:30px}
+  .video-meta{margin-top:20px;font-size:14px;color:var(--muted)}
+  .video-meta a{font-weight:700}
+
+  /* DARK architecture band */
+  .section--dark{position:relative;background:radial-gradient(900px 500px at 82% -10%,rgba(212,175,55,.14),transparent 60%),linear-gradient(180deg,#0A1128,#070c1d);color:#c4cfdb;overflow:hidden}
+  .section--dark::before{content:"";position:absolute;inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+    background-size:46px 46px;mask-image:radial-gradient(760px 460px at 60% 30%,#000,transparent 78%);pointer-events:none}
+  .section--dark .wrap{position:relative}
+  .section--dark h2{color:#fff}
+  .section--dark .lead{color:#9fb0c2}
+  .section--dark .eyebrow{color:#E9C766}
+  .pipe-wrap{margin:44px 0 8px;overflow-x:auto}
+  .pipe-wrap svg{min-width:860px;width:100%;height:auto;display:block}
+  .layers{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
+  .layer{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:28px 26px;transition:.2s ease;backdrop-filter:blur(4px)}
+  .layer:hover{border-color:rgba(212,175,55,.5);transform:translateY(-3px);box-shadow:0 24px 50px -24px rgba(0,0,0,.7)}
+  .layer .num{font-size:12px;font-weight:800;color:#E9C766;letter-spacing:.14em}
+  .layer h3{margin-top:10px;color:#fff;text-transform:uppercase;letter-spacing:.02em;font-size:19px}
+  .layer .cap{margin:4px 0 0;color:#8ba0b4;font-size:14px}
+  .layer ul{margin:16px 0 0;padding:0;list-style:none}
+  .layer li{position:relative;padding-left:24px;margin-bottom:11px;font-size:14.5px;color:#b9c6d4}
+  .layer li::before{content:"";position:absolute;left:0;top:8px;width:9px;height:9px;border-radius:50%;background:var(--grad);box-shadow:0 0 10px rgba(212,175,55,.8)}
+
+  /* FEATURE grid */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px}
+  .card{position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;transition:.2s ease;overflow:hidden}
+  .card::after{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:.25s}
+  .card:hover{border-color:#c7e6f5;box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+  .card:hover::after{transform:scaleX(1)}
+  .ic{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,rgba(212,175,55,.12),rgba(212,175,55,.14));color:var(--blue);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .ic svg{width:24px;height:24px}
+  .card h3{font-size:17.5px;letter-spacing:-.01em}
+  .card p{margin:6px 0 0;font-size:14.5px}
+
+  /* SPLIT (test assistant) */
+  .split{display:grid;grid-template-columns:1.05fr 1fr;gap:52px;align-items:center}
+  .badge{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);background:rgba(212,175,55,.10);padding:6px 13px;border-radius:40px;margin-bottom:16px}
+  .flow{background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:var(--shadow-lg)}
+  .flow .step{display:flex;align-items:center;gap:15px;padding:17px 18px;border-radius:11px;transition:.2s}
+  .flow .step:hover{background:var(--bg-alt)}
+  .flow .step + .step{border-top:1px solid var(--line)}
+  .flow .dot{width:38px;height:38px;border-radius:11px;flex:0 0 38px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;box-shadow:0 8px 18px -8px rgba(212,175,55,.7)}
+  .flow .step:last-child .dot{background:var(--ink);box-shadow:none}
+  .flow .t{font-weight:800;color:var(--ink);font-size:14.5px;text-transform:uppercase;letter-spacing:.03em}
+  .flow .d{font-size:13.5px;color:var(--muted)}
+
+  /* DASHBOARD section */
+  .dash-grid{display:grid;grid-template-columns:1fr 1.08fr;gap:52px;align-items:center}
+  .dash-visual{position:relative}
+  .dash-visual .glow{position:absolute;inset:-4% -2% -8% -2%;background:var(--grad);filter:blur(44px);opacity:.2;border-radius:24px}
+  .dash-visual .browser{position:relative}
+
+  /* CTA band */
+  .band{position:relative;overflow:hidden;background:linear-gradient(120deg,#D4AF37 0%,#8a6a1a 55%,#0A1128 130%);color:#fff;text-align:center;padding:82px 0}
+  .band::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 20% 20%,rgba(255,255,255,.14),transparent 40%),radial-gradient(circle at 80% 80%,rgba(212,175,55,.3),transparent 45%);pointer-events:none}
+  .band .wrap{position:relative}
+  .band h2{color:#fff;font-size:40px}
+  .band .lead{color:rgba(255,255,255,.92);margin:0 auto}
+  .band .hero-cta{justify-content:center;margin-top:30px}
+
+  /* CONTACT */
+  .contact-grid{display:grid;grid-template-columns:1fr 1.12fr;gap:56px;align-items:start}
+  .form{background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px;box-shadow:var(--shadow-lg)}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:13px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.04em;margin-bottom:7px}
+  .field input,.field select,.field textarea{width:100%;font-family:inherit;font-size:15px;color:var(--ink);padding:13px 15px;border:1px solid #d6dce2;border-radius:10px;background:#fff;transition:.15s}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(212,175,55,.16)}
+  .field textarea{min-height:120px;resize:vertical}
+  .form .btn{width:100%;justify-content:center}
+  .form small{display:block;color:var(--muted);font-size:12.5px;margin-top:12px;line-height:1.55}
+  .contact-info ul{padding:0;margin:24px 0 0;list-style:none}
+  .contact-info li{margin:0 0 18px;display:flex;gap:14px;align-items:flex-start}
+  .contact-info .ic{margin:0;flex:0 0 48px}
+  .contact-info .k{font-weight:800;color:var(--ink);font-size:14.5px}
+  .recips{margin-top:8px;font-size:13px;color:var(--muted);line-height:2}
+  .recips code{background:var(--bg-alt);border:1px solid var(--line);border-radius:6px;padding:3px 8px;font-size:12.5px;color:var(--ink)}
+
+  /* Footer */
+  footer{background:var(--dark);color:#9aa6b4;padding:64px 0 30px;font-size:14px}
+  footer .cols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px}
+  footer .logo{color:#fff;font-size:22px}
+  footer .tag{color:#7f8b9a;margin-top:14px;max-width:34ch}
+  footer h4{color:#fff;text-transform:uppercase;letter-spacing:.08em;font-size:12px;margin:0 0 14px}
+  footer a{color:#9aa6b4;display:block;margin-bottom:9px}
+  footer a:hover{color:#E9C766}
+  .foot-bottom{border-top:1px solid #1c2836;margin-top:46px;padding-top:22px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#6f7c8b;font-size:13px}
+
+  /* Reveal on scroll (progressive) */
+  .js .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .js .reveal.in{opacity:1;transform:none}
+
+  /* SVG animation helpers */
+  .wv rect{transform-box:fill-box;transform-origin:bottom;animation:wv 1.1s ease-in-out infinite}
+  @keyframes wv{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+  .blink{animation:blink 1.6s ease-in-out infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+  .flowdot{animation:flowdash 2.2s linear infinite}
+  @keyframes flowdash{to{stroke-dashoffset:-40}}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}.js .reveal{opacity:1;transform:none}}
+
+  @media (max-width:980px){
+    .hero .wrap{grid-template-columns:1fr;gap:40px}
+    .hero-visual{order:-1}
+    .split,.contact-grid,.dash-grid{grid-template-columns:1fr}
+    .dash-visual{order:-1}
+  }
+  @media (max-width:900px){
+    .menu-toggle{display:block;order:3}
+    .lang{order:2}
+    .nav-cta{display:none}
+    .nav-links{position:absolute;top:72px;left:-24px;right:-24px;flex-direction:column;gap:0;background:#fff;border-bottom:1px solid var(--line);box-shadow:var(--shadow-lg);padding:8px 0;display:none}
+    .nav-links.open{display:flex}
+    .nav-links a{padding:14px 24px}
+    .nav-links a + a{border-top:1px solid var(--line)}
+    .hero h1{font-size:42px}
+    h2{font-size:29px}
+    .band h2{font-size:30px}
+    .layers,.grid{grid-template-columns:1fr}
+    .stats .wrap{grid-template-columns:repeat(2,1fr)}
+    .stats .s:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    .stats .s:nth-child(odd){border-left:0}
+    .section{padding:68px 0}
+  }
+  @media (max-width:560px){
+    .hero h1{font-size:34px}
+    body{font-size:16px}
+    .brand .pill{display:none}
+    .nav{gap:14px}
+    .stats .n{font-size:30px}
+  }
+
+  /* ===== GNDLF lacivert+altın uyarlaması ===== */
+  body{background:var(--bg);color:var(--body);}
+  header{background:rgba(10,17,40,.82)!important;border-bottom-color:var(--line)!important;}
+  .brandmark{background:#16213f!important;color:#fff!important;box-shadow:none!important;}
+  .btn--primary{color:#0A1128!important;}
+  .btn--light,.btn--onblue{background:linear-gradient(120deg,#D4AF37,#E9C766)!important;color:#0A1128!important;}
+  .btn--ghost{color:var(--ink);border-color:rgba(255,255,255,.28);}
+  .btn--ghost:hover{border-color:var(--blue);color:var(--blue);}
+  .stats{background:var(--bg)!important;border-top-color:var(--line)!important;}
+  .stats .s{border-left-color:var(--line)!important;}
+  .card,.flow,.form{background:#0e1830!important;border-color:var(--line)!important;}
+  .card:hover{border-color:rgba(212,175,55,.5)!important;}
+  .card p,.flow .d,.video-meta,.form small,.recips{color:var(--muted)!important;}
+  .field input,.field select,.field textarea{background:#0a1330!important;color:var(--ink)!important;border-color:rgba(255,255,255,.14)!important;}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue)!important;}
+  .recips code{background:#0e1830!important;border-color:var(--line)!important;color:var(--ink)!important;}
+  .lang{border-color:rgba(255,255,255,.22)!important;}
+  .flow .step:hover{background:rgba(255,255,255,.04)!important;}
+  .hero{background:radial-gradient(1000px 520px at 88% -8%,rgba(212,175,55,.14),transparent 60%),radial-gradient(760px 480px at -6% 108%,rgba(212,175,55,.08),transparent 55%),var(--bg)!important;}
+  .hero::before{background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px)!important;}
+  .hero .lead{color:#aeb8c6!important;}
+  .band{background:linear-gradient(120deg,#0d1730 0%,#0A1128 55%,#161a2e 120%)!important;}
+  footer a:hover{color:var(--blue)!important;}
+</style>
+</head>
+<body class="no-js">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="dial" viewBox="0 0 64 64">
+    <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="32" cy="32" r="21"/>
+      <g stroke-width="2.6" opacity=".55">
+        <path d="M32 8 v4"/><path d="M56 32 h-4"/><path d="M32 56 v-4"/><path d="M12 32 h-4"/>
+        <path d="M48.9 15.1 l-2.8 2.8"/><path d="M48.9 48.9 l-2.8 -2.8"/><path d="M15.1 48.9 l2.8 -2.8"/><path d="M15.1 15.1 l2.8 2.8"/>
+      </g>
+      <path d="M32 32 L46 22"/>
+    </g>
+    <circle cx="32" cy="32" r="4.2" fill="currentColor"/>
+    <circle cx="46" cy="22" r="3.4" fill="currentColor"/>
+  </symbol>
+</defs></svg>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#overview" aria-label="GNDLF PMO Cockpit">
+      <span class="brandmark"><svg viewBox="0 0 64 64"><use href="#dial"/></svg></span>
+      <span class="wordmark">
+        <span class="kicker">GNDLF</span>
+        <span class="wname">PMO <span class="c">Cockpit</span></span>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#overview" data-i18n="nav_overview">Overview</a>
+      <a href="#how" data-i18n="nav_how">How it works</a>
+      <a href="#architecture" data-i18n="nav_arch">Architecture</a>
+      <a href="#dashboard" data-i18n="nav_dash">Dashboard</a>
+      <a href="#contact" data-i18n="nav_contact">Contact</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-set-lang="en">EN</button>
+      <button type="button" data-set-lang="tr">TR</button>
+    </div>
+    <a href="#contact" class="btn btn--primary nav-cta" data-i18n="nav_cta">Request a demo</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="overview">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="hero-badge"><span class="d"></span><span data-i18n="hero_badge">GNDLF · AI-Driven PMO</span></span>
+      <h1><span data-i18n="hero_h1a">The PMO cockpit that</span> <span class="grad" data-i18n="hero_h1b">never misses a variable.</span></h1>
+      <p class="lead" data-i18n="hero_lead">Every enterprise project generates a huge amount of data — but most of it stays trapped in the spoken word. GNDLF PMO Cockpit is an active AI agent that listens to your meetings and turns unstructured dialogue into structured, validated, governed project variables.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn--primary" data-i18n="hero_cta1">Talk to us</a>
+        <a href="#video" class="btn btn--ghost" data-i18n="hero_cta2">▶ Watch the 6-min overview</a>
+      </div>
+      <div class="hero-note">
+        <span><span class="tick">✓</span> <span data-i18n="hero_n1">Real-time meeting ingestion</span></span>
+        <span><span class="tick">✓</span> <span data-i18n="hero_n2">SAP-aware compliance validation</span></span>
+        <span><span class="tick">✓</span> <span data-i18n="hero_n3">Continuous enterprise visibility</span></span>
+      </div>
+    </div>
+
+    <!-- HERO PRODUCT MOCKUP (inline SVG) -->
+    <div class="hero-visual reveal">
+      <span class="glow"></span>
+      <svg viewBox="0 0 640 470" role="img" aria-label="PMO Cockpit dashboard preview">
+        <defs>
+          <linearGradient id="wnd" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#0e2136"/><stop offset="1" stop-color="#0a1420"/>
+          </linearGradient>
+          <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#D4AF37"/><stop offset="1" stop-color="#E9C766"/>
+          </linearGradient>
+          <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#E9C766" stop-opacity=".55"/><stop offset="1" stop-color="#E9C766" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <rect x="6" y="6" width="628" height="458" rx="18" fill="url(#wnd)" stroke="rgba(255,255,255,.09)"/>
+        <!-- title bar -->
+        <circle cx="34" cy="38" r="5.5" fill="#ff5f57"/><circle cx="54" cy="38" r="5.5" fill="#febc2e"/><circle cx="74" cy="38" r="5.5" fill="#28c840"/>
+        <text x="104" y="43" fill="#8aa0b6" font-size="13" font-family="Open Sans">PMO Cockpit — Live board</text>
+        <circle class="blink" cx="560" cy="38" r="4.5" fill="#12c26a"/><text x="572" y="42" fill="#12c26a" font-size="11" font-family="Open Sans">LIVE</text>
+        <line x1="18" y1="60" x2="622" y2="60" stroke="rgba(255,255,255,.07)"/>
+        <!-- sidebar -->
+        <rect x="20" y="74" width="52" height="374" rx="12" fill="rgba(255,255,255,.04)"/>
+        <rect x="34" y="92" width="24" height="8" rx="4" fill="#E9C766"/>
+        <rect x="34" y="120" width="24" height="8" rx="4" fill="rgba(255,255,255,.18)"/>
+        <rect x="34" y="148" width="24" height="8" rx="4" fill="rgba(255,255,255,.18)"/>
+        <rect x="34" y="176" width="24" height="8" rx="4" fill="rgba(255,255,255,.18)"/>
+        <rect x="34" y="204" width="24" height="8" rx="4" fill="rgba(255,255,255,.18)"/>
+        <!-- KPI tiles -->
+        <g font-family="Open Sans">
+          <rect x="86" y="78" width="164" height="80" rx="12" fill="rgba(255,255,255,.045)" stroke="rgba(255,255,255,.07)"/>
+          <text x="102" y="102" fill="#7f93a8" font-size="11" letter-spacing="1.5">RISK SCORE</text>
+          <text x="102" y="138" fill="#fff" font-size="30" font-weight="800">27</text>
+          <text x="150" y="138" fill="#12c26a" font-size="13">▼ 12%</text>
+
+          <rect x="258" y="78" width="164" height="80" rx="12" fill="rgba(255,255,255,.045)" stroke="rgba(255,255,255,.07)"/>
+          <text x="274" y="102" fill="#7f93a8" font-size="11" letter-spacing="1.5">ON-TRACK</text>
+          <text x="274" y="138" fill="#fff" font-size="30" font-weight="800">92%</text>
+          <rect x="356" y="120" width="50" height="6" rx="3" fill="rgba(255,255,255,.12)"/>
+          <rect x="356" y="120" width="46" height="6" rx="3" fill="url(#bar)"/>
+
+          <rect x="430" y="78" width="128" height="80" rx="12" fill="rgba(255,255,255,.045)" stroke="rgba(255,255,255,.07)"/>
+          <text x="446" y="102" fill="#7f93a8" font-size="11" letter-spacing="1.5">BURNOUT</text>
+          <text x="446" y="138" fill="#febc2e" font-size="30" font-weight="800">2</text>
+          <text x="472" y="138" fill="#c79a3a" font-size="12">alerts</text>
+        </g>
+        <!-- Timeline / gantt -->
+        <rect x="86" y="172" width="472" height="150" rx="12" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.06)"/>
+        <text x="102" y="196" fill="#9fb2c6" font-size="12" font-family="Open Sans" letter-spacing="1">TIMELINE · SCHEDULE TELEMETRY</text>
+        <g>
+          <rect x="102" y="212" width="150" height="12" rx="6" fill="url(#bar)"/>
+          <rect x="266" y="212" width="120" height="12" rx="6" fill="rgba(212,175,55,.35)"/>
+          <rect x="102" y="238" width="90" height="12" rx="6" fill="url(#bar)"/>
+          <rect x="206" y="238" width="150" height="12" rx="6" fill="rgba(212,175,55,.35)"/>
+          <rect x="102" y="264" width="220" height="12" rx="6" fill="url(#bar)"/>
+          <!-- slipping task in amber past deadline -->
+          <rect x="102" y="290" width="300" height="12" rx="6" fill="#febc2e" opacity=".85"/>
+          <rect x="402" y="286" width="46" height="20" rx="5" fill="rgba(254,188,46,.18)"/>
+          <text x="410" y="300" fill="#febc2e" font-size="10" font-family="Open Sans">SLIP</text>
+        </g>
+        <!-- today line -->
+        <line x1="392" y1="206" x2="392" y2="310" stroke="#E9C766" stroke-width="1.5" stroke-dasharray="3 4"/>
+        <text x="366" y="204" fill="#E9C766" font-size="10" font-family="Open Sans">TODAY</text>
+        <!-- forecast area chart -->
+        <rect x="86" y="336" width="230" height="112" rx="12" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.06)"/>
+        <text x="102" y="358" fill="#9fb2c6" font-size="11" font-family="Open Sans" letter-spacing="1">RESOURCE FORECAST</text>
+        <path d="M102 428 L134 412 L166 418 L198 396 L230 404 L262 380 L296 388 L296 440 L102 440 Z" fill="url(#area)"/>
+        <path d="M102 428 L134 412 L166 418 L198 396 L230 404 L262 380 L296 388" fill="none" stroke="#E9C766" stroke-width="2"/>
+        <!-- workload bars -->
+        <rect x="328" y="336" width="230" height="112" rx="12" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.06)"/>
+        <text x="344" y="358" fill="#9fb2c6" font-size="11" font-family="Open Sans" letter-spacing="1">TEAM WORKLOAD</text>
+        <g>
+          <rect x="348" y="404" width="20" height="34" rx="4" fill="url(#bar)"/>
+          <rect x="382" y="392" width="20" height="46" rx="4" fill="url(#bar)"/>
+          <rect x="416" y="410" width="20" height="28" rx="4" fill="url(#bar)"/>
+          <rect x="450" y="378" width="20" height="60" rx="4" fill="#febc2e"/>
+          <rect x="484" y="398" width="20" height="40" rx="4" fill="url(#bar)"/>
+          <rect x="518" y="414" width="20" height="24" rx="4" fill="url(#bar)"/>
+        </g>
+        <!-- floating "meeting -> tasks" card -->
+        <g>
+          <rect x="34" y="378" width="238" height="72" rx="13" fill="#12233a" stroke="rgba(212,175,55,.4)"/>
+          <circle cx="66" cy="414" r="18" fill="rgba(212,175,55,.16)"/>
+          <path d="M66 405 a5 5 0 0 1 5 5 v4 a5 5 0 0 1 -10 0 v-4 a5 5 0 0 1 5 -5 Z M58 415 a8 8 0 0 0 16 0 M66 423 v5" fill="none" stroke="#E9C766" stroke-width="1.6" stroke-linecap="round"/>
+          <text x="96" y="405" fill="#fff" font-size="12.5" font-family="Open Sans" font-weight="700">Meeting → 5 tasks</text>
+          <text x="96" y="422" fill="#8aa0b6" font-size="10.5" font-family="Open Sans">extracted &amp; assigned</text>
+          <g class="wv" transform="translate(96,430)" fill="#E9C766">
+            <rect x="0" y="0" width="3" height="12" rx="1.5" style="animation-delay:0s"/>
+            <rect x="7" y="0" width="3" height="12" rx="1.5" style="animation-delay:.1s"/>
+            <rect x="14" y="0" width="3" height="12" rx="1.5" style="animation-delay:.2s"/>
+            <rect x="21" y="0" width="3" height="12" rx="1.5" style="animation-delay:.3s"/>
+            <rect x="28" y="0" width="3" height="12" rx="1.5" style="animation-delay:.4s"/>
+            <rect x="35" y="0" width="3" height="12" rx="1.5" style="animation-delay:.5s"/>
+            <rect x="42" y="0" width="3" height="12" rx="1.5" style="animation-delay:.6s"/>
+            <rect x="49" y="0" width="3" height="12" rx="1.5" style="animation-delay:.5s"/>
+            <rect x="56" y="0" width="3" height="12" rx="1.5" style="animation-delay:.4s"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="wrap">
+    <div class="s reveal"><div class="n" data-i18n="st1_n">3</div><div class="l" data-i18n="st1_l">Computational layers</div></div>
+    <div class="s reveal"><div class="n" data-i18n="st2_n">0</div><div class="l" data-i18n="st2_l">Variables missed</div></div>
+    <div class="s reveal"><div class="n" data-i18n="st3_n">Live</div><div class="l" data-i18n="st3_l">Continuously updated state</div></div>
+    <div class="s reveal"><div class="n" data-i18n="st4_n">SAP</div><div class="l" data-i18n="st4_l">-aware validation</div></div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section">
+  <div class="wrap reveal">
+    <p class="eyebrow" data-i18n="prob_eyebrow">The problem</p>
+    <h2 data-i18n="prob_h2">Critical decisions are buried in conversation.</h2>
+    <p class="lead" data-i18n="prob_lead">During fast-paced meetings, decisions, technical constraints and task assignments are buried inside unstructured human conversation. Traditional project tools rely on someone parsing that conversation and typing it into a tracker after the fact. That delayed, manual data entry introduces information latency — by the time the system is updated, the project's actual state has already moved on.</p>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section class="section section--alt" id="video">
+  <div class="wrap">
+    <div class="center reveal" style="margin-bottom:38px">
+      <p class="eyebrow" data-i18n="vid_eyebrow">See it in motion</p>
+      <h2 data-i18n="vid_h2">Architecting the AI-Driven PMO</h2>
+      <p class="lead" data-i18n="vid_lead">A short walk-through of how the PMO Cockpit pipeline turns raw meeting speech into a live, governed project state.</p>
+    </div>
+    <div class="video-glow reveal">
+      <div class="browser">
+        <div class="bar">
+          <i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i>
+          <span class="u">youtube.com/watch?v=1dw5zG7XpdU</span>
+        </div>
+        <div class="video-frame">
+          <iframe src="https://www.youtube-nocookie.com/embed/1dw5zG7XpdU" title="Architecting the AI Driven PMO - GNDLF PMO" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+    <p class="video-meta center">
+      <span data-i18n="vid_link_label">Watch on YouTube:</span>
+      <a href="https://www.youtube.com/watch?v=1dw5zG7XpdU" target="_blank" rel="noopener">Architecting the AI Driven PMO — GNDLF PMO ↗</a>
+    </p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS / DARK ARCHITECTURE -->
+<section class="section section--dark" id="how">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow" data-i18n="how_eyebrow">How it works</p>
+      <h2 data-i18n="how_h2">Three successive computational layers.</h2>
+      <p class="lead" data-i18n="how_lead">Instead of a passive repository, the cockpit runs as an active agent. Information moves through three layers — extraction, validation and telemetry — before it reaches your dashboard.</p>
+    </div>
+
+    <!-- PIPELINE DIAGRAM -->
+    <div class="pipe-wrap reveal">
+      <svg viewBox="0 0 1120 210" role="img" aria-label="PMO Cockpit processing pipeline">
+        <defs>
+          <linearGradient id="node" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="rgba(255,255,255,.09)"/><stop offset="1" stop-color="rgba(255,255,255,.03)"/>
+          </linearGradient>
+          <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#D4AF37"/><stop offset="1" stop-color="#E9C766"/>
+          </linearGradient>
+        </defs>
+        <!-- connectors -->
+        <g stroke="url(#edge)" stroke-width="2" fill="none" opacity=".8">
+          <line x1="190" y1="105" x2="250" y2="105"/>
+          <line x1="420" y1="105" x2="480" y2="105"/>
+          <line x1="650" y1="105" x2="710" y2="105"/>
+          <line x1="880" y1="105" x2="940" y2="105"/>
+        </g>
+        <g stroke="#E9C766" stroke-width="2.5" stroke-dasharray="2 8" stroke-linecap="round" fill="none" class="flowdot" opacity=".9">
+          <line x1="190" y1="105" x2="250" y2="105"/>
+          <line x1="420" y1="105" x2="480" y2="105"/>
+          <line x1="650" y1="105" x2="710" y2="105"/>
+          <line x1="880" y1="105" x2="940" y2="105"/>
+        </g>
+
+        <!-- NODE 1: Meetings & APIs -->
+        <g>
+          <rect x="20" y="55" width="170" height="100" rx="16" fill="url(#node)" stroke="rgba(255,255,255,.14)"/>
+          <g transform="translate(90,84)" fill="none" stroke="#E9C766" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="-13" y="-9" width="26" height="18" rx="3"/><path d="M-13 -4 L0 4 L13 -4"/>
+          </g>
+          <text x="105" y="128" text-anchor="middle" fill="#fff" font-size="14" font-weight="800" font-family="Open Sans" data-i18n="pl_in_t">Meetings &amp; APIs</text>
+        </g>
+        <!-- NODE 2: Extraction -->
+        <g>
+          <rect x="250" y="55" width="170" height="100" rx="16" fill="url(#node)" stroke="rgba(212,175,55,.4)"/>
+          <g transform="translate(320,84)" fill="none" stroke="#E9C766" stroke-width="2" stroke-linecap="round"><path d="M-12 -8 H12 M-12 0 H4 M-12 8 H8"/></g>
+          <text x="335" y="112" text-anchor="middle" fill="#E9C766" font-size="11" font-family="Open Sans">01</text>
+          <text x="335" y="132" text-anchor="middle" fill="#fff" font-size="14" font-weight="800" font-family="Open Sans" data-i18n="l1_h">Extraction</text>
+        </g>
+        <!-- NODE 3: Validation -->
+        <g>
+          <rect x="480" y="55" width="170" height="100" rx="16" fill="url(#node)" stroke="rgba(212,175,55,.4)"/>
+          <g transform="translate(550,84)" fill="none" stroke="#E9C766" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 -12 L11 -7 V2 c0 7 -6 10 -11 12 c-5 -2 -11 -5 -11 -12 V-7 Z"/><path d="M-5 -1 L-1 3 L6 -5"/></g>
+          <text x="565" y="112" text-anchor="middle" fill="#E9C766" font-size="11" font-family="Open Sans">02</text>
+          <text x="565" y="132" text-anchor="middle" fill="#fff" font-size="14" font-weight="800" font-family="Open Sans" data-i18n="l2_h">Validation</text>
+        </g>
+        <!-- NODE 4: Telemetry -->
+        <g>
+          <rect x="710" y="55" width="170" height="100" rx="16" fill="url(#node)" stroke="rgba(212,175,55,.4)"/>
+          <g transform="translate(780,86)" fill="none" stroke="#E9C766" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M-13 6 V-2 M-5 6 V-8 M3 6 V-4 M11 6 V-11"/></g>
+          <text x="795" y="112" text-anchor="middle" fill="#E9C766" font-size="11" font-family="Open Sans">03</text>
+          <text x="795" y="132" text-anchor="middle" fill="#fff" font-size="14" font-weight="800" font-family="Open Sans" data-i18n="l3_h">Telemetry</text>
+        </g>
+        <!-- NODE 5: Dashboard -->
+        <g>
+          <rect x="940" y="55" width="170" height="100" rx="16" fill="url(#edge)" stroke="rgba(255,255,255,.2)"/>
+          <g transform="translate(1010,84)" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="-13" y="-10" width="26" height="20" rx="3"/><path d="M-8 4 V-2 M-2 4 V-6 M4 4 V0 M9 4 V-4"/></g>
+          <text x="1025" y="128" text-anchor="middle" fill="#fff" font-size="14" font-weight="800" font-family="Open Sans" data-i18n="pl_out_t">PMO Cockpit</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="layers">
+      <div class="layer reveal">
+        <span class="num">01</span>
+        <h3 data-i18n="l1_h">Extraction</h3>
+        <p class="cap" data-i18n="l1_cap">Capture the conversation and structure it.</p>
+        <ul>
+          <li data-i18n="l1_a">Data enters via direct API integration or the AI note-taker that records meeting transcripts.</li>
+          <li data-i18n="l1_b">NLP generates an overarching summary and isolates actionable items from the surrounding talk.</li>
+          <li data-i18n="l1_c">Action items are bound to specific attendees.</li>
+          <li data-i18n="l1_d">Historical reconciliation cross-references prior backlogs and updates old tasks — closed, pending, suspended or in progress.</li>
+        </ul>
+      </div>
+      <div class="layer reveal">
+        <span class="num">02</span>
+        <h3 data-i18n="l2_h">Validation</h3>
+        <p class="cap" data-i18n="l2_cap">The gatekeeper before costly execution.</p>
+        <ul>
+          <li data-i18n="l2_a">Extracted decisions are checked for feasibility across infrastructure, network and database architectures.</li>
+          <li data-i18n="l2_b">Rigid requirements — such as SAP customization steps — are validated, instantly flagging compliance risks.</li>
+          <li data-i18n="l2_c">Company-specific design standards and regulations become automated boundaries every task must clear.</li>
+          <li data-i18n="l2_d">Non-compliant tasks are stopped before they ever reach the execution phase.</li>
+        </ul>
+      </div>
+      <div class="layer reveal">
+        <span class="num">03</span>
+        <h3 data-i18n="l3_h">Telemetry</h3>
+        <p class="cap" data-i18n="l3_cap">Schedule and human signals, continuously.</p>
+        <ul>
+          <li data-i18n="l3_a">Tasks are projected against the master timeline; changed dates and schedule slippage are flagged automatically.</li>
+          <li data-i18n="l3_b">Predictive resource forecasting scans weeks and months ahead to surface bottlenecks early.</li>
+          <li data-i18n="l3_c">Workload is aggregated per person, triggering an early-warning alarm near burnout thresholds.</li>
+          <li data-i18n="l3_d">Friction at task hand-offs is detected, with actionable team-management and coaching suggestions.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE GRID -->
+<section class="section" id="architecture">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow" data-i18n="feat_eyebrow">Inside the cockpit</p>
+      <h2 data-i18n="feat_h2">Capabilities that keep the project state honest.</h2>
+    </div>
+    <div class="grid">
+      <div class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16M4 12h10M4 19h7"/></svg></div>
+        <h3 data-i18n="f1_h">Action-item extraction &amp; owner binding</h3>
+        <p data-i18n="f1_p">Turns raw dialogue into discrete tasks and assigns each one to the right attendee — no manual note-taking.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v5h5"/></svg></div>
+        <h3 data-i18n="f2_h">Historical reconciliation</h3>
+        <p data-i18n="f2_p">Cross-references new discussion against previous backlogs and updates the state of older tasks automatically.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5m0 14h16M8 15l3-4 3 3 4-6"/></svg></div>
+        <h3 data-i18n="f3_h">Schedule slippage detection</h3>
+        <p data-i18n="f3_p">Verifies deliverables against the baseline; when a date pushes past a deadline, the slippage is flagged at once.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3 data-i18n="f4_h">Predictive resource forecasting</h3>
+        <p data-i18n="f4_p">Calculates cumulative task load across the enterprise weeks ahead, so managers see bottlenecks before delivery is hit.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3 data-i18n="f5_h">Compliance &amp; feasibility validation</h3>
+        <p data-i18n="f5_p">Filters decisions through infrastructure, network, database and SAP-customization rules, forming automated boundaries.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></div>
+        <h3 data-i18n="f6_h">Workload &amp; burnout telemetry</h3>
+        <p data-i18n="f6_p">Tracks individual workload and efficiency, raising early warnings and suggesting coaching before people burn out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEST ASSISTANT SPLIT -->
+<section class="section section--alt">
+  <div class="wrap split">
+    <div class="reveal">
+      <span class="badge" data-i18n="ta_badge">Sister product</span>
+      <h2 data-i18n="ta_h2">Validation, reinforced by the GNDLF Test Assistant.</h2>
+      <p class="lead" data-i18n="ta_lead">At the end of the software pipeline, the Test Assistant physically executes tests on the final deliverables — making sure they meet every security guardrail and compliance regulation. Active validation lets AI accelerate delivery while corporate governance is strictly enforced along the way.</p>
+    </div>
+    <div class="flow reveal" aria-hidden="true">
+      <div class="step"><span class="dot">1</span><div><div class="t" data-i18n="ta_s1t">Extract</div><div class="d" data-i18n="ta_s1d">Speech → structured tasks &amp; owners</div></div></div>
+      <div class="step"><span class="dot">2</span><div><div class="t" data-i18n="ta_s2t">Validate</div><div class="d" data-i18n="ta_s2d">Feasibility &amp; compliance gatekeeping</div></div></div>
+      <div class="step"><span class="dot">3</span><div><div class="t" data-i18n="ta_s3t">Test</div><div class="d" data-i18n="ta_s3d">Test Assistant executes on deliverables</div></div></div>
+      <div class="step"><span class="dot">4</span><div><div class="t" data-i18n="ta_s4t">Cockpit</div><div class="d" data-i18n="ta_s4d">Live, governed project state</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD -->
+<section class="section" id="dashboard">
+  <div class="wrap dash-grid">
+    <div class="reveal">
+      <p class="eyebrow" data-i18n="dash_eyebrow">The output</p>
+      <h2 data-i18n="dash_h2">A live, company-wide PMO dashboard.</h2>
+      <p class="lead" data-i18n="dash_lead">Zooming out from the data layers reveals a centralized, continuously updated PMO dashboard — company-wide visibility across every project stage. It generates high-level initial project documentation automatically, then highlights exactly where humans need to step in with detail. Instead of relying on snapshots from days or weeks ago, the project's risk profile stays synchronized with the actual conversation.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn--primary" data-i18n="dash_cta">See it on your projects</a>
+      </div>
+    </div>
+    <!-- DASHBOARD MOCKUP -->
+    <div class="dash-visual reveal">
+      <span class="glow"></span>
+      <div class="browser">
+        <div class="bar">
+          <i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i>
+          <span class="u">cockpit.gndlf.io · portfolio</span>
+        </div>
+        <svg viewBox="0 0 640 400" role="img" aria-label="Company-wide portfolio view">
+          <defs>
+            <linearGradient id="barb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D4AF37"/><stop offset="1" stop-color="#E9C766"/></linearGradient>
+            <linearGradient id="areab" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D4AF37" stop-opacity=".35"/><stop offset="1" stop-color="#D4AF37" stop-opacity="0"/></linearGradient>
+          </defs>
+          <rect x="0" y="0" width="640" height="400" fill="#0d1b2b"/>
+          <!-- header row -->
+          <text x="28" y="44" fill="#fff" font-size="17" font-weight="800" font-family="Open Sans">Portfolio overview</text>
+          <rect x="28" y="60" width="120" height="6" rx="3" fill="rgba(255,255,255,.1)"/>
+          <!-- big area chart -->
+          <rect x="28" y="92" width="372" height="150" rx="12" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.06)"/>
+          <text x="44" y="116" fill="#9fb2c6" font-size="11" font-family="Open Sans" letter-spacing="1">COMPANY-WIDE PROGRESS</text>
+          <path d="M44 224 L96 200 L148 208 L200 176 L252 186 L304 150 L356 160 L384 148 L384 232 L44 232 Z" fill="url(#areab)"/>
+          <path d="M44 224 L96 200 L148 208 L200 176 L252 186 L304 150 L356 160 L384 148" fill="none" stroke="#E9C766" stroke-width="2.5"/>
+          <circle cx="384" cy="148" r="4" fill="#E9C766"/>
+          <!-- risk donut -->
+          <rect x="412" y="92" width="200" height="150" rx="12" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.06)"/>
+          <text x="428" y="116" fill="#9fb2c6" font-size="11" font-family="Open Sans" letter-spacing="1">RISK PROFILE</text>
+          <g transform="translate(512,176)">
+            <circle r="42" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="12"/>
+            <circle r="42" fill="none" stroke="url(#barb)" stroke-width="12" stroke-linecap="round" stroke-dasharray="192 264" transform="rotate(-90)"/>
+            <text x="0" y="-2" text-anchor="middle" fill="#fff" font-size="26" font-weight="800" font-family="Open Sans">73</text>
+            <text x="0" y="16" text-anchor="middle" fill="#8aa0b6" font-size="10" font-family="Open Sans">HEALTH</text>
+          </g>
+          <!-- project rows -->
+          <g font-family="Open Sans">
+            <!-- row1 -->
+            <text x="28" y="286" fill="#cdd8e4" font-size="13">S/4HANA migration</text>
+            <rect x="210" y="277" width="250" height="8" rx="4" fill="rgba(255,255,255,.1)"/>
+            <rect x="210" y="277" width="210" height="8" rx="4" fill="url(#barb)"/>
+            <rect x="486" y="273" width="70" height="18" rx="9" fill="rgba(18,194,106,.18)"/><text x="498" y="286" fill="#31d17f" font-size="10">ON TRACK</text>
+            <!-- row2 -->
+            <text x="28" y="316" fill="#cdd8e4" font-size="13">Network hardening</text>
+            <rect x="210" y="307" width="250" height="8" rx="4" fill="rgba(255,255,255,.1)"/>
+            <rect x="210" y="307" width="150" height="8" rx="4" fill="url(#barb)"/>
+            <rect x="486" y="303" width="70" height="18" rx="9" fill="rgba(254,188,46,.18)"/><text x="502" y="316" fill="#febc2e" font-size="10">AT RISK</text>
+            <!-- row3 -->
+            <text x="28" y="346" fill="#cdd8e4" font-size="13">Data platform</text>
+            <rect x="210" y="337" width="250" height="8" rx="4" fill="rgba(255,255,255,.1)"/>
+            <rect x="210" y="337" width="235" height="8" rx="4" fill="url(#barb)"/>
+            <rect x="486" y="333" width="70" height="18" rx="9" fill="rgba(18,194,106,.18)"/><text x="498" y="346" fill="#31d17f" font-size="10">ON TRACK</text>
+            <!-- row4 -->
+            <text x="28" y="376" fill="#cdd8e4" font-size="13">Compliance audit</text>
+            <rect x="210" y="367" width="250" height="8" rx="4" fill="rgba(255,255,255,.1)"/>
+            <rect x="210" y="367" width="120" height="8" rx="4" fill="url(#barb)"/>
+            <rect x="486" y="363" width="78" height="18" rx="9" fill="rgba(212,175,55,.18)"/><text x="497" y="376" fill="#E9C766" font-size="10">IN REVIEW</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="band">
+  <div class="wrap reveal">
+    <h2 data-i18n="band_h2">Ready to make the switch?</h2>
+    <p class="lead" data-i18n="band_lead">Bring the PMO Cockpit to your enterprise and ensure no variable is ever missed. Tell us about your project landscape and we'll set up a walkthrough.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn--onblue" data-i18n="band_cta1">Request a demo</a>
+      <a href="https://www.youtube.com/watch?v=1dw5zG7XpdU" target="_blank" rel="noopener" class="btn btn--outline-light" data-i18n="band_cta2">Watch the overview</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <p class="eyebrow" data-i18n="con_eyebrow">Contact us</p>
+        <h2 data-i18n="con_h2">Let's talk about your PMO.</h2>
+        <p class="lead" data-i18n="con_lead">Interested in switching, or want a closer look? Send us a note and the right people on our team will get back to you.</p>
+        <ul>
+          <li>
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 6 8 6 8-6"/></svg></div>
+            <div>
+              <div class="k" data-i18n="con_reach">Reaches our team directly</div>
+              <div class="recips">
+                <code>gokhan@gndlf.io</code> · <code>oya@gndlf.io</code><br>
+                <code>sales@gndlf.io</code> · <code>pmocockpit@gndlf.io</code>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <form class="form reveal" id="contactForm" novalidate>
+        <div class="field">
+          <label for="cf-name" data-i18n="cf_name">Full name</label>
+          <input id="cf-name" name="name" type="text" required>
+        </div>
+        <div class="field">
+          <label for="cf-company" data-i18n="cf_company">Company</label>
+          <input id="cf-company" name="company" type="text">
+        </div>
+        <div class="field">
+          <label for="cf-email" data-i18n="cf_email">Work email</label>
+          <input id="cf-email" name="email" type="email" required>
+        </div>
+        <div class="field">
+          <label for="cf-interest" data-i18n="cf_interest">I'm interested in</label>
+          <select id="cf-interest" name="interest">
+            <option data-i18n="cf_opt1">A product demo</option>
+            <option data-i18n="cf_opt2">Switching from our current PMO tool</option>
+            <option data-i18n="cf_opt3">Pricing &amp; deployment options</option>
+            <option data-i18n="cf_opt4">Partnership</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="cf-msg" data-i18n="cf_msg">Message</label>
+          <textarea id="cf-msg" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary" data-i18n="cf_submit">Send message</button>
+        <small data-i18n="cf_note">Submitting opens your email app with the message pre-filled to our team (gokhan@, oya@, sales@, pmocockpit@gndlf.io). Prefer email? Write to us directly at pmocockpit@gndlf.io.</small>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="foot-brand">
+          <span class="brandmark"><svg viewBox="0 0 64 64"><use href="#dial"/></svg></span>
+          <span class="logo" style="font-size:20px">GNDLF</span>
+        </div>
+        <p class="tag" data-i18n="ft_tag">Automation by Heart. Enterprise AI for SAP operations, cost, compliance and project delivery.</p>
+      </div>
+      <div>
+        <h4 data-i18n="ft_prod">Products</h4>
+        <a href="https://gndlf.io" target="_blank" rel="noopener">GNDLF AIOps for SAP</a>
+        <a href="https://ctrlcost.co" target="_blank" rel="noopener">Ctrl-Cost</a>
+        <a href="#overview" data-i18n="ft_pmo">PMO Cockpit</a>
+        <a href="#architecture" data-i18n="ft_ta">Test Assistant</a>
+      </div>
+      <div>
+        <h4 data-i18n="ft_page">This page</h4>
+        <a href="#how" data-i18n="nav_how">How it works</a>
+        <a href="#architecture" data-i18n="nav_arch">Architecture</a>
+        <a href="#dashboard" data-i18n="nav_dash">Dashboard</a>
+        <a href="#video" data-i18n="ft_video">Video</a>
+      </div>
+      <div>
+        <h4 data-i18n="ft_contact">Contact</h4>
+        <a href="mailto:pmocockpit@gndlf.io">pmocockpit@gndlf.io</a>
+        <a href="mailto:sales@gndlf.io">sales@gndlf.io</a>
+        <a href="#contact" data-i18n="nav_cta">Request a demo</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> GNDLF Security Technologies</span>
+      <span data-i18n="ft_rights">GNDLF PMO Cockpit — AI-Driven PMO</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const I18N = {
+  en: {
+    pill:"PMO Cockpit",
+    nav_overview:"Overview", nav_how:"How it works", nav_arch:"Architecture", nav_dash:"Dashboard", nav_contact:"Contact", nav_cta:"Request a demo",
+    hero_badge:"GNDLF · AI-Driven PMO",
+    hero_h1a:"The PMO cockpit that", hero_h1b:"never misses a variable.",
+    hero_lead:"Every enterprise project generates a huge amount of data — but most of it stays trapped in the spoken word. GNDLF PMO Cockpit is an active AI agent that listens to your meetings and turns unstructured dialogue into structured, validated, governed project variables.",
+    hero_cta1:"Talk to us", hero_cta2:"▶ Watch the 6-min overview",
+    hero_n1:"Real-time meeting ingestion", hero_n2:"SAP-aware compliance validation", hero_n3:"Continuous enterprise visibility",
+    st1_n:"3", st1_l:"Computational layers", st2_n:"0", st2_l:"Variables missed", st3_n:"Live", st3_l:"Continuously updated state", st4_n:"SAP", st4_l:"-aware validation",
+    prob_eyebrow:"The problem", prob_h2:"Critical decisions are buried in conversation.",
+    prob_lead:"During fast-paced meetings, decisions, technical constraints and task assignments are buried inside unstructured human conversation. Traditional project tools rely on someone parsing that conversation and typing it into a tracker after the fact. That delayed, manual data entry introduces information latency — by the time the system is updated, the project's actual state has already moved on.",
+    vid_eyebrow:"See it in motion", vid_h2:"Architecting the AI-Driven PMO",
+    vid_lead:"A short walk-through of how the PMO Cockpit pipeline turns raw meeting speech into a live, governed project state.",
+    vid_link_label:"Watch on YouTube:",
+    how_eyebrow:"How it works", how_h2:"Three successive computational layers.",
+    how_lead:"Instead of a passive repository, the cockpit runs as an active agent. Information moves through three layers — extraction, validation and telemetry — before it reaches your dashboard.",
+    pl_in_t:"Meetings & APIs", pl_out_t:"PMO Cockpit",
+    l1_h:"Extraction", l1_cap:"Capture the conversation and structure it.",
+    l1_a:"Data enters via direct API integration or the AI note-taker that records meeting transcripts.",
+    l1_b:"NLP generates an overarching summary and isolates actionable items from the surrounding talk.",
+    l1_c:"Action items are bound to specific attendees.",
+    l1_d:"Historical reconciliation cross-references prior backlogs and updates old tasks — closed, pending, suspended or in progress.",
+    l2_h:"Validation", l2_cap:"The gatekeeper before costly execution.",
+    l2_a:"Extracted decisions are checked for feasibility across infrastructure, network and database architectures.",
+    l2_b:"Rigid requirements — such as SAP customization steps — are validated, instantly flagging compliance risks.",
+    l2_c:"Company-specific design standards and regulations become automated boundaries every task must clear.",
+    l2_d:"Non-compliant tasks are stopped before they ever reach the execution phase.",
+    l3_h:"Telemetry", l3_cap:"Schedule and human signals, continuously.",
+    l3_a:"Tasks are projected against the master timeline; changed dates and schedule slippage are flagged automatically.",
+    l3_b:"Predictive resource forecasting scans weeks and months ahead to surface bottlenecks early.",
+    l3_c:"Workload is aggregated per person, triggering an early-warning alarm near burnout thresholds.",
+    l3_d:"Friction at task hand-offs is detected, with actionable team-management and coaching suggestions.",
+    feat_eyebrow:"Inside the cockpit", feat_h2:"Capabilities that keep the project state honest.",
+    f1_h:"Action-item extraction & owner binding", f1_p:"Turns raw dialogue into discrete tasks and assigns each one to the right attendee — no manual note-taking.",
+    f2_h:"Historical reconciliation", f2_p:"Cross-references new discussion against previous backlogs and updates the state of older tasks automatically.",
+    f3_h:"Schedule slippage detection", f3_p:"Verifies deliverables against the baseline; when a date pushes past a deadline, the slippage is flagged at once.",
+    f4_h:"Predictive resource forecasting", f4_p:"Calculates cumulative task load across the enterprise weeks ahead, so managers see bottlenecks before delivery is hit.",
+    f5_h:"Compliance & feasibility validation", f5_p:"Filters decisions through infrastructure, network, database and SAP-customization rules, forming automated boundaries.",
+    f6_h:"Workload & burnout telemetry", f6_p:"Tracks individual workload and efficiency, raising early warnings and suggesting coaching before people burn out.",
+    ta_badge:"Sister product", ta_h2:"Validation, reinforced by the GNDLF Test Assistant.",
+    ta_lead:"At the end of the software pipeline, the Test Assistant physically executes tests on the final deliverables — making sure they meet every security guardrail and compliance regulation. Active validation lets AI accelerate delivery while corporate governance is strictly enforced along the way.",
+    ta_s1t:"Extract", ta_s1d:"Speech → structured tasks & owners",
+    ta_s2t:"Validate", ta_s2d:"Feasibility & compliance gatekeeping",
+    ta_s3t:"Test", ta_s3d:"Test Assistant executes on deliverables",
+    ta_s4t:"Cockpit", ta_s4d:"Live, governed project state",
+    dash_eyebrow:"The output", dash_h2:"A live, company-wide PMO dashboard.",
+    dash_lead:"Zooming out from the data layers reveals a centralized, continuously updated PMO dashboard — company-wide visibility across every project stage. It generates high-level initial project documentation automatically, then highlights exactly where humans need to step in with detail. Instead of relying on snapshots from days or weeks ago, the project's risk profile stays synchronized with the actual conversation.",
+    dash_cta:"See it on your projects",
+    band_h2:"Ready to make the switch?",
+    band_lead:"Bring the PMO Cockpit to your enterprise and ensure no variable is ever missed. Tell us about your project landscape and we'll set up a walkthrough.",
+    band_cta1:"Request a demo", band_cta2:"Watch the overview",
+    con_eyebrow:"Contact us", con_h2:"Let's talk about your PMO.",
+    con_lead:"Interested in switching, or want a closer look? Send us a note and the right people on our team will get back to you.",
+    con_reach:"Reaches our team directly",
+    cf_name:"Full name", cf_company:"Company", cf_email:"Work email", cf_interest:"I'm interested in",
+    cf_opt1:"A product demo", cf_opt2:"Switching from our current PMO tool", cf_opt3:"Pricing & deployment options", cf_opt4:"Partnership",
+    cf_msg:"Message", cf_submit:"Send message",
+    cf_note:"Submitting opens your email app with the message pre-filled to our team (gokhan@, oya@, sales@, pmocockpit@gndlf.io). Prefer email? Write to us directly at pmocockpit@gndlf.io.",
+    ft_tag:"Automation by Heart. Enterprise AI for SAP operations, cost, compliance and project delivery.",
+    ft_prod:"Products", ft_pmo:"PMO Cockpit", ft_ta:"Test Assistant",
+    ft_page:"This page", ft_video:"Video", ft_contact:"Contact",
+    ft_rights:"GNDLF PMO Cockpit — AI-Driven PMO"
+  },
+  tr: {
+    pill:"PMO Cockpit",
+    nav_overview:"Genel Bakış", nav_how:"Nasıl Çalışır", nav_arch:"Mimari", nav_dash:"Panel", nav_contact:"İletişim", nav_cta:"Demo İsteyin",
+    hero_badge:"GNDLF · Yapay Zekâ Destekli PMO",
+    hero_h1a:"Hiçbir değişkeni", hero_h1b:"gözden kaçırmayan PMO kokpiti.",
+    hero_lead:"Her kurumsal proje devasa miktarda veri üretir — ama bu verinin büyük kısmı sözlü konuşmanın içinde sıkışıp kalır. GNDLF PMO Cockpit, toplantılarınızı dinleyen ve yapılandırılmamış diyaloğu yapılandırılmış, doğrulanmış ve denetlenebilir proje değişkenlerine dönüştüren aktif bir yapay zekâ ajanıdır.",
+    hero_cta1:"Bize ulaşın", hero_cta2:"▶ 6 dakikalık tanıtımı izleyin",
+    hero_n1:"Gerçek zamanlı toplantı analizi", hero_n2:"SAP farkındalıklı uyum doğrulaması", hero_n3:"Kesintisiz kurumsal görünürlük",
+    st1_n:"3", st1_l:"Hesaplama katmanı", st2_n:"0", st2_l:"Gözden kaçan değişken", st3_n:"Canlı", st3_l:"Sürekli güncel durum", st4_n:"SAP", st4_l:"farkındalıklı doğrulama",
+    prob_eyebrow:"Sorun", prob_h2:"Kritik kararlar konuşmanın içinde kayboluyor.",
+    prob_lead:"Hızlı tempolu toplantılarda kararlar, teknik kısıtlar ve görev atamaları yapılandırılmamış insan konuşmasının içine gömülür. Geleneksel proje araçları, bu konuşmayı birinin ayıklayıp sonradan bir izleme aracına elle girmesine bağlıdır. Bu gecikmeli, manuel veri girişi bilgi gecikmesi yaratır — sistem güncellendiğinde projenin gerçek durumu çoktan ilerlemiştir.",
+    vid_eyebrow:"Hareket hâlinde görün", vid_h2:"Yapay Zekâ Destekli PMO Mimarisi",
+    vid_lead:"PMO Cockpit hattının ham toplantı konuşmasını nasıl canlı ve denetlenebilir bir proje durumuna çevirdiğine dair kısa bir anlatım.",
+    vid_link_label:"YouTube'da izleyin:",
+    how_eyebrow:"Nasıl çalışır", how_h2:"Birbirini izleyen üç hesaplama katmanı.",
+    how_lead:"Pasif bir depo yerine kokpit, aktif bir ajan olarak çalışır. Bilgi, panele ulaşmadan önce üç katmandan geçer — çıkarım, doğrulama ve telemetri.",
+    pl_in_t:"Toplantı & API", pl_out_t:"PMO Cockpit",
+    l1_h:"Çıkarım", l1_cap:"Konuşmayı yakala ve yapılandır.",
+    l1_a:"Veri, doğrudan API entegrasyonuyla ya da toplantı transkriptlerini kaydeden yapay zekâ not alıcısı üzerinden girer.",
+    l1_b:"Doğal dil işleme, kapsayıcı bir özet üretir ve çevredeki konuşmadan yapılabilir maddeleri ayıklar.",
+    l1_c:"Aksiyon maddeleri ilgili katılımcılara bağlanır.",
+    l1_d:"Geçmiş mutabakatı, önceki iş listelerini karşılaştırır ve eski görevleri günceller — kapandı, beklemede, askıda ya da devam ediyor.",
+    l2_h:"Doğrulama", l2_cap:"Maliyetli yürütmeden önceki bekçi.",
+    l2_a:"Çıkarılan kararlar; altyapı, ağ ve veritabanı mimarileri açısından fizibilite için denetlenir.",
+    l2_b:"SAP özelleştirme adımları gibi katı gereksinimler doğrulanır ve uyum riskleri anında işaretlenir.",
+    l2_c:"Şirkete özgü tasarım standartları ve düzenlemeler, her görevin aşması gereken otomatik sınırlara dönüşür.",
+    l2_d:"Uyumsuz görevler, yürütme aşamasına ulaşmadan durdurulur.",
+    l3_h:"Telemetri", l3_cap:"Takvim ve insan sinyalleri, kesintisiz.",
+    l3_a:"Görevler ana takvime yansıtılır; değişen tarihler ve takvim kaymaları otomatik işaretlenir.",
+    l3_b:"Öngörücü kaynak tahmini haftalar ve aylar öncesini tarar, darboğazları erkenden ortaya çıkarır.",
+    l3_c:"İş yükü kişi bazında toplanır; tükenmişlik eşiğine yaklaşıldığında erken uyarı alarmı tetiklenir.",
+    l3_d:"Görev devirlerindeki sürtünme tespit edilir; uygulanabilir ekip yönetimi ve koçluk önerileri sunulur.",
+    feat_eyebrow:"Kokpitin içinde", feat_h2:"Proje durumunu dürüst tutan yetenekler.",
+    f1_h:"Aksiyon çıkarımı ve sorumlu ataması", f1_p:"Ham diyaloğu ayrık görevlere dönüştürür ve her birini doğru katılımcıya atar — manuel not almadan.",
+    f2_h:"Geçmiş mutabakatı", f2_p:"Yeni tartışmayı önceki iş listeleriyle karşılaştırır ve eski görevlerin durumunu otomatik günceller.",
+    f3_h:"Takvim kayması tespiti", f3_p:"Teslimatları baz alınan plana göre doğrular; bir tarih son teslimi aştığında kayma anında işaretlenir.",
+    f4_h:"Öngörücü kaynak tahmini", f4_p:"Kurum genelindeki toplam iş yükünü haftalar öncesinden hesaplar; yöneticiler darboğazları teslimat etkilenmeden görür.",
+    f5_h:"Uyum ve fizibilite doğrulaması", f5_p:"Kararları altyapı, ağ, veritabanı ve SAP özelleştirme kurallarından geçirir; otomatik sınırlar oluşturur.",
+    f6_h:"İş yükü ve tükenmişlik telemetrisi", f6_p:"Kişisel iş yükü ve verimliliği izler; insanlar tükenmeden erken uyarı verir ve koçluk önerir.",
+    ta_badge:"Kardeş ürün", ta_h2:"Doğrulama, GNDLF Test Assistant ile pekişiyor.",
+    ta_lead:"Yazılım hattının sonunda Test Assistant, nihai teslimatlar üzerinde testleri fiilen yürütür — tüm güvenlik korkuluklarını ve uyum düzenlemelerini karşıladıklarından emin olur. Aktif doğrulama, yapay zekânın teslimatı hızlandırmasını sağlarken kurumsal yönetişim yol boyunca titizlikle uygulanır.",
+    ta_s1t:"Çıkar", ta_s1d:"Konuşma → yapılandırılmış görevler ve sorumlular",
+    ta_s2t:"Doğrula", ta_s2d:"Fizibilite ve uyum denetimi",
+    ta_s3t:"Test Et", ta_s3d:"Test Assistant teslimatlarda çalışır",
+    ta_s4t:"Kokpit", ta_s4d:"Canlı, denetlenebilir proje durumu",
+    dash_eyebrow:"Çıktı", dash_h2:"Canlı, kurum çapında bir PMO paneli.",
+    dash_lead:"Veri katmanlarından uzaklaştıkça merkezî ve sürekli güncellenen bir PMO paneli ortaya çıkar — her proje aşamasında kurum çapında görünürlük. Yüksek seviyeli ilk proje dokümantasyonunu otomatik üretir, ardından insanların ayrıntıyla devreye girmesi gereken noktaları tam olarak işaret eder. Günler ya da haftalar önceki anlık görüntülere güvenmek yerine, projenin risk profili gerçek konuşmayla eşzamanlı kalır.",
+    dash_cta:"Projelerinizde görün",
+    band_h2:"Geçiş yapmaya hazır mısınız?",
+    band_lead:"PMO Cockpit'i kurumunuza getirin ve hiçbir değişkenin gözden kaçmadığından emin olun. Proje ortamınızı bize anlatın, bir tanıtım ayarlayalım.",
+    band_cta1:"Demo isteyin", band_cta2:"Tanıtımı izleyin",
+    con_eyebrow:"İletişim", con_h2:"PMO'nuzu konuşalım.",
+    con_lead:"Geçiş yapmak mı istiyorsunuz, yoksa daha yakından mı görmek? Bize bir not bırakın; ekibimizdeki doğru kişiler size geri dönsün.",
+    con_reach:"Doğrudan ekibimize ulaşır",
+    cf_name:"Ad Soyad", cf_company:"Şirket", cf_email:"İş e-postası", cf_interest:"İlgilendiğim konu",
+    cf_opt1:"Ürün demosu", cf_opt2:"Mevcut PMO aracımızdan geçiş", cf_opt3:"Fiyatlandırma ve kurulum seçenekleri", cf_opt4:"İş ortaklığı",
+    cf_msg:"Mesaj", cf_submit:"Mesajı gönder",
+    cf_note:"Gönderdiğinizde e-posta uygulamanız, mesaj ekibimize (gokhan@, oya@, sales@, pmocockpit@gndlf.io) önceden doldurulmuş olarak açılır. E-postayı mı tercih edersiniz? Doğrudan pmocockpit@gndlf.io adresine yazabilirsiniz.",
+    ft_tag:"Automation by Heart. SAP operasyonları, maliyet, uyum ve proje teslimatı için kurumsal yapay zekâ.",
+    ft_prod:"Ürünler", ft_pmo:"PMO Cockpit", ft_ta:"Test Assistant",
+    ft_page:"Bu sayfa", ft_video:"Video", ft_contact:"İletişim",
+    ft_rights:"GNDLF PMO Cockpit — Yapay Zekâ Destekli PMO"
+  }
+};
+
+const RECIPIENTS = ["gokhan@gndlf.io","oya@gndlf.io","sales@gndlf.io","pmocockpit@gndlf.io"];
+const SVGNS = "http://www.w3.org/2000/svg";
+
+function applyLang(lang){
+  const dict = I18N[lang] || I18N.en;
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key = el.getAttribute("data-i18n");
+    if(dict[key] === undefined) return;
+    if(el.namespaceURI === SVGNS || el.tagName === "OPTION") el.textContent = dict[key];
+    else el.innerHTML = dict[key];
+  });
+  document.querySelectorAll(".lang button").forEach(b=>{
+    b.classList.toggle("active", b.getAttribute("data-set-lang") === lang);
+  });
+  document.title = (lang === "tr")
+    ? "GNDLF PMO Cockpit — Yapay Zekâ Destekli PMO"
+    : "GNDLF PMO Cockpit — AI-Driven PMO";
+}
+
+document.body.classList.remove("no-js");
+document.body.classList.add("js");
+
+document.querySelectorAll(".lang button").forEach(b=>{
+  b.addEventListener("click", ()=> applyLang(b.getAttribute("data-set-lang")));
+});
+
+// Mobile menu
+const navLinks = document.querySelector(".nav-links");
+const menuToggle = document.getElementById("menuToggle");
+menuToggle.addEventListener("click", ()=>{
+  const open = navLinks.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+});
+navLinks.querySelectorAll("a").forEach(a=>{
+  a.addEventListener("click", ()=>{ navLinks.classList.remove("open"); menuToggle.setAttribute("aria-expanded","false"); });
+});
+
+// Scroll reveal
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+},{threshold:.12, rootMargin:"0px 0px -40px 0px"});
+document.querySelectorAll(".reveal").forEach((el,i)=>{ el.style.transitionDelay=(Math.min(i%3,3)*70)+"ms"; io.observe(el); });
+
+// Contact form -> compose an email to the whole team
+document.getElementById("contactForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const lang = document.documentElement.lang || "en";
+  const f = e.target;
+  const name = (f.name.value||"").trim();
+  const company = (f.company.value||"").trim();
+  const email = (f.email.value||"").trim();
+  const interest = f.interest.value||"";
+  const message = (f.message.value||"").trim();
+
+  const subject = (lang==="tr" ? "PMO Cockpit talebi — " : "PMO Cockpit inquiry — ") + (company || name || email);
+  const L = lang==="tr"
+    ? {name:"Ad Soyad",company:"Şirket",email:"E-posta",interest:"İlgi",message:"Mesaj",via:"Gönderildiği sayfa: GNDLF PMO Cockpit"}
+    : {name:"Name",company:"Company",email:"Email",interest:"Interest",message:"Message",via:"Sent from: GNDLF PMO Cockpit page"};
+  const body =
+    L.name+": "+name+"\n"+L.company+": "+company+"\n"+L.email+": "+email+"\n"+L.interest+": "+interest+"\n\n"+
+    L.message+":\n"+message+"\n\n—\n"+L.via;
+
+  window.location.href = "mailto:"+RECIPIENTS.join(",")+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Default language: Turkish
+applyLang("tr");
+</script>
+</body>
+</html>

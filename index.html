@@ -166,6 +166,25 @@
     .why h3{color:var(--white); font-size:1.05rem; margin-bottom:8px;}
     .why p{color:var(--muted); font-size:0.9rem; margin:0;}
 
+    .products{display:grid; grid-template-columns:repeat(6,1fr); gap:16px;}
+    .product{position:relative; text-align:center; padding:26px 12px; border-radius:var(--radius); background:var(--card-bg); border:1px solid var(--card-bd); transition:transform .3s var(--ease),border-color .3s,background .3s;}
+    .product--link{cursor:pointer;}
+    .product--link::after{content:"\2197"; position:absolute; top:10px; right:12px; color:var(--gold); font-weight:700; font-size:13px; opacity:.75;}
+    .product:hover{transform:translateY(-6px); border-color:rgba(212,175,55,.45); background:rgba(255,255,255,0.05);}
+    .product__icon{display:inline-grid; place-items:center; width:56px; height:56px; margin-bottom:14px; border-radius:16px; background:linear-gradient(140deg,rgba(212,175,55,.18),rgba(212,175,55,.04)); border:1px solid rgba(212,175,55,.32); color:var(--gold);}
+    .product__icon svg{width:28px; height:28px;}
+    .product h3{color:var(--white); font-size:0.9rem; margin:0; line-height:1.3;}
+    @media (max-width:1024px){.products{grid-template-columns:repeat(4,1fr);}}
+    @media (max-width:680px){.products{grid-template-columns:repeat(3,1fr);}}
+    @media (max-width:460px){.products{grid-template-columns:repeat(2,1fr);}}
+    .areas{display:grid; grid-template-columns:repeat(6,1fr); gap:16px;}
+    .area{text-align:center; padding:26px 12px; border-radius:var(--radius); background:var(--card-bg); border:1px solid var(--card-bd); transition:transform .3s var(--ease),border-color .3s;}
+    .area:hover{transform:translateY(-5px); border-color:rgba(212,175,55,.4);}
+    .area__icon{display:inline-grid; place-items:center; width:52px; height:52px; margin-bottom:12px; border-radius:14px; background:rgba(212,175,55,0.1); border:1px solid rgba(212,175,55,.3); color:var(--gold);}
+    .area__icon svg{width:26px; height:26px;}
+    .area h3{color:var(--white); font-size:0.95rem; margin:0;}
+    @media (max-width:900px){.areas{grid-template-columns:repeat(3,1fr);}}
+    @media (max-width:520px){.areas{grid-template-columns:repeat(2,1fr);}}
     .cta{padding:90px 0; position:relative;
       background:radial-gradient(700px 400px at 15% 20%,rgba(212,175,55,0.12),transparent 60%),
       linear-gradient(180deg,var(--navy),#0c1533); border-top:1px solid var(--line);}
@@ -274,69 +293,36 @@
       </div>
     </section>
 
-    <section class="values" aria-label="Değerlerimiz">
+        <section class="values" aria-label="Değerlerimiz">
       <div class="container values__grid">
-        <div class="value reveal">
-          <span class="value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M7 21h10"/><path d="M12 17v4"/><path d="M7 12l3-3 2 2 4-4"/></svg></span>
-          <h3>Enterprise Focused</h3><p data-i18n="val.1">Kurumsal ihtiyaçlara özel çözümler.</p>
-        </div>
-        <div class="value reveal">
-          <span class="value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9.2 12l2 2 3.6-3.6"/></svg></span>
-          <h3>Secure &amp; Reliable</h3><p data-i18n="val.2">Güvenli, ölçeklenebilir ve yüksek erişilebilir.</p>
-        </div>
-        <div class="value reveal">
-          <span class="value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.3 1 2.5h6c0-1.2.3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg></span>
-          <h3>Innovative Technology</h3><p data-i18n="val.3">Yapay zeka ve otomasyon destekli uygulamalar.</p>
-        </div>
-        <div class="value reveal">
-          <span class="value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 6.2a3 3 0 0 1 0 5.6"/><path d="M17 14.5a6 6 0 0 1 4 5.5"/></svg></span>
-          <h3>Expert Team</h3><p data-i18n="val.4">Deneyimli ve uzman kadromuzla yanınızdayız.</p>
-        </div>
-        <div class="value reveal">
-          <span class="value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18"/></svg></span>
-          <h3>Global Vision</h3><p data-i18n="val.5">Dünya standartlarında çözümler.</p>
-        </div>
+        <div class="value reveal"><span class="value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6"/></svg></span><h3 data-i18n="val.t1">İnovasyon</h3><p data-i18n="val.1">Teknoloji ve uzmanlığımızla yarının çözümlerini geliştiriyoruz.</p></div>
+        <div class="value reveal"><span class="value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9.2 12l2 2 3.6-3.6"/></svg></span><h3 data-i18n="val.t2">Güven</h3><p data-i18n="val.2">Dürüstlük, şeffaflık ve sorumlulukla kalıcı değer yaratıyoruz.</p></div>
+        <div class="value reveal"><span class="value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.3 5.9.86-4.25 4.14 1 5.86L12 17.9l-5.25 2.76 1-5.86L3.5 9.66l5.9-.86z"/></svg></span><h3 data-i18n="val.t3">Mükemmellik</h3><p data-i18n="val.3">Yüksek kalite standartlarıyla en iyi sonuçları hedefliyoruz.</p></div>
+        <div class="value reveal"><span class="value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 6.2a3 3 0 0 1 0 5.6"/><path d="M17 14.5a6 6 0 0 1 4 5.5"/></svg></span><h3 data-i18n="val.t4">İş Birliği</h3><p data-i18n="val.4">Güçlü ortaklıklar kurarak birlikte büyüyoruz.</p></div>
+        <div class="value reveal"><span class="value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c0-8 6-14 16-14 0 10-6 14-14 14"/><path d="M6.5 17.5c2.5-5 6-7.5 10-8.5"/></svg></span><h3 data-i18n="val.t5">Etki</h3><p data-i18n="val.5">İşimize, müşterilerimize ve topluma sürdürülebilir katkı sağlıyoruz.</p></div>
       </div>
     </section>
 
-    <section class="section" id="cozumler">
+        <section class="section" id="cozumler">
       <div class="container">
         <header class="section__head reveal">
-          <span class="kicker" data-i18n="sol.kicker">ÇÖZÜMLERİMİZ</span>
+          <span class="kicker" data-i18n="sol.kicker">ÇÖZÜM VE ÜRÜNLERİMİZ</span>
           <h2 data-i18n="sol.h2">Uçtan uca dijital çözüm ailesi</h2>
           <p data-i18n="sol.p">İşletmenizin her katmanı için tasarlanmış, yapay zeka ile güçlendirilmiş ürün ve hizmetler.</p>
         </header>
-        <div class="cards cards--solutions">
-          <article class="card reveal">
-            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M7 21h10"/><path d="M12 17v4"/><path d="M7 12l3-3 2 2 4-4"/></svg></div>
-            <h3>Enterprise Solutions</h3>
-            <p class="card__desc" data-i18n="sol.d1">İş süreçlerinizi izleyin, maliyetlerinizi kontrol edin, projelerinizi yönetin ve test süreçlerinizi yapay zeka ile otomatikleştirin.</p>
-            <ul class="card__list"><li>GNDLF Monitoring</li><li>GNDLF Ctrl-Cost</li><li>GNDLF PMO Cockpit</li><li>GNDLF AI Test Automation</li></ul>
-          </article>
-          <article class="card reveal">
-            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9.2 12l2 2 3.6-3.6"/></svg></div>
-            <h3>Security &amp; Compliance</h3>
-            <p class="card__desc" data-i18n="sol.d2">Sistemlerinizi test edin, zafiyetleri belirleyin ve verilerinizi koruyarak mevzuata uyumu sağlayın.</p>
-            <ul class="card__list"><li>GNDLF Security Scanner &amp; Pentest</li><li>GNDLF Data Masking</li></ul>
-          </article>
-          <article class="card reveal">
-            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="2.5"/><path d="M9.5 3.5V6M14.5 3.5V6M9.5 18v2.5M14.5 18v2.5M3.5 9.5H6M3.5 14.5H6M18 9.5h2.5M18 14.5h2.5"/><circle cx="12" cy="12" r="1.6"/></svg></div>
-            <h3>AI &amp; Talent Solutions</h3>
-            <p class="card__desc" data-i18n="sol.d3">Yapay zeka destekli çözümlerimizle yetenek yönetimini, mülakatları ve bilgi yönetimini dönüştürün.</p>
-            <ul class="card__list"><li>MeetBadi AI Note Taker</li><li>TalentBadi Enneagram</li><li>TalentBadi LLM Wiki Jobs</li><li>TalentBadi AI Interviews</li><li>TalentBadi HR</li></ul>
-          </article>
-          <article class="card reveal">
-            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M9 20V4M14 20v-7M19 20V8"/></svg></div>
-            <h3>Analytics &amp; Optimization</h3>
-            <p class="card__desc" data-i18n="sol.d4">Verilerinizi analiz edin, performansınızı artırın ve stratejik kararlarınızı güçlendirin.</p>
-            <ul class="card__list"><li>ST03</li></ul>
-          </article>
-          <article class="card reveal">
-            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4L2 9l10 5 8-4v6"/><path d="M6 11.5V16c0 1.1 2.7 3 6 3s6-1.9 6-3v-4.5"/></svg></div>
-            <h3>Learning &amp; Education</h3>
-            <p class="card__desc" data-i18n="sol.d5">Teknoloji ve iş dünyasına yönelik uzmanlık eğitimleri ile ekibinizi güçlendirin.</p>
-            <ul class="card__list"><li>Sooezy.Academy</li></ul>
-          </article>
+        <div class="products">
+          <div class="product reveal"><span class="product__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M7 21h10"/><path d="M12 17v4"/><path d="M7 12l3-3 2 2 4-4"/></svg></span><h3>GNDLF Monitoring</h3></div>
+          <div class="product reveal"><span class="product__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M9 20V4M14 20v-7M19 20V8"/></svg></span><h3>GNDLF Ctrl-Cost</h3></div>
+          <div class="product reveal"><span class="product__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9.2 12l2 2 3.6-3.6"/></svg></span><h3>GNDLF Security Scanner &amp; Pentest</h3></div>
+          <div class="product reveal"><span class="product__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2.5" width="6" height="3" rx="1"/><path d="M8.5 12.5l2.2 2.2 4-4.2"/></svg></span><h3>GNDLF AI Test Automation</h3></div>
+          <a class="product product--link reveal" href="pmo-cockpit.html" target="_blank" rel="noopener" title="GNDLF PMO Cockpit — yeni sekmede aç"><span class="product__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span><h3>GNDLF PMO Cockpit</h3></a>
+          <div class="product reveal"><span class="product__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4M9 21h6"/></svg></span><h3>MeetBadi AI Note Taker</h3></div>
+          <div class="product reveal"><span class="product__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M4.5 8l15 8M19.5 8l-15 8"/></svg></span><h3>TalentBadi Enneagram</h3></div>
+          <div class="product reveal"><span class="product__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-2-1.5-5-1.5-8 0v13c3-1.5 6-1.5 8 0 2-1.5 5-1.5 8 0V6c-3-1.5-6-1.5-8 0z"/><path d="M12 6v13"/></svg></span><h3>TalentBadi LLM Wiki Jobs</h3></div>
+          <div class="product reveal"><span class="product__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M15 5h6v5h-3l-2 2v-2h-1z"/></svg></span><h3>TalentBadi AI Interviews</h3></div>
+          <div class="product reveal"><span class="product__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 6.2a3 3 0 0 1 0 5.6"/><path d="M17 14.5a6 6 0 0 1 4 5.5"/></svg></span><h3>TalentBadi HR</h3></div>
+          <div class="product reveal"><span class="product__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="10.5" cy="6" rx="6.5" ry="2.8"/><path d="M4 6v6c0 1.5 2.9 2.8 6.5 2.8"/><rect x="14" y="13" width="7" height="6" rx="1.5"/><path d="M15.5 13v-1.5a2.5 2.5 0 0 1 5 0V13"/></svg></span><h3>GNDLF Data Masking</h3></div>
+          <div class="product reveal"><span class="product__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4L2 9l10 5 8-4v6"/><path d="M6 11.5V16c0 1.1 2.7 3 6 3s6-1.9 6-3v-4.5"/></svg></span><h3>Sooezy.Academy</h3></div>
         </div>
       </div>
     </section>
@@ -411,6 +397,23 @@
       </div>
     </section>
 
+    <section class="section section--alt" id="alanlar">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="kicker" data-i18n="area.kicker">HİZMET ALANLARIMIZ</span>
+          <h2 data-i18n="area.h2">Uzmanlık alanlarımız</h2>
+        </header>
+        <div class="areas">
+          <div class="area reveal"><span class="area__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="2"/><rect x="10" y="10" width="4" height="4" rx="1"/><path d="M9.5 3.5V6M14.5 3.5V6M9.5 18v2.5M14.5 18v2.5M3.5 9.5H6M3.5 14.5H6M18 9.5h2.5M18 14.5h2.5"/></svg></span><h3 data-i18n="area.1">Teknoloji</h3></div>
+          <div class="area reveal"><span class="area__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9.2 12l2 2 3.6-3.6"/></svg></span><h3 data-i18n="area.2">Güvenlik</h3></div>
+          <div class="area reveal"><span class="area__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg></span><h3 data-i18n="area.3">Danışmanlık</h3></div>
+          <div class="area reveal"><span class="area__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5 5l2.1 2.1M16.9 16.9L19 19M19 5l-2.1 2.1M7.1 16.9L5 19"/></svg></span><h3 data-i18n="area.4">Otomasyon</h3></div>
+          <div class="area reveal"><span class="area__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="2.5"/><path d="M9.5 3.5V6M14.5 3.5V6M9.5 18v2.5M14.5 18v2.5M3.5 9.5H6M3.5 14.5H6M18 9.5h2.5M18 14.5h2.5"/><circle cx="12" cy="12" r="1.6"/></svg></span><h3 data-i18n="area.5">Veri &amp; Yapay Zeka</h3></div>
+          <div class="area reveal"><span class="area__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span><h3 data-i18n="area.6">Performans</h3></div>
+        </div>
+      </div>
+    </section>
+
     <section class="cta" id="iletisim">
       <div class="container cta__inner reveal">
         <div class="cta__text">
@@ -475,9 +478,9 @@
         'nav.solutions':'Çözümler','nav.why':'Neden GNDLF','nav.contact':'İletişim','nav.cta':'Bize Ulaşın',
         'hero.lead':'Teknoloji, güvenlik ve yapay zeka odaklı çözümlerimizle iş süreçlerinizi dönüştürüyor, verimliliğinizi artırıyor ve sürdürülebilir bir gelecek inşa ediyoruz.',
         'hero.cta1':'Çözümlerimizi Keşfedin','hero.cta2':'Bize Ulaşın',
-        'val.1':'Kurumsal ihtiyaçlara özel çözümler.','val.2':'Güvenli, ölçeklenebilir ve yüksek erişilebilir.',
-        'val.3':'Yapay zeka ve otomasyon destekli uygulamalar.','val.4':'Deneyimli ve uzman kadromuzla yanınızdayız.','val.5':'Dünya standartlarında çözümler.',
-        'sol.kicker':'ÇÖZÜMLERİMİZ','sol.h2':'Uçtan uca dijital çözüm ailesi',
+        'val.t1':'İnovasyon','val.t2':'Güven','val.t3':'Mükemmellik','val.t4':'İş Birliği','val.t5':'Etki',
+        'val.1':'Teknoloji ve uzmanlığımızla yarının çözümlerini geliştiriyoruz.','val.2':'Dürüstlük, şeffaflık ve sorumlulukla kalıcı değer yaratıyoruz.','val.3':'Yüksek kalite standartlarıyla en iyi sonuçları hedefliyoruz.','val.4':'Güçlü ortaklıklar kurarak birlikte büyüyoruz.','val.5':'İşimize, müşterilerimize ve topluma sürdürülebilir katkı sağlıyoruz.',
+        'sol.kicker':'ÇÖZÜM VE ÜRÜNLERİMİZ','sol.h2':'Uçtan uca dijital çözüm ailesi',
         'sol.p':'İşletmenizin her katmanı için tasarlanmış, yapay zeka ile güçlendirilmiş ürün ve hizmetler.',
         'sol.d1':'İş süreçlerinizi izleyin, maliyetlerinizi kontrol edin, projelerinizi yönetin ve test süreçlerinizi yapay zeka ile otomatikleştirin.',
         'sol.d2':'Sistemlerinizi test edin, zafiyetleri belirleyin ve verilerinizi koruyarak mevzuata uyumu sağlayın.',
@@ -503,6 +506,8 @@
         'form.sending':'Gönderiliyor…',
         'form.error':'Gönderilemedi. Lütfen tekrar deneyin ya da info@gndlf.io adresine yazın.',
         'form.offline':'Form yalnızca yayınlanmış sitede e-posta gönderir. Şimdilik info@gndlf.io adresine yazabilirsiniz.',
+        'area.kicker':'HİZMET ALANLARIMIZ','area.h2':'Uzmanlık alanlarımız',
+        'area.1':'Teknoloji','area.2':'Güvenlik','area.3':'Danışmanlık','area.4':'Otomasyon','area.5':'Veri & Yapay Zeka','area.6':'Performans',
         'foot.col1':'Çözümler','foot.col2':'Kurumsal','foot.col3':'İletişim',
         'foot.sap':'SAP Çözümleri','foot.why':'Neden GNDLF','foot.contact':'İletişim','foot.rights':'Tüm hakları saklıdır.'
       },
@@ -510,9 +515,9 @@
         'nav.solutions':'Solutions','nav.why':'Why GNDLF','nav.contact':'Contact','nav.cta':'Get in Touch',
         'hero.lead':'With our technology, security and AI-focused solutions, we transform your business processes, boost your efficiency and build a sustainable future.',
         'hero.cta1':'Explore Our Solutions','hero.cta2':'Get in Touch',
-        'val.1':'Tailored solutions for enterprise needs.','val.2':'Secure, scalable and highly available.',
-        'val.3':'AI and automation-powered applications.','val.4':'By your side with our experienced expert team.','val.5':'World-class solutions.',
-        'sol.kicker':'OUR SOLUTIONS','sol.h2':'An end-to-end digital solution family',
+        'val.t1':'Innovation','val.t2':'Trust','val.t3':'Excellence','val.t4':'Collaboration','val.t5':'Impact',
+        'val.1':'We build the solutions of tomorrow with our technology and expertise.','val.2':'We create lasting value with honesty, transparency and responsibility.','val.3':'We aim for the best results with high quality standards.','val.4':'We grow together by building strong partnerships.','val.5':'We make a sustainable contribution to our work, clients and society.',
+        'sol.kicker':'SOLUTIONS & PRODUCTS','sol.h2':'An end-to-end digital solution family',
         'sol.p':'AI-powered products and services designed for every layer of your business.',
         'sol.d1':'Monitor your business processes, control costs, manage projects and automate testing with artificial intelligence.',
         'sol.d2':'Test your systems, identify vulnerabilities and ensure regulatory compliance by protecting your data.',
@@ -538,6 +543,8 @@
         'form.sending':'Sending…',
         'form.error':'Could not send. Please try again or email info@gndlf.io.',
         'form.offline':'The form sends email only on the published site. For now you can email info@gndlf.io.',
+        'area.kicker':'OUR EXPERTISE','area.h2':'Our areas of expertise',
+        'area.1':'Technology','area.2':'Security','area.3':'Consulting','area.4':'Automation','area.5':'Data & AI','area.6':'Performance',
         'foot.col1':'Solutions','foot.col2':'Company','foot.col3':'Contact',
         'foot.sap':'SAP Solutions','foot.why':'Why GNDLF','foot.contact':'Contact','foot.rights':'All rights reserved.'
       }
