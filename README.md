@@ -54,17 +54,18 @@ olarak `oya@gndlf.io` ve `gokhan@gndlf.io` adreslerine gider.
    otomatik fonksiyon olarak yayınlanır ve `/api/contact` isteği ona yönlendirilir.)
 2. Site → **Site configuration → Environment variables** → şunları ekleyin:
    - `BREVO_API_KEY` = Brevo API anahtarınız
-   - `CONTACT_TO` = `oya@gndlf.io,gokhan@gndlf.io` (mesajların gideceği adresler)
+   - `CONTACT_TO` = `oya@gndlf.io,gokhan@gndlf.io` (ana site formunun gideceği adresler)
+   - `CONTACT_TO_PMO` = `gokhan@gndlf.io,oya@gndlf.io,sales@gndlf.io,pmocockpit@gndlf.io` (PMO Cockpit formu)
    - `CONTACT_FROM` = `GNDLF Web <info@gndlf.io>` (alan adı Brevo'da doğrulandıysa)
-3. **Redeploy** edin (Deploys → Trigger deploy). Artık form gerçek e-posta gönderir.
+3. **Redeploy** edin (Deploys → Trigger deploy). Artık her iki form da gerçek e-posta gönderir.
 
 ### Vercel ile yayınlama (alternatif)
 
 1. https://vercel.com → GitHub ile giriş → **Add New → Project** →
    bu repoyu içe aktarın → **Deploy**.
    (Statik `index.html` kök dizinden, `api/contact.js` otomatik fonksiyon olarak yayınlanır.)
-2. Proje → **Settings → Environment Variables** → aynı üç değişkeni ekleyin
-   (`BREVO_API_KEY`, `CONTACT_TO`, `CONTACT_FROM`).
+2. Proje → **Settings → Environment Variables** → aynı değişkenleri ekleyin
+   (`BREVO_API_KEY`, `CONTACT_TO`, `CONTACT_TO_PMO`, `CONTACT_FROM`).
 3. **Redeploy** edin.
 
 ### Alan adı doğrulama (kendi adresinizden göndermek için)
