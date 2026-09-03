@@ -1,14 +1,15 @@
-// GNDLF — İletişim formu → Resend ile e-posta
-// Sunucusuz (serverless) fonksiyon. Vercel / Netlify (Node 18+) uyumludur.
+// GNDLF — İletişim formu → Brevo ile e-posta
+// Sunucusuz (serverless) fonksiyon. Vercel (Node 18+) uyumludur.
 //
 // GİZLİ ANAHTAR KODA YAZILMAZ. Aşağıdaki değerler ortam değişkeninden okunur:
-//   RESEND_API_KEY  (zorunlu)  -> Resend API anahtarınız (host panelinde tanımlayın)
+//   BREVO_API_KEY   (zorunlu)  -> Brevo API anahtarınız (host panelinde tanımlayın)
 //   CONTACT_TO      (ops.)     -> alıcı e-posta (varsayılan: info@gndlf.io)
-//   CONTACT_FROM    (ops.)     -> gönderen (varsayılan: Resend test göndereni)
+//   CONTACT_FROM    (ops.)     -> gönderen e-posta (varsayılan: info@gndlf.io)
+//   CONTACT_FROM_NAME (ops.)  -> gönderen adı (varsayılan: GNDLF Web)
 //
-// Not: CONTACT_FROM için kendi alan adınızı (gndlf.io) Resend'de doğrulamanız
-// gerekir. Doğrulanana kadar "onboarding@resend.dev" yalnızca Resend hesabınızın
-// e-postasına teslim edebilir.
+// Not: CONTACT_FROM için kullandığınız alan adını (gndlf.io) Brevo'da
+// göndericiler/alan adları bölümünden doğrulamanız gerekir; aksi halde
+// Brevo gönderimi reddedebilir.
 
 function escapeHtml(s) {
   return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
@@ -33,10 +34,10 @@ module.exports = async function handler(req, res) {
     return res.end(JSON.stringify({ error: 'Method not allowed' }));
   }
 
-  var apiKey = process.env.RESEND_API_KEY;
+  var apiKey = process.env.BREVO_API_KEY;
   if (!apiKey) {
     res.statusCode = 500;
-    return res.end(JSON.stringify({ error: 'E-posta servisi yapılandırılmamış (RESEND_API_KEY tanımlı değil).' }));
+    return res.end(JSON.stringify({ error: 'E-posta servisi yapılandırılmamış (BREVO_API_KEY tanımlı değil).' }));
   }
 
   var body = await readBody(req);
@@ -54,7 +55,8 @@ module.exports = async function handler(req, res) {
   }
 
   var TO = process.env.CONTACT_TO || 'info@gndlf.io';
-  var FROM = process.env.CONTACT_FROM || 'GNDLF Web <onboarding@resend.dev>';
+  var FROM = process.env.CONTACT_FROM || 'info@gndlf.io';
+  var FROM_NAME = process.env.CONTACT_FROM_NAME || 'GNDLF Web';
 
   var html =
     '<div style="font-family:Arial,sans-serif;line-height:1.6">' +
@@ -65,15 +67,15 @@ module.exports = async function handler(req, res) {
     '<hr><p style="color:#888;font-size:12px">gndlf.io iletişim formu</p></div>';
 
   try {
-    var r = await fetch('https://api.resend.com/emails', {
+    var r = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
-      headers: { 'Authorization': 'Bearer ' + apiKey, 'Content-Type': 'application/json' },
+      headers: { 'api-key': apiKey, 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
-        from: FROM,
-        to: [TO],
-        reply_to: email,
+        sender: { name: FROM_NAME, email: FROM },
+        to: [{ email: TO }],
+        replyTo: { email: email, name: name },
         subject: 'GNDLF iletişim: ' + name,
-        html: html
+        htmlContent: html
       })
     });
     if (!r.ok) {
