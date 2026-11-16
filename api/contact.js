@@ -1,17 +1,44 @@
 // GNDLF — İletişim formları → Brevo ile e-posta
 // Sunucusuz (serverless) fonksiyon. Vercel / Netlify (Node 18+) uyumludur.
-// Hem ana site formunu hem de PMO Cockpit formunu (body.source === 'pmo-cockpit') besler.
+// Ana site, PMO Cockpit (body.source === 'pmo-cockpit') ve Security Scanner
+// (body.source === 'security-scanner') formlarını besler.
 //
 // GİZLİ ANAHTAR KODA YAZILMAZ. Aşağıdaki değerler ortam değişkeninden okunur:
-//   BREVO_API_KEY    (zorunlu)  -> Brevo API anahtarınız (host panelinde tanımlayın)
-//   CONTACT_TO       (ops.)     -> ana site alıcı e-posta(lar), virgülle ayrılmış
-//                                   (varsayılan: oya@gndlf.io, gokhan@gndlf.io)
-//   CONTACT_TO_PMO   (ops.)     -> PMO Cockpit alıcı e-posta(lar), virgülle ayrılmış
-//                                   (varsayılan: gokhan@, oya@, sales@, pmocockpit@gndlf.io)
-//   CONTACT_FROM     (ops.)     -> gönderen (varsayılan: GNDLF Web <info@gndlf.io>)
+//   BREVO_API_KEY         (zorunlu)  -> Brevo API anahtarınız (host panelinde tanımlayın)
+//   CONTACT_TO            (ops.)     -> ana site alıcı e-posta(lar), virgülle ayrılmış
+//                                        (varsayılan: oya@gndlf.io, gokhan@gndlf.io)
+//   CONTACT_TO_PMO        (ops.)     -> PMO Cockpit alıcı e-posta(lar), virgülle ayrılmış
+//                                        (varsayılan: gokhan@, oya@, sales@, pmocockpit@gndlf.io)
+//   CONTACT_TO_SECURITY   (ops.)     -> Security Scanner alıcı e-posta(lar), virgülle ayrılmış
+//                                        (varsayılan: oya@gndlf.io, gokhan@gndlf.io)
+//   CONTACT_FROM          (ops.)     -> gönderen (varsayılan: GNDLF Web <info@gndlf.io>)
 //
 // Not: CONTACT_FROM için kendi alan adınızı (gndlf.io) Brevo'da doğrulamanız
 // gerekir (Senders & IP > Domains).
+
+var SOURCES = {
+  'pmo-cockpit': {
+    envVar: 'CONTACT_TO_PMO',
+    defaultTo: 'gokhan@gndlf.io,oya@gndlf.io,sales@gndlf.io,pmocockpit@gndlf.io',
+    subjectPrefix: 'PMO Cockpit iletişim: ',
+    htmlTitle: 'Yeni PMO Cockpit iletişim mesajı',
+    htmlFooter: 'gndlf.io PMO Cockpit formu'
+  },
+  'security-scanner': {
+    envVar: 'CONTACT_TO_SECURITY',
+    defaultTo: 'oya@gndlf.io,gokhan@gndlf.io',
+    subjectPrefix: 'Security Scanner iletişim: ',
+    htmlTitle: 'Yeni Security Scanner iletişim mesajı',
+    htmlFooter: 'gndlf.io Security Scanner formu'
+  },
+  'default': {
+    envVar: 'CONTACT_TO',
+    defaultTo: 'oya@gndlf.io,gokhan@gndlf.io',
+    subjectPrefix: 'GNDLF iletişim: ',
+    htmlTitle: 'Yeni iletişim formu mesajı',
+    htmlFooter: 'gndlf.io iletişim formu'
+  }
+};
 
 function escapeHtml(s) {
   return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
@@ -54,7 +81,8 @@ module.exports = async function handler(req, res) {
   var message = (body.message || '').toString().trim();
   var company = (body.company || '').toString().trim();
   var interest = (body.interest || '').toString().trim();
-  var isPmo = body.source === 'pmo-cockpit';
+  var source = SOURCES[body.source] ? body.source : 'default';
+  var cfg = SOURCES[source];
 
   if (!name || !email || !message) {
     res.statusCode = 400;
@@ -65,21 +93,19 @@ module.exports = async function handler(req, res) {
     return res.end(JSON.stringify({ error: 'Geçersiz e-posta veya mesaj.' }));
   }
 
-  var TO = (
-    (isPmo ? process.env.CONTACT_TO_PMO : process.env.CONTACT_TO) ||
-    (isPmo ? 'gokhan@gndlf.io,oya@gndlf.io,sales@gndlf.io,pmocockpit@gndlf.io' : 'oya@gndlf.io,gokhan@gndlf.io')
-  ).split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+  var TO = (process.env[cfg.envVar] || cfg.defaultTo)
+    .split(',').map(function (s) { return s.trim(); }).filter(Boolean);
   var sender = parseSender(process.env.CONTACT_FROM || 'GNDLF Web <info@gndlf.io>');
 
   var html =
     '<div style="font-family:Arial,sans-serif;line-height:1.6">' +
-    '<h2 style="color:#0A1128">' + (isPmo ? 'Yeni PMO Cockpit iletişim mesajı' : 'Yeni iletişim formu mesajı') + '</h2>' +
+    '<h2 style="color:#0A1128">' + cfg.htmlTitle + '</h2>' +
     '<p><b>Ad Soyad:</b> ' + escapeHtml(name) + '</p>' +
     (company ? '<p><b>Şirket:</b> ' + escapeHtml(company) + '</p>' : '') +
     '<p><b>E-posta:</b> ' + escapeHtml(email) + '</p>' +
     (interest ? '<p><b>İlgi alanı:</b> ' + escapeHtml(interest) + '</p>' : '') +
     '<p><b>Mesaj:</b></p><p>' + escapeHtml(message).replace(/\n/g, '<br>') + '</p>' +
-    '<hr><p style="color:#888;font-size:12px">' + (isPmo ? 'gndlf.io PMO Cockpit formu' : 'gndlf.io iletişim formu') + '</p></div>';
+    '<hr><p style="color:#888;font-size:12px">' + cfg.htmlFooter + '</p></div>';
 
   try {
     var r = await fetch('https://api.brevo.com/v3/smtp/email', {
@@ -89,7 +115,7 @@ module.exports = async function handler(req, res) {
         sender: sender,
         to: TO.map(function (e) { return { email: e }; }),
         replyTo: { email: email, name: name },
-        subject: (isPmo ? 'PMO Cockpit iletişim: ' : 'GNDLF iletişim: ') + name,
+        subject: cfg.subjectPrefix + name,
         htmlContent: html
       })
     });
