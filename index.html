@@ -264,11 +264,11 @@
       </a>
       <div class="nav__right">
         <nav class="nav__links" id="navLinks" aria-label="Ana menü">
-          <a href="#cozumler" data-i18n="nav.solutions">Çözümler</a>
+          <a href="#solutions" data-i18n="nav.solutions">Çözümler</a>
           <a href="#sap">SAP</a>
-          <a href="#neden" data-i18n="nav.why">Neden GNDLF</a>
-          <a href="#iletisim" data-i18n="nav.contact">İletişim</a>
-          <a href="#iletisim" class="btn btn--gold btn--sm nav__cta" data-i18n="nav.cta">Bize Ulaşın</a>
+          <a href="#why-gndlf" data-i18n="nav.why">Neden GNDLF</a>
+          <a href="#contact" data-i18n="nav.contact">İletişim</a>
+          <a href="#contact" class="btn btn--gold btn--sm nav__cta" data-i18n="nav.cta">Bize Ulaşın</a>
         </nav>
         <div class="lang" role="group" aria-label="Dil / Language">
           <button type="button" class="lang__btn" data-set-lang="tr">TR</button>
@@ -289,8 +289,8 @@
           <h1 class="hero__title"><span class="grad-gold">SMART SOLUTIONS.</span><br /><span>STRONGER FUTURES.</span></h1>
           <p class="hero__lead" data-i18n="hero.lead">Teknoloji, güvenlik ve yapay zeka odaklı çözümlerimizle iş süreçlerinizi dönüştürüyor, verimliliğinizi artırıyor ve sürdürülebilir bir gelecek inşa ediyoruz.</p>
           <div class="hero__actions">
-            <a href="#cozumler" class="btn btn--gold" data-i18n="hero.cta1">Çözümlerimizi Keşfedin</a>
-            <a href="#iletisim" class="btn btn--ghost" data-i18n="hero.cta2">Bize Ulaşın</a>
+            <a href="#solutions" class="btn btn--gold" data-i18n="hero.cta1">Çözümlerimizi Keşfedin</a>
+            <a href="#contact" class="btn btn--ghost" data-i18n="hero.cta2">Bize Ulaşın</a>
           </div>
         </div>
       </div>
@@ -306,7 +306,7 @@
       </div>
     </section>
 
-        <section class="section" id="cozumler">
+        <section class="section" id="solutions">
       <div class="container">
         <header class="section__head reveal">
           <span class="kicker" data-i18n="sol.kicker">ÇÖZÜM VE ÜRÜNLERİMİZ</span>
@@ -369,7 +369,7 @@
       </div>
     </section>
 
-    <section class="section" id="neden">
+    <section class="section" id="why-gndlf">
       <div class="container">
         <header class="section__head reveal">
           <span class="kicker" data-i18n="why.kicker">NEDEN GNDLF?</span>
@@ -417,7 +417,7 @@
       </div>
     </section>
 
-    <section class="cta" id="iletisim">
+    <section class="cta" id="contact">
       <div class="container cta__inner reveal">
         <div class="cta__text">
           <h2 data-i18n="cta.h2">İşinizi birlikte geleceğe taşıyalım</h2>
@@ -453,12 +453,12 @@
       </div>
       <div class="footer__col">
         <h4 data-i18n="foot.col1">Çözümler</h4>
-        <a href="#cozumler">Enterprise Solutions</a><a href="#cozumler">Security &amp; Compliance</a>
-        <a href="#cozumler">AI &amp; Talent</a><a href="#cozumler">Analytics</a><a href="#cozumler">Learning</a>
+        <a href="#solutions">Enterprise Solutions</a><a href="#solutions">Security &amp; Compliance</a>
+        <a href="#solutions">AI &amp; Talent</a><a href="#solutions">Analytics</a><a href="#solutions">Learning</a>
       </div>
       <div class="footer__col">
         <h4 data-i18n="foot.col2">Kurumsal</h4>
-        <a href="#sap" data-i18n="foot.sap">SAP Çözümleri</a><a href="#neden" data-i18n="foot.why">Neden GNDLF</a><a href="#iletisim" data-i18n="foot.contact">İletişim</a>
+        <a href="#sap" data-i18n="foot.sap">SAP Çözümleri</a><a href="#why-gndlf" data-i18n="foot.why">Neden GNDLF</a><a href="#contact" data-i18n="foot.contact">İletişim</a>
       </div>
       <div class="footer__col">
         <h4 data-i18n="foot.col3">İletişim</h4>
@@ -641,7 +641,7 @@
     }
 
     function initScrollSpy() {
-      var ids = ['cozumler', 'sap', 'neden', 'iletisim'];
+      var ids = ['solutions', 'sap', 'why-gndlf', 'contact'];
       var sections = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
       var links = {};
       var as = document.querySelectorAll('.nav__links a[href^="#"]');
