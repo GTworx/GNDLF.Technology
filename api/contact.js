@@ -1,17 +1,20 @@
 // GNDLF — İletişim formları → Brevo ile e-posta
 // Sunucusuz (serverless) fonksiyon. Vercel / Netlify (Node 18+) uyumludur.
-// Ana site, PMO Cockpit (body.source === 'pmo-cockpit') ve Security Scanner
-// (body.source === 'security-scanner') formlarını besler.
+// Ana site, PMO Cockpit (body.source === 'pmo-cockpit'), Security Scanner
+// (body.source === 'security-scanner') ve Data Masking (body.source === 'data-masking')
+// formlarını besler.
 //
 // GİZLİ ANAHTAR KODA YAZILMAZ. Aşağıdaki değerler ortam değişkeninden okunur:
-//   BREVO_API_KEY         (zorunlu)  -> Brevo API anahtarınız (host panelinde tanımlayın)
-//   CONTACT_TO            (ops.)     -> ana site alıcı e-posta(lar), virgülle ayrılmış
-//                                        (varsayılan: oya@gndlf.io, gokhan@gndlf.io)
-//   CONTACT_TO_PMO        (ops.)     -> PMO Cockpit alıcı e-posta(lar), virgülle ayrılmış
-//                                        (varsayılan: gokhan@, oya@, sales@, pmocockpit@gndlf.io)
-//   CONTACT_TO_SECURITY   (ops.)     -> Security Scanner alıcı e-posta(lar), virgülle ayrılmış
-//                                        (varsayılan: oya@gndlf.io, gokhan@gndlf.io)
-//   CONTACT_FROM          (ops.)     -> gönderen (varsayılan: GNDLF Web <info@gndlf.io>)
+//   BREVO_API_KEY              (zorunlu)  -> Brevo API anahtarınız (host panelinde tanımlayın)
+//   CONTACT_TO                 (ops.)     -> ana site alıcı e-posta(lar), virgülle ayrılmış
+//                                             (varsayılan: oya@gndlf.io, gokhan@gndlf.io)
+//   CONTACT_TO_PMO             (ops.)     -> PMO Cockpit alıcı e-posta(lar), virgülle ayrılmış
+//                                             (varsayılan: gokhan@, oya@, sales@, pmocockpit@gndlf.io)
+//   CONTACT_TO_SECURITY        (ops.)     -> Security Scanner alıcı e-posta(lar), virgülle ayrılmış
+//                                             (varsayılan: oya@gndlf.io, gokhan@gndlf.io)
+//   CONTACT_TO_DATA_MASKING    (ops.)     -> Data Masking alıcı e-posta(lar), virgülle ayrılmış
+//                                             (varsayılan: oya@gndlf.io, gokhan@gndlf.io)
+//   CONTACT_FROM               (ops.)     -> gönderen (varsayılan: GNDLF Web <info@gndlf.io>)
 //
 // Not: CONTACT_FROM için kendi alan adınızı (gndlf.io) Brevo'da doğrulamanız
 // gerekir (Senders & IP > Domains).
@@ -30,6 +33,13 @@ var SOURCES = {
     subjectPrefix: 'Security Scanner iletişim: ',
     htmlTitle: 'Yeni Security Scanner iletişim mesajı',
     htmlFooter: 'gndlf.io Security Scanner formu'
+  },
+  'data-masking': {
+    envVar: 'CONTACT_TO_DATA_MASKING',
+    defaultTo: 'oya@gndlf.io,gokhan@gndlf.io',
+    subjectPrefix: 'Data Masking iletişim: ',
+    htmlTitle: 'Yeni Data Masking iletişim mesajı',
+    htmlFooter: 'gndlf.io Data Masking formu'
   },
   'default': {
     envVar: 'CONTACT_TO',

@@ -1,0 +1,1035 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GNDLF Data Masking — SAP Data Protection, Masking &amp; Compliance</title>
+<meta name="description" content="GNDLF Data Masking — SAP Data Protection Masking (DPM), Dynamic Data Masking (DDM), TDMS and ILM, unified in one GDPR- and KVKK-aligned control panel.">
+<link rel="canonical" href="https://gndlf.technology/data-masking.html">
+
+<!-- Open Graph -->
+<meta property="og:title" content="The SAP data layer that never exposes a secret. — GNDLF Data Masking">
+<meta property="og:site_name" content="GNDLF.Technology">
+<meta property="og:url" content="https://gndlf.technology/data-masking.html">
+<meta property="og:description" content="GNDLF Data Masking — SAP Data Protection Masking (DPM), Dynamic Data Masking (DDM), TDMS and ILM, unified in one GDPR- and KVKK-aligned control panel.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://gndlf.technology/img/data-masking-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="GNDLF Data Masking — Control Panel. The SAP data layer that never exposes a secret.">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The SAP data layer that never exposes a secret. — GNDLF Data Masking">
+<meta name="twitter:description" content="GNDLF Data Masking — SAP Data Protection Masking (DPM), Dynamic Data Masking (DDM), TDMS and ILM, unified in one GDPR- and KVKK-aligned control panel.">
+<meta name="twitter:image" content="https://gndlf.technology/img/data-masking-preview.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%230A1128'/%3E%3Cpath d='M80 80 A30 30 0 1 1 89 49' fill='none' stroke='%23D4AF37' stroke-width='12' stroke-linecap='round'/%3E%3Cpath d='M56 54 L85 57 L85 61 L56 64 Z' fill='%23D4AF37'/%3E%3Crect x='24' y='46' width='8' height='8' rx='1.5' fill='%23D4AF37'/%3E%3Crect x='15' y='56' width='6' height='6' rx='1' fill='%23D4AF37'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#f2f5fa;
+    --body:#c3ccd8;
+    --muted:#93a0b3;
+    --blue:#D4AF37;
+    --blue-2:#E9C766;
+    --blue-dark:#B8891F;
+    --navy:#0A1128;
+    --navy-2:#0d1730;
+    --line:rgba(255,255,255,.10);
+    --bg:#0A1128;
+    --bg-alt:#0d1730;
+    --dark:#070c1d;
+    --radius:8px;
+    --wrap:1160px;
+    --shadow-sm:0 1px 2px rgba(16,24,32,.05), 0 6px 20px rgba(16,24,32,.06);
+    --shadow-lg:0 30px 60px -20px rgba(10,26,43,.35), 0 12px 26px -12px rgba(10,26,43,.25);
+    --grad:linear-gradient(120deg,#D4AF37,#E9C766);
+    --red:#ef5a5a;
+    --red-2:#ff8282;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--body);
+    background:var(--bg);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden
+  }
+  a{color:var(--blue);text-decoration:none}
+  a:hover{color:var(--blue-dark)}
+  img,svg{max-width:100%}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+  h1,h2,h3,h4{color:var(--ink);font-weight:800;line-height:1.14;margin:0 0 .5em;letter-spacing:-.015em}
+  h2{font-size:36px}
+  h3{font-size:20px}
+  .eyebrow{font-size:12.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--blue);margin:0 0 16px}
+  .section{padding:96px 0}
+  .section--alt{background:var(--bg-alt);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .lead{font-size:19px;color:var(--muted);max-width:760px}
+  .center{text-align:center}
+  .center .lead{margin-left:auto;margin-right:auto}
+
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;
+    font-size:13.5px;padding:15px 28px;border-radius:var(--radius);cursor:pointer;border:2px solid transparent;transition:.18s ease;white-space:nowrap}
+  .btn--primary{background:var(--grad);color:#fff;box-shadow:0 10px 24px -8px rgba(212,175,55,.6)}
+  .btn--primary:hover{color:#fff;transform:translateY(-2px);box-shadow:0 16px 30px -8px rgba(212,175,55,.7)}
+  .btn--ghost{background:transparent;color:var(--ink);border-color:#d3d9e0}
+  .btn--ghost:hover{border-color:var(--blue);color:var(--blue)}
+  .btn--light{background:#fff;color:var(--ink)}
+  .btn--light:hover{color:var(--blue)}
+  .btn--onblue{background:#fff;color:var(--blue)}
+  .btn--onblue:hover{transform:translateY(-2px)}
+  .btn--outline-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+  .btn--outline-light:hover{border-color:#fff;color:#fff}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;gap:26px;height:72px;position:relative}
+  .brand{display:flex;align-items:center;gap:12px;margin-right:auto;text-decoration:none}
+  .brandmark{width:40px;height:40px;flex:0 0 40px;border-radius:12px;background:var(--grad);color:#fff;
+    display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px -8px rgba(212,175,55,.7)}
+  .brandmark svg{width:24px;height:24px;display:block}
+  .wordmark{line-height:1}
+  .kicker{display:block;font-size:9.5px;font-weight:800;letter-spacing:.36em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+  .wname{font-size:20px;font-weight:800;letter-spacing:-.01em;color:var(--ink)}
+  .wname .c{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .logo{font-weight:300;font-size:26px;letter-spacing:.42em;color:var(--ink);text-transform:uppercase;padding-left:.42em}
+  .foot-brand{display:flex;align-items:center;gap:12px}
+  .foot-brand .brandmark{box-shadow:none}
+  .nav-links{display:flex;gap:24px}
+  .nav-links a{color:var(--ink);font-weight:600;font-size:14px;text-transform:uppercase;letter-spacing:.04em}
+  .nav-links a:hover{color:var(--blue)}
+  .lang{display:flex;border:1px solid #d3d9e0;border-radius:40px;overflow:hidden}
+  .lang button{border:0;background:transparent;padding:6px 12px;font-family:inherit;font-weight:800;font-size:12px;letter-spacing:.05em;color:var(--muted);cursor:pointer}
+  .lang button.active{background:var(--grad);color:#fff}
+  .nav .btn{padding:11px 18px}
+  .menu-toggle{display:none;border:0;background:transparent;cursor:pointer;font-size:24px;color:var(--ink);line-height:1}
+
+  /* HERO */
+  .hero{position:relative;overflow:hidden;padding:82px 0 90px;background:
+    radial-gradient(1000px 520px at 88% -8%, rgba(212,175,55,.16), transparent 60%),
+    radial-gradient(760px 480px at -6% 108%, rgba(212,175,55,.10), transparent 55%),#fff}
+  .hero::before{content:"";position:absolute;inset:0;
+    background-image:linear-gradient(rgba(10,26,43,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(10,26,43,.035) 1px,transparent 1px);
+    background-size:44px 44px;mask-image:radial-gradient(700px 500px at 78% 40%,#000,transparent 75%);pointer-events:none}
+  .hero .wrap{position:relative;display:grid;grid-template-columns:1.03fr 1.12fr;gap:56px;align-items:center}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--blue-dark);
+    background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.22);padding:6px 14px;border-radius:40px;margin-bottom:20px}
+  .hero-badge .d{width:7px;height:7px;border-radius:50%;background:#12c26a;box-shadow:0 0 0 0 rgba(18,194,106,.6);animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(18,194,106,.5)}70%{box-shadow:0 0 0 8px rgba(18,194,106,0)}100%{box-shadow:0 0 0 0 rgba(18,194,106,0)}}
+  .hero h1{font-size:54px;line-height:1.06;letter-spacing:-.03em;color:var(--ink)}
+  .hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hero .lead{margin-top:20px;font-size:19.5px;color:#565d66}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+  .hero-note{margin-top:24px;font-size:13.5px;color:var(--muted);display:flex;gap:20px;flex-wrap:wrap}
+  .hero-note span{display:inline-flex;align-items:center;gap:8px}
+  .tick{color:var(--blue);font-weight:800}
+  .hero-visual{position:relative}
+  .hero-visual .glow{position:absolute;inset:-6% -4% -10% -4%;background:var(--grad);filter:blur(46px);opacity:.28;border-radius:30px;z-index:0}
+  .hero-visual svg{position:relative;z-index:1;display:block;width:100%;height:auto;border-radius:16px;box-shadow:var(--shadow-lg)}
+
+  /* STATS strip */
+  .stats{border-top:1px solid var(--line);background:#fff}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  .stats .s{padding:30px 24px;text-align:center;border-left:1px solid var(--line)}
+  .stats .s:first-child{border-left:0}
+  .stats .n{font-size:38px;font-weight:800;letter-spacing:-.02em;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+  .stats .l{font-size:13.5px;color:var(--muted);margin-top:8px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+
+  /* DARK architecture band */
+  .section--dark{position:relative;background:radial-gradient(900px 500px at 82% -10%,rgba(212,175,55,.14),transparent 60%),linear-gradient(180deg,#0A1128,#070c1d);color:#c4cfdb;overflow:hidden}
+  .section--dark::before{content:"";position:absolute;inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+    background-size:46px 46px;mask-image:radial-gradient(760px 460px at 60% 30%,#000,transparent 78%);pointer-events:none}
+  .section--dark .wrap{position:relative}
+  .section--dark h2{color:#fff}
+  .section--dark .lead{color:#9fb0c2}
+  .section--dark .eyebrow{color:#E9C766}
+  .pipe-wrap{margin:44px 0 8px;overflow-x:auto}
+  .pipe-wrap svg{min-width:860px;width:100%;height:auto;display:block}
+  .layers{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
+  .layer{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:28px 26px;transition:.2s ease;backdrop-filter:blur(4px)}
+  .layer:hover{border-color:rgba(212,175,55,.5);transform:translateY(-3px);box-shadow:0 24px 50px -24px rgba(0,0,0,.7)}
+  .layer .num{font-size:12px;font-weight:800;color:#E9C766;letter-spacing:.14em}
+  .layer h3{margin-top:10px;color:#fff;text-transform:uppercase;letter-spacing:.02em;font-size:19px}
+  .layer .cap{margin:4px 0 0;color:#8ba0b4;font-size:14px}
+  .layer ul{margin:16px 0 0;padding:0;list-style:none}
+  .layer li{position:relative;padding-left:24px;margin-bottom:11px;font-size:14.5px;color:#b9c6d4}
+  .layer li::before{content:"";position:absolute;left:0;top:8px;width:9px;height:9px;border-radius:50%;background:var(--grad);box-shadow:0 0 10px rgba(212,175,55,.8)}
+
+  /* FEATURE grid */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px}
+  .card{position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;transition:.2s ease;overflow:hidden}
+  .card::after{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:.25s}
+  .card:hover{border-color:#c7e6f5;box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+  .card:hover::after{transform:scaleX(1)}
+  .ic{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,rgba(212,175,55,.12),rgba(212,175,55,.14));color:var(--blue);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .ic svg{width:24px;height:24px}
+  .card h3{font-size:17.5px;letter-spacing:-.01em}
+  .card p{margin:6px 0 0;font-size:14.5px}
+
+  /* SPLIT */
+  .split{display:grid;grid-template-columns:1.05fr 1fr;gap:52px;align-items:center}
+  .badge{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);background:rgba(212,175,55,.10);padding:6px 13px;border-radius:40px;margin-bottom:16px}
+  .flow{background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:var(--shadow-lg)}
+  .flow .step{display:flex;align-items:center;gap:15px;padding:17px 18px;border-radius:11px;transition:.2s}
+  .flow .step:hover{background:var(--bg-alt)}
+  .flow .step + .step{border-top:1px solid var(--line)}
+  .flow .dot{width:38px;height:38px;border-radius:11px;flex:0 0 38px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;box-shadow:0 8px 18px -8px rgba(212,175,55,.7)}
+  .flow .step:last-child .dot{background:var(--ink);box-shadow:none}
+  .flow .t{font-weight:800;color:var(--ink);font-size:14.5px;text-transform:uppercase;letter-spacing:.03em}
+  .flow .d{font-size:13.5px;color:var(--muted)}
+
+  /* DASHBOARD section */
+  .dash-grid{display:grid;grid-template-columns:1fr 1.08fr;gap:52px;align-items:center}
+  .dash-visual{position:relative}
+  .dash-visual .glow{position:absolute;inset:-4% -2% -8% -2%;background:var(--grad);filter:blur(44px);opacity:.2;border-radius:24px}
+  .dash-visual .browser{position:relative}
+  .browser{border-radius:16px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--line);background:#070c1d}
+  .browser .bar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#0e1a29}
+  .browser .bar i{width:11px;height:11px;border-radius:50%;display:inline-block}
+  .browser .bar .u{margin-left:14px;flex:1;height:22px;border-radius:6px;background:rgba(255,255,255,.06);display:flex;align-items:center;padding:0 12px;color:#8aa0b6;font-size:12px}
+
+  /* CTA band */
+  .band{position:relative;overflow:hidden;background:linear-gradient(120deg,#D4AF37 0%,#8a6a1a 55%,#0A1128 130%);color:#fff;text-align:center;padding:82px 0}
+  .band::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 20% 20%,rgba(255,255,255,.14),transparent 40%),radial-gradient(circle at 80% 80%,rgba(212,175,55,.3),transparent 45%);pointer-events:none}
+  .band .wrap{position:relative}
+  .band h2{color:#fff;font-size:40px}
+  .band .lead{color:rgba(255,255,255,.92);margin:0 auto}
+  .band .hero-cta{justify-content:center;margin-top:30px}
+
+  /* CONTACT */
+  .contact-grid{display:grid;grid-template-columns:1fr 1.12fr;gap:56px;align-items:start}
+  .form{background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px;box-shadow:var(--shadow-lg)}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:13px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.04em;margin-bottom:7px}
+  .field input,.field select,.field textarea{width:100%;font-family:inherit;font-size:15px;color:var(--ink);padding:13px 15px;border:1px solid #d6dce2;border-radius:10px;background:#fff;transition:.15s}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(212,175,55,.16)}
+  .field textarea{min-height:120px;resize:vertical}
+  .form .btn{width:100%;justify-content:center}
+  .form small{display:block;color:var(--muted);font-size:12.5px;margin-top:12px;line-height:1.55}
+  .contact-info ul{padding:0;margin:24px 0 0;list-style:none}
+  .contact-info li{margin:0 0 18px;display:flex;gap:14px;align-items:flex-start}
+  .contact-info .ic{margin:0;flex:0 0 48px}
+  .contact-info .k{font-weight:800;color:var(--ink);font-size:14.5px}
+
+  /* Footer */
+  footer{background:var(--dark);color:#9aa6b4;padding:64px 0 30px;font-size:14px}
+  footer .cols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px}
+  footer .logo{color:#fff;font-size:22px}
+  footer .tag{color:#7f8b9a;margin-top:14px;max-width:34ch}
+  footer h4{color:#fff;text-transform:uppercase;letter-spacing:.08em;font-size:12px;margin:0 0 14px}
+  footer a{color:#9aa6b4;display:block;margin-bottom:9px}
+  footer a:hover{color:#E9C766}
+  .foot-bottom{border-top:1px solid #1c2836;margin-top:46px;padding-top:22px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#6f7c8b;font-size:13px}
+
+  /* Reveal on scroll (progressive) */
+  .js .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .js .reveal.in{opacity:1;transform:none}
+
+  /* SVG animation helpers */
+  .blink{animation:blink 1.6s ease-in-out infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+  .flowdot{animation:flowdash 2.2s linear infinite}
+  @keyframes flowdash{to{stroke-dashoffset:-40}}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}.js .reveal{opacity:1;transform:none}}
+
+  @media (max-width:980px){
+    .hero .wrap{grid-template-columns:1fr;gap:40px}
+    .hero-visual{order:-1}
+    .split,.contact-grid,.dash-grid{grid-template-columns:1fr}
+    .dash-visual{order:-1}
+  }
+  @media (max-width:900px){
+    .menu-toggle{display:block;order:3}
+    .lang{order:2}
+    .nav-cta{display:none}
+    .nav-links{position:absolute;top:72px;left:-24px;right:-24px;flex-direction:column;gap:0;background:#fff;border-bottom:1px solid var(--line);box-shadow:var(--shadow-lg);padding:8px 0;display:none}
+    .nav-links.open{display:flex}
+    .nav-links a{padding:14px 24px}
+    .nav-links a + a{border-top:1px solid var(--line)}
+    .hero h1{font-size:42px}
+    h2{font-size:29px}
+    .band h2{font-size:30px}
+    .layers,.grid{grid-template-columns:1fr}
+    .stats .wrap{grid-template-columns:repeat(2,1fr)}
+    .stats .s:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    .stats .s:nth-child(odd){border-left:0}
+    .section{padding:68px 0}
+  }
+  @media (max-width:560px){
+    .hero h1{font-size:34px}
+    body{font-size:16px}
+    .brand .pill{display:none}
+    .nav{gap:14px}
+    .stats .n{font-size:30px}
+  }
+
+  /* ===== GNDLF lacivert+altın uyarlaması ===== */
+  body{background:var(--bg);color:var(--body);}
+  header{background:rgba(10,17,40,.82)!important;border-bottom-color:var(--line)!important;}
+  .brandmark{background:#16213f!important;color:#fff!important;box-shadow:none!important;}
+  .btn--primary{color:#0A1128!important;}
+  .btn--light,.btn--onblue{background:linear-gradient(120deg,#D4AF37,#E9C766)!important;color:#0A1128!important;}
+  .btn--ghost{color:var(--ink);border-color:rgba(255,255,255,.28);}
+  .btn--ghost:hover{border-color:var(--blue);color:var(--blue);}
+  .stats{background:var(--bg)!important;border-top-color:var(--line)!important;}
+  .stats .s{border-left-color:var(--line)!important;}
+  .card,.flow,.form{background:#0e1830!important;border-color:var(--line)!important;}
+  .card:hover{border-color:rgba(212,175,55,.5)!important;}
+  .card p,.flow .d,.form small{color:var(--muted)!important;}
+  .field input,.field select,.field textarea{background:#0a1330!important;color:var(--ink)!important;border-color:rgba(255,255,255,.14)!important;}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue)!important;}
+  .lang{border-color:rgba(255,255,255,.22)!important;}
+  .flow .step:hover{background:rgba(255,255,255,.04)!important;}
+  .hero{background:radial-gradient(1000px 520px at 88% -8%,rgba(212,175,55,.14),transparent 60%),radial-gradient(760px 480px at -6% 108%,rgba(212,175,55,.08),transparent 55%),var(--bg)!important;}
+  .hero::before{background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px)!important;}
+  .hero .lead{color:#aeb8c6!important;}
+  .band{background:linear-gradient(120deg,#0d1730 0%,#0A1128 55%,#161a2e 120%)!important;}
+  footer a:hover{color:var(--blue)!important;}
+</style>
+</head>
+<body class="no-js">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="dial" viewBox="0 0 64 64">
+    <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="32" cy="32" r="21"/>
+      <g stroke-width="2.6" opacity=".55">
+        <path d="M32 8 v4"/><path d="M56 32 h-4"/><path d="M32 56 v-4"/><path d="M12 32 h-4"/>
+        <path d="M48.9 15.1 l-2.8 2.8"/><path d="M48.9 48.9 l-2.8 -2.8"/><path d="M15.1 48.9 l2.8 -2.8"/><path d="M15.1 15.1 l2.8 2.8"/>
+      </g>
+      <path d="M32 32 L46 22"/>
+    </g>
+    <circle cx="32" cy="32" r="4.2" fill="currentColor"/>
+    <circle cx="46" cy="22" r="3.4" fill="currentColor"/>
+  </symbol>
+</defs></svg>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#overview" aria-label="GNDLF Data Masking">
+      <span class="brandmark"><svg viewBox="0 0 64 64"><use href="#dial"/></svg></span>
+      <span class="wordmark">
+        <span class="kicker">GNDLF</span>
+        <span class="wname">Data <span class="c">Masking</span></span>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#overview" data-i18n="nav_overview">Overview</a>
+      <a href="#how" data-i18n="nav_how">How it works</a>
+      <a href="#architecture" data-i18n="nav_arch">Capabilities</a>
+      <a href="#dashboard" data-i18n="nav_dash">Dashboard</a>
+      <a href="#contact" data-i18n="nav_contact">Contact</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-set-lang="en">EN</button>
+      <button type="button" data-set-lang="tr">TR</button>
+    </div>
+    <a href="#contact" class="btn btn--primary nav-cta" data-i18n="nav_cta">Request a demo</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="overview">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="hero-badge"><span class="d"></span><span data-i18n="hero_badge">GNDLF · SAP Data Masking &amp; Compliance</span></span>
+      <h1><span data-i18n="hero_h1a">The SAP data layer that</span> <span class="grad" data-i18n="hero_h1b">never exposes a secret.</span></h1>
+      <p class="lead" data-i18n="hero_lead">GNDLF Data Masking unifies data privacy and cybersecurity into one intelligent strategy for your SAP landscape. It dynamically blocks unauthorized access across the full data lifecycle — from creation to reporting — while strengthening GDPR and KVKK compliance without breaking data integrity or slowing operations.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn--primary" data-i18n="hero_cta1">Talk to us</a>
+        <a href="#how" class="btn btn--ghost" data-i18n="hero_cta2">See how it works</a>
+      </div>
+      <div class="hero-note">
+        <span><span class="tick">✓</span> <span data-i18n="hero_n1">GDPR &amp; KVKK compliant</span></span>
+        <span><span class="tick">✓</span> <span data-i18n="hero_n2">Full data lifecycle coverage</span></span>
+        <span><span class="tick">✓</span> <span data-i18n="hero_n3">Zero integrity loss</span></span>
+      </div>
+    </div>
+
+    <!-- HERO PRODUCT MOCKUP (inline SVG) -->
+    <div class="hero-visual reveal">
+      <span class="glow"></span>
+      <svg viewBox="0 0 640 470" role="img" aria-label="GNDLF Data Masking control panel preview">
+        <defs>
+          <linearGradient id="wnd" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#0e2136"/><stop offset="1" stop-color="#0a1420"/>
+          </linearGradient>
+          <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#D4AF37"/><stop offset="1" stop-color="#E9C766"/>
+          </linearGradient>
+          <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#E9C766" stop-opacity=".55"/><stop offset="1" stop-color="#E9C766" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <rect x="6" y="6" width="628" height="458" rx="18" fill="url(#wnd)" stroke="rgba(255,255,255,.09)"/>
+        <!-- title bar -->
+        <circle cx="34" cy="38" r="5.5" fill="#ff5f57"/><circle cx="54" cy="38" r="5.5" fill="#febc2e"/><circle cx="74" cy="38" r="5.5" fill="#28c840"/>
+        <text x="104" y="43" fill="#8aa0b6" font-size="13" font-family="Open Sans">GNDLF Data Masking — Control Panel</text>
+        <circle class="blink" cx="560" cy="38" r="4.5" fill="#12c26a"/><text x="572" y="42" fill="#12c26a" font-size="11" font-family="Open Sans">LIVE</text>
+        <line x1="18" y1="60" x2="622" y2="60" stroke="rgba(255,255,255,.07)"/>
+        <!-- sidebar -->
+        <rect x="20" y="74" width="52" height="374" rx="12" fill="rgba(255,255,255,.04)"/>
+        <rect x="34" y="92" width="24" height="8" rx="4" fill="#E9C766"/>
+        <rect x="34" y="120" width="24" height="8" rx="4" fill="rgba(255,255,255,.18)"/>
+        <rect x="34" y="148" width="24" height="8" rx="4" fill="rgba(255,255,255,.18)"/>
+        <rect x="34" y="176" width="24" height="8" rx="4" fill="rgba(255,255,255,.18)"/>
+        <rect x="34" y="204" width="24" height="8" rx="4" fill="rgba(255,255,255,.18)"/>
+        <!-- KPI tiles -->
+        <g font-family="Open Sans">
+          <rect x="86" y="78" width="164" height="80" rx="12" fill="rgba(255,255,255,.045)" stroke="rgba(255,255,255,.07)"/>
+          <text x="102" y="102" fill="#7f93a8" font-size="11" letter-spacing="1.5">FIELDS MASKED</text>
+          <text x="102" y="138" fill="#fff" font-size="28" font-weight="800">1,284</text>
+          <text x="178" y="138" fill="#12c26a" font-size="13">▲ 12%</text>
+
+          <rect x="258" y="78" width="164" height="80" rx="12" fill="rgba(255,255,255,.045)" stroke="rgba(255,255,255,.07)"/>
+          <text x="274" y="102" fill="#7f93a8" font-size="11" letter-spacing="1.5">COMPLIANCE SCORE</text>
+          <text x="274" y="138" fill="#fff" font-size="30" font-weight="800">96%</text>
+          <rect x="356" y="120" width="50" height="6" rx="3" fill="rgba(255,255,255,.12)"/>
+          <rect x="356" y="120" width="48" height="6" rx="3" fill="url(#bar)"/>
+
+          <rect x="430" y="78" width="128" height="80" rx="12" fill="rgba(255,255,255,.045)" stroke="rgba(255,255,255,.07)"/>
+          <text x="446" y="102" fill="#7f93a8" font-size="11" letter-spacing="1.5">POLICIES</text>
+          <text x="446" y="138" fill="#fff" font-size="30" font-weight="800">12</text>
+          <text x="478" y="138" fill="#8aa0b6" font-size="12">active</text>
+        </g>
+        <!-- Module status rows -->
+        <rect x="86" y="172" width="472" height="150" rx="12" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.06)"/>
+        <text x="102" y="196" fill="#9fb2c6" font-size="12" font-family="Open Sans" letter-spacing="1">MODULE STATUS</text>
+        <g font-family="Open Sans">
+          <text x="102" y="222" fill="#cdd8e4" font-size="12">DPM</text>
+          <rect x="160" y="213" width="290" height="10" rx="5" fill="rgba(255,255,255,.1)"/>
+          <rect x="160" y="213" width="270" height="10" rx="5" fill="url(#bar)"/>
+          <rect x="462" y="210" width="70" height="17" rx="8" fill="rgba(18,194,106,.18)"/><text x="479" y="222" fill="#31d17f" font-size="10">ACTIVE</text>
+
+          <text x="102" y="250" fill="#cdd8e4" font-size="12">DDM</text>
+          <rect x="160" y="241" width="290" height="10" rx="5" fill="rgba(255,255,255,.1)"/>
+          <rect x="160" y="241" width="250" height="10" rx="5" fill="url(#bar)"/>
+          <rect x="462" y="238" width="70" height="17" rx="8" fill="rgba(18,194,106,.18)"/><text x="470" y="250" fill="#31d17f" font-size="10">ENFORCED</text>
+
+          <text x="102" y="278" fill="#cdd8e4" font-size="12">TDMS</text>
+          <rect x="160" y="269" width="290" height="10" rx="5" fill="rgba(255,255,255,.1)"/>
+          <rect x="160" y="269" width="160" height="10" rx="5" fill="url(#bar)"/>
+          <rect x="462" y="266" width="70" height="17" rx="8" fill="rgba(254,188,46,.18)"/><text x="474" y="278" fill="#febc2e" font-size="10">RUNNING</text>
+
+          <text x="102" y="306" fill="#cdd8e4" font-size="12">ILM</text>
+          <rect x="160" y="297" width="290" height="10" rx="5" fill="rgba(255,255,255,.1)"/>
+          <rect x="160" y="297" width="200" height="10" rx="5" fill="url(#bar)"/>
+          <rect x="462" y="294" width="70" height="17" rx="8" fill="rgba(254,188,46,.18)"/><text x="474" y="306" fill="#febc2e" font-size="10">SCHEDULED</text>
+        </g>
+        <!-- masked fields over time -->
+        <rect x="86" y="336" width="230" height="112" rx="12" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.06)"/>
+        <text x="102" y="358" fill="#9fb2c6" font-size="11" font-family="Open Sans" letter-spacing="1">FIELDS MASKED OVER TIME</text>
+        <path d="M102 428 L134 418 L166 422 L198 404 L230 410 L262 392 L296 398 L296 440 L102 440 Z" fill="url(#area)"/>
+        <path d="M102 428 L134 418 L166 422 L198 404 L230 410 L262 392 L296 398" fill="none" stroke="#E9C766" stroke-width="2"/>
+        <!-- policies by module -->
+        <rect x="328" y="336" width="230" height="112" rx="12" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.06)"/>
+        <text x="344" y="358" fill="#9fb2c6" font-size="11" font-family="Open Sans" letter-spacing="1">POLICIES BY MODULE</text>
+        <g>
+          <rect x="348" y="404" width="20" height="34" rx="4" fill="url(#bar)"/>
+          <rect x="382" y="392" width="20" height="46" rx="4" fill="url(#bar)"/>
+          <rect x="416" y="410" width="20" height="28" rx="4" fill="url(#bar)"/>
+          <rect x="450" y="398" width="20" height="40" rx="4" fill="url(#bar)"/>
+          <rect x="484" y="414" width="20" height="24" rx="4" fill="url(#bar)"/>
+          <rect x="518" y="420" width="20" height="18" rx="4" fill="url(#bar)"/>
+        </g>
+        <!-- floating "scan -> masked" card -->
+        <g>
+          <rect x="34" y="378" width="238" height="72" rx="13" fill="#12233a" stroke="rgba(212,175,55,.4)"/>
+          <circle cx="66" cy="414" r="18" fill="rgba(212,175,55,.16)"/>
+          <g transform="translate(66,414)" fill="none" stroke="#E9C766" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="-6" y="-2" width="12" height="9" rx="2"/><path d="M-3.5 -2 v-3 a3.5 3.5 0 0 1 7 0 v3"/>
+          </g>
+          <text x="96" y="405" fill="#fff" font-size="12.5" font-family="Open Sans" font-weight="700">GDPR scan → 1,284 masked</text>
+          <text x="96" y="422" fill="#8aa0b6" font-size="10.5" font-family="Open Sans">verified &amp; logged</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="wrap">
+    <div class="s reveal"><div class="n" data-i18n="st1_n">100%</div><div class="l" data-i18n="st1_l">Compliance across all markets</div></div>
+    <div class="s reveal"><div class="n" data-i18n="st2_n">50%</div><div class="l" data-i18n="st2_l">Faster data management</div></div>
+    <div class="s reveal"><div class="n" data-i18n="st3_n">30%</div><div class="l" data-i18n="st3_l">Higher forecast accuracy</div></div>
+    <div class="s reveal"><div class="n" data-i18n="st4_n">25%</div><div class="l" data-i18n="st4_l">Shorter planning cycle (SAP ILM)</div></div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section">
+  <div class="wrap reveal">
+    <p class="eyebrow" data-i18n="prob_eyebrow">The problem</p>
+    <h2 data-i18n="prob_h2">Sensitive data shouldn't slow you down — or leak.</h2>
+    <p class="lead" data-i18n="prob_lead">GDPR and KVKK have sharply raised the bar on data-security audits across the EU and Turkey. Most SAP landscapes still rely on static access rules that either lock down sensitive fields too aggressively, slowing operations, or leave them exposed to unauthorized access — risking fines and reputational damage.</p>
+  </div>
+</section>
+
+<!-- WHY GNDLF / DARK ARCHITECTURE -->
+<section class="section section--dark" id="how">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow" data-i18n="how_eyebrow">Why GNDLF?</p>
+      <h2 data-i18n="how_h2">From static restriction to dynamic, audited protection.</h2>
+      <p class="lead" data-i18n="how_lead">GNDLF Data Masking protects sensitive SAP data end-to-end — from the moment it's created, to the moment it's reported, to the moment it's archived — balancing compliance, flexibility and accountability.</p>
+    </div>
+
+    <!-- PIPELINE DIAGRAM -->
+    <div class="pipe-wrap reveal">
+      <svg viewBox="0 0 1120 210" role="img" aria-label="GNDLF Data Masking processing pipeline">
+        <defs>
+          <linearGradient id="node" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="rgba(255,255,255,.09)"/><stop offset="1" stop-color="rgba(255,255,255,.03)"/>
+          </linearGradient>
+          <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#D4AF37"/><stop offset="1" stop-color="#E9C766"/>
+          </linearGradient>
+        </defs>
+        <!-- connectors -->
+        <g stroke="url(#edge)" stroke-width="2" fill="none" opacity=".8">
+          <line x1="190" y1="105" x2="250" y2="105"/>
+          <line x1="420" y1="105" x2="480" y2="105"/>
+          <line x1="650" y1="105" x2="710" y2="105"/>
+          <line x1="880" y1="105" x2="940" y2="105"/>
+        </g>
+        <g stroke="#E9C766" stroke-width="2.5" stroke-dasharray="2 8" stroke-linecap="round" fill="none" class="flowdot" opacity=".9">
+          <line x1="190" y1="105" x2="250" y2="105"/>
+          <line x1="420" y1="105" x2="480" y2="105"/>
+          <line x1="650" y1="105" x2="710" y2="105"/>
+          <line x1="880" y1="105" x2="940" y2="105"/>
+        </g>
+
+        <!-- NODE 1: SAP Landscape -->
+        <g>
+          <rect x="20" y="55" width="170" height="100" rx="16" fill="url(#node)" stroke="rgba(255,255,255,.14)"/>
+          <g transform="translate(90,84)" fill="none" stroke="#E9C766" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="-13" y="-11" width="26" height="9" rx="2.5"/><rect x="-13" y="-1" width="26" height="9" rx="2.5"/><rect x="-13" y="9" width="26" height="9" rx="2.5"/>
+          </g>
+          <text x="105" y="128" text-anchor="middle" fill="#fff" font-size="14" font-weight="800" font-family="Open Sans" data-i18n="pl_in_t">SAP Landscape</text>
+        </g>
+        <!-- NODE 2: Compliance by Design -->
+        <g>
+          <rect x="250" y="55" width="170" height="100" rx="16" fill="url(#node)" stroke="rgba(212,175,55,.4)"/>
+          <g transform="translate(320,84)" fill="none" stroke="#E9C766" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 -12 L11 -7 V2 c0 7 -6 10 -11 12 c-5 -2 -11 -5 -11 -12 V-7 Z"/><path d="M-5 -1 L-1 3 L6 -5"/></g>
+          <text x="335" y="112" text-anchor="middle" fill="#E9C766" font-size="11" font-family="Open Sans">01</text>
+          <text x="335" y="132" text-anchor="middle" fill="#fff" font-size="13" font-weight="800" font-family="Open Sans" data-i18n="l1_h">Compliance by Design</text>
+        </g>
+        <!-- NODE 3: Dynamic Protection -->
+        <g>
+          <rect x="480" y="55" width="170" height="100" rx="16" fill="url(#node)" stroke="rgba(212,175,55,.4)"/>
+          <g transform="translate(550,84)" fill="none" stroke="#E9C766" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="0" cy="0" r="8"/><path d="M-11 0 h22 M-8 -5 q8 5 0 10 M8 -5 q-8 5 0 10" opacity="0"/><path d="M-5 0 a5 5 0 0 1 10 0"/><circle cx="0" cy="0" r="2" fill="#E9C766" stroke="none"/></g>
+          <text x="565" y="112" text-anchor="middle" fill="#E9C766" font-size="11" font-family="Open Sans">02</text>
+          <text x="565" y="132" text-anchor="middle" fill="#fff" font-size="13" font-weight="800" font-family="Open Sans" data-i18n="l2_h">Dynamic Protection</text>
+        </g>
+        <!-- NODE 4: Lifecycle Governance -->
+        <g>
+          <rect x="710" y="55" width="170" height="100" rx="16" fill="url(#node)" stroke="rgba(212,175,55,.4)"/>
+          <g transform="translate(780,84)" fill="none" stroke="#E9C766" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M-10 -2 a10 10 0 1 1 2.5 6.5"/><path d="M-10 -2 l0 -6 M-10 -2 l6 1"/></g>
+          <text x="795" y="112" text-anchor="middle" fill="#E9C766" font-size="11" font-family="Open Sans">03</text>
+          <text x="795" y="132" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Open Sans" data-i18n="l3_h">Lifecycle Governance</text>
+        </g>
+        <!-- NODE 5: Dashboard -->
+        <g>
+          <rect x="940" y="55" width="170" height="100" rx="16" fill="url(#edge)" stroke="rgba(255,255,255,.2)"/>
+          <g transform="translate(1010,84)" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="-13" y="-10" width="26" height="20" rx="3"/><path d="M-8 4 V-2 M-2 4 V-6 M4 4 V0 M9 4 V-4"/></g>
+          <text x="1025" y="128" text-anchor="middle" fill="#fff" font-size="14" font-weight="800" font-family="Open Sans" data-i18n="pl_out_t">Masking Dashboard</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="layers">
+      <div class="layer reveal">
+        <span class="num">01</span>
+        <h3 data-i18n="l1_h">Compliance by Design</h3>
+        <p class="cap" data-i18n="l1_cap">Built directly into SAP, not bolted on afterward.</p>
+        <ul>
+          <li data-i18n="l1_a">Full SAP Data Protection Masking (DPM) coverage, aligned to GDPR and KVKK.</li>
+          <li data-i18n="l1_b">Supports compliance across every process, not just one module.</li>
+          <li data-i18n="l1_c">Unifies protection across every SAP interface, not a single transaction.</li>
+          <li data-i18n="l1_d">Strengthens protection of sensitive data without breaking existing workflows.</li>
+        </ul>
+      </div>
+      <div class="layer reveal">
+        <span class="num">02</span>
+        <h3 data-i18n="l2_h">Dynamic Protection</h3>
+        <p class="cap" data-i18n="l2_cap">Context-aware access rules, not rigid field-level locks.</p>
+        <ul>
+          <li data-i18n="l2_a">Dynamic Data Masking (DDM) with contextual authorization — not blanket restriction.</li>
+          <li data-i18n="l2_b">UI Data Protection Masking &amp; Logging on every Fiori-based screen.</li>
+          <li data-i18n="l2_c">Meets legal and regulatory requirements without slowing operations.</li>
+          <li data-i18n="l2_d">Minimizes financial and reputational risk while preserving flexibility and accountability.</li>
+        </ul>
+      </div>
+      <div class="layer reveal">
+        <span class="num">03</span>
+        <h3 data-i18n="l3_h">Lifecycle Governance</h3>
+        <p class="cap" data-i18n="l3_cap">Covers data from creation to archiving, not just the database.</p>
+        <ul>
+          <li data-i18n="l3_a">SAP Test Data Migration Server (TDMS) for high-speed, privacy-safe data transport.</li>
+          <li data-i18n="l3_b">Full client-specific data transfer, with company-code and time savings.</li>
+          <li data-i18n="l3_c">SAP Information Lifecycle Management (ILM) balances cost, risk and compliance.</li>
+          <li data-i18n="l3_d">Defines data governance policies and manages archiving end-to-end.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE GRID -->
+<section class="section" id="architecture">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow" data-i18n="feat_eyebrow">Inside the platform</p>
+      <h2 data-i18n="feat_h2">The SAP components, unified in one panel.</h2>
+    </div>
+    <div class="grid">
+      <div class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+        <h3 data-i18n="f1_h">SAP Data Protection Masking (DPM)</h3>
+        <p data-i18n="f1_p">GDPR- and KVKK-aligned masking, built directly into your SAP landscape.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><path d="M4 5l16 14"/></svg></div>
+        <h3 data-i18n="f2_h">Dynamic Data Masking (DDM)</h3>
+        <p data-i18n="f2_p">Context-aware masking and authorization — the same screen shows different detail to different roles.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/><path d="M6 9h5M6 12h8"/></svg></div>
+        <h3 data-i18n="f3_h">UI protection, masking &amp; logging</h3>
+        <p data-i18n="f3_p">Protects and logs sensitive fields across every Fiori-based interface, not just the backend.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h10M4 12h16M4 17h7"/><circle cx="17" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></div>
+        <h3 data-i18n="f4_h">Fiori-based control panel</h3>
+        <p data-i18n="f4_p">A single, role-based control panel for configuring and monitoring masking policies.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h11l-3-3M20 17H9l3 3"/></svg></div>
+        <h3 data-i18n="f5_h">SAP TDMS</h3>
+        <p data-i18n="f5_p">A high-speed Test Data Migration Server that moves business data while preserving privacy and consistency.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="6" rx="1.5"/><path d="M5 10v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8"/><path d="M10 14h4"/></svg></div>
+        <h3 data-i18n="f6_h">SAP ILM</h3>
+        <p data-i18n="f6_p">Information Lifecycle Management balances cost, risk and compliance across data archiving and retention.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIFECYCLE SPLIT -->
+<section class="section section--alt">
+  <div class="wrap split">
+    <div class="reveal">
+      <span class="badge" data-i18n="impl_badge">End-to-end lifecycle</span>
+      <h2 data-i18n="impl_h2">From live data to compliant data, in four steps.</h2>
+      <p class="lead" data-i18n="impl_lead">GNDLF Data Masking follows sensitive data from the moment it's created to the moment it's archived — compliance as evidence, not guesswork.</p>
+    </div>
+    <div class="flow reveal" aria-hidden="true">
+      <div class="step"><span class="dot">1</span><div><div class="t" data-i18n="impl_s1t">Classify</div><div class="d" data-i18n="impl_s1d">Identify sensitive fields and data subjects across your SAP landscape.</div></div></div>
+      <div class="step"><span class="dot">2</span><div><div class="t" data-i18n="impl_s2t">Mask</div><div class="d" data-i18n="impl_s2d">Apply dynamic, context-aware masking at the UI and data layer.</div></div></div>
+      <div class="step"><span class="dot">3</span><div><div class="t" data-i18n="impl_s3t">Govern</div><div class="d" data-i18n="impl_s3d">Archive and retain data under ILM policy, balancing cost, risk and compliance.</div></div></div>
+      <div class="step"><span class="dot">4</span><div><div class="t" data-i18n="impl_s4t">Audit</div><div class="d" data-i18n="impl_s4d">Every access is logged, so audits are evidence, not guesswork.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD -->
+<section class="section" id="dashboard">
+  <div class="wrap dash-grid">
+    <div class="reveal">
+      <p class="eyebrow" data-i18n="dash_eyebrow">The output</p>
+      <h2 data-i18n="dash_h2">From static field-locking to dynamic, audited protection.</h2>
+      <p class="lead" data-i18n="dash_lead">Zooming out, GNDLF Data Masking gives you one Fiori-based control panel for every policy, every environment and every audit trail — so compliance becomes a live state, not a yearly scramble.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn--primary" data-i18n="dash_cta">See it on your landscape</a>
+      </div>
+    </div>
+    <!-- DASHBOARD MOCKUP -->
+    <div class="dash-visual reveal">
+      <span class="glow"></span>
+      <div class="browser">
+        <div class="bar">
+          <i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i>
+          <span class="u">masking.gndlf.io · compliance overview</span>
+        </div>
+        <svg viewBox="0 0 640 400" role="img" aria-label="SAP data masking compliance overview">
+          <defs>
+            <linearGradient id="barb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D4AF37"/><stop offset="1" stop-color="#E9C766"/></linearGradient>
+            <linearGradient id="areab" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D4AF37" stop-opacity=".35"/><stop offset="1" stop-color="#D4AF37" stop-opacity="0"/></linearGradient>
+          </defs>
+          <rect x="0" y="0" width="640" height="400" fill="#0d1b2b"/>
+          <!-- header row -->
+          <text x="28" y="44" fill="#fff" font-size="17" font-weight="800" font-family="Open Sans">Compliance overview</text>
+          <rect x="28" y="60" width="120" height="6" rx="3" fill="rgba(255,255,255,.1)"/>
+          <!-- big area chart -->
+          <rect x="28" y="92" width="372" height="150" rx="12" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.06)"/>
+          <text x="44" y="116" fill="#9fb2c6" font-size="11" font-family="Open Sans" letter-spacing="1">FIELDS MASKED, QUARTER TO DATE</text>
+          <path d="M44 220 L96 208 L148 212 L200 186 L252 192 L304 164 L356 170 L384 152 L384 232 L44 232 Z" fill="url(#areab)"/>
+          <path d="M44 220 L96 208 L148 212 L200 186 L252 192 L304 164 L356 170 L384 152" fill="none" stroke="#E9C766" stroke-width="2.5"/>
+          <circle cx="384" cy="152" r="4" fill="#E9C766"/>
+          <!-- compliance donut -->
+          <rect x="412" y="92" width="200" height="150" rx="12" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.06)"/>
+          <text x="428" y="116" fill="#9fb2c6" font-size="11" font-family="Open Sans" letter-spacing="1">COMPLIANCE SCORE</text>
+          <g transform="translate(512,176)">
+            <circle r="42" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="12"/>
+            <circle r="42" fill="none" stroke="url(#barb)" stroke-width="12" stroke-linecap="round" stroke-dasharray="253 264" transform="rotate(-90)"/>
+            <text x="0" y="-2" text-anchor="middle" fill="#fff" font-size="26" font-weight="800" font-family="Open Sans">96</text>
+            <text x="0" y="16" text-anchor="middle" fill="#8aa0b6" font-size="10" font-family="Open Sans">SCORE</text>
+          </g>
+          <!-- module rows -->
+          <g font-family="Open Sans">
+            <!-- row1 -->
+            <text x="28" y="286" fill="#cdd8e4" font-size="13">SAP ECC HR Data</text>
+            <rect x="210" y="277" width="250" height="8" rx="4" fill="rgba(255,255,255,.1)"/>
+            <rect x="210" y="277" width="238" height="8" rx="4" fill="url(#barb)"/>
+            <rect x="486" y="273" width="70" height="18" rx="9" fill="rgba(18,194,106,.18)"/><text x="498" y="286" fill="#31d17f" font-size="10">MASKED</text>
+            <!-- row2 -->
+            <text x="28" y="316" fill="#cdd8e4" font-size="13">Finance Module</text>
+            <rect x="210" y="307" width="250" height="8" rx="4" fill="rgba(255,255,255,.1)"/>
+            <rect x="210" y="307" width="210" height="8" rx="4" fill="url(#barb)"/>
+            <rect x="486" y="303" width="70" height="18" rx="9" fill="rgba(18,194,106,.18)"/><text x="498" y="316" fill="#31d17f" font-size="10">MASKED</text>
+            <!-- row3 -->
+            <text x="28" y="346" fill="#cdd8e4" font-size="13">Customer Master</text>
+            <rect x="210" y="337" width="250" height="8" rx="4" fill="rgba(255,255,255,.1)"/>
+            <rect x="210" y="337" width="150" height="8" rx="4" fill="url(#barb)"/>
+            <rect x="486" y="333" width="78" height="18" rx="9" fill="rgba(254,188,46,.18)"/><text x="497" y="346" fill="#E9C766" font-size="10">IN REVIEW</text>
+            <!-- row4 -->
+            <text x="28" y="376" fill="#cdd8e4" font-size="13">HANA DB Archive</text>
+            <rect x="210" y="367" width="250" height="8" rx="4" fill="rgba(255,255,255,.1)"/>
+            <rect x="210" y="367" width="120" height="8" rx="4" fill="url(#barb)"/>
+            <rect x="486" y="363" width="78" height="18" rx="9" fill="rgba(254,188,46,.18)"/><text x="494" y="376" fill="#E9C766" font-size="10">ARCHIVING</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="band">
+  <div class="wrap reveal">
+    <h2 data-i18n="band_h2">Ready to make compliance invisible?</h2>
+    <p class="lead" data-i18n="band_lead">Bring GDPR- and KVKK-aligned data masking to your SAP landscape — without breaking data integrity or slowing your teams down.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn--onblue" data-i18n="band_cta1">Request a demo</a>
+      <a href="#architecture" class="btn btn--outline-light" data-i18n="band_cta2">See all capabilities</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <p class="eyebrow" data-i18n="con_eyebrow">Contact us</p>
+        <h2 data-i18n="con_h2">Let's talk about your data masking strategy.</h2>
+        <p class="lead" data-i18n="con_lead">Want to see GNDLF Data Masking on your own SAP landscape? Send us a note and our team will get back to you.</p>
+        <ul>
+          <li>
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 6 8 6 8-6"/></svg></div>
+            <div>
+              <div class="k" data-i18n="con_reach">Reaches our team directly</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <form class="form reveal" id="contactForm" novalidate>
+        <div class="field">
+          <label for="cf-name" data-i18n="cf_name">Full name</label>
+          <input id="cf-name" name="name" type="text" required>
+        </div>
+        <div class="field">
+          <label for="cf-company" data-i18n="cf_company">Company</label>
+          <input id="cf-company" name="company" type="text">
+        </div>
+        <div class="field">
+          <label for="cf-email" data-i18n="cf_email">Work email</label>
+          <input id="cf-email" name="email" type="email" required>
+        </div>
+        <div class="field">
+          <label for="cf-interest" data-i18n="cf_interest">I'm interested in</label>
+          <select id="cf-interest" name="interest">
+            <option data-i18n="cf_opt1">A product demo</option>
+            <option data-i18n="cf_opt2">A GDPR/KVKK compliance assessment</option>
+            <option data-i18n="cf_opt3">Pricing &amp; deployment options</option>
+            <option data-i18n="cf_opt4">Partnership</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="cf-msg" data-i18n="cf_msg">Message</label>
+          <textarea id="cf-msg" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary" data-i18n="cf_submit">Send message</button>
+        <p id="dmNote" hidden style="margin:14px 0 0;font-weight:700;font-size:13.5px"></p>
+        <small data-i18n="cf_note">Sends directly to our team. Prefer email? Write to us at info@gndlf.io.</small>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="foot-brand">
+          <span class="brandmark"><svg viewBox="0 0 64 64"><use href="#dial"/></svg></span>
+          <span class="logo" style="font-size:20px">GNDLF</span>
+        </div>
+        <p class="tag" data-i18n="ft_tag">Automation by Heart. Enterprise AI for SAP operations, cost, compliance and project delivery.</p>
+      </div>
+      <div>
+        <h4 data-i18n="ft_prod">Products</h4>
+        <a href="https://gndlf.io" target="_blank" rel="noopener">GNDLF AIOps for SAP</a>
+        <a href="https://ctrlcost.co" target="_blank" rel="noopener">Ctrl-Cost</a>
+        <a href="pmo-cockpit.html" target="_blank" rel="noopener">PMO Cockpit</a>
+        <a href="security-scanner.html" target="_blank" rel="noopener">Security Scanner &amp; Pentest</a>
+        <a href="#overview" data-i18n="ft_dm">Data Masking</a>
+      </div>
+      <div>
+        <h4 data-i18n="ft_page">This page</h4>
+        <a href="#how" data-i18n="nav_how">How it works</a>
+        <a href="#architecture" data-i18n="nav_arch">Capabilities</a>
+        <a href="#dashboard" data-i18n="nav_dash">Dashboard</a>
+      </div>
+      <div>
+        <h4 data-i18n="ft_contact">Contact</h4>
+        <a href="mailto:info@gndlf.io">info@gndlf.io</a>
+        <a href="#contact" data-i18n="nav_cta">Request a demo</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> GNDLF Security Technologies</span>
+      <span data-i18n="ft_rights">GNDLF Data Masking — SAP Data Protection, Masking &amp; Compliance</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const I18N = {
+  en: {
+    nav_overview:"Overview", nav_how:"How it works", nav_arch:"Capabilities", nav_dash:"Dashboard", nav_contact:"Contact", nav_cta:"Request a demo",
+    hero_badge:"GNDLF · SAP Data Masking & Compliance",
+    hero_h1a:"The SAP data layer that", hero_h1b:"never exposes a secret.",
+    hero_lead:"GNDLF Data Masking unifies data privacy and cybersecurity into one intelligent strategy for your SAP landscape. It dynamically blocks unauthorized access across the full data lifecycle — from creation to reporting — while strengthening GDPR and KVKK compliance without breaking data integrity or slowing operations.",
+    hero_cta1:"Talk to us", hero_cta2:"See how it works",
+    hero_n1:"GDPR & KVKK compliant", hero_n2:"Full data lifecycle coverage", hero_n3:"Zero integrity loss",
+    st1_n:"100%", st1_l:"Compliance across all markets", st2_n:"50%", st2_l:"Faster data management", st3_n:"30%", st3_l:"Higher forecast accuracy", st4_n:"25%", st4_l:"Shorter planning cycle (SAP ILM)",
+    prob_eyebrow:"The problem", prob_h2:"Sensitive data shouldn't slow you down — or leak.",
+    prob_lead:"GDPR and KVKK have sharply raised the bar on data-security audits across the EU and Turkey. Most SAP landscapes still rely on static access rules that either lock down sensitive fields too aggressively, slowing operations, or leave them exposed to unauthorized access — risking fines and reputational damage.",
+    how_eyebrow:"Why GNDLF?", how_h2:"From static restriction to dynamic, audited protection.",
+    how_lead:"GNDLF Data Masking protects sensitive SAP data end-to-end — from the moment it's created, to the moment it's reported, to the moment it's archived — balancing compliance, flexibility and accountability.",
+    pl_in_t:"SAP Landscape", pl_out_t:"Masking Dashboard",
+    l1_h:"Compliance by Design", l1_cap:"Built directly into SAP, not bolted on afterward.",
+    l1_a:"Full SAP Data Protection Masking (DPM) coverage, aligned to GDPR and KVKK.",
+    l1_b:"Supports compliance across every process, not just one module.",
+    l1_c:"Unifies protection across every SAP interface, not a single transaction.",
+    l1_d:"Strengthens protection of sensitive data without breaking existing workflows.",
+    l2_h:"Dynamic Protection", l2_cap:"Context-aware access rules, not rigid field-level locks.",
+    l2_a:"Dynamic Data Masking (DDM) with contextual authorization — not blanket restriction.",
+    l2_b:"UI Data Protection Masking & Logging on every Fiori-based screen.",
+    l2_c:"Meets legal and regulatory requirements without slowing operations.",
+    l2_d:"Minimizes financial and reputational risk while preserving flexibility and accountability.",
+    l3_h:"Lifecycle Governance", l3_cap:"Covers data from creation to archiving, not just the database.",
+    l3_a:"SAP Test Data Migration Server (TDMS) for high-speed, privacy-safe data transport.",
+    l3_b:"Full client-specific data transfer, with company-code and time savings.",
+    l3_c:"SAP Information Lifecycle Management (ILM) balances cost, risk and compliance.",
+    l3_d:"Defines data governance policies and manages archiving end-to-end.",
+    feat_eyebrow:"Inside the platform", feat_h2:"The SAP components, unified in one panel.",
+    f1_h:"SAP Data Protection Masking (DPM)", f1_p:"GDPR- and KVKK-aligned masking, built directly into your SAP landscape.",
+    f2_h:"Dynamic Data Masking (DDM)", f2_p:"Context-aware masking and authorization — the same screen shows different detail to different roles.",
+    f3_h:"UI protection, masking & logging", f3_p:"Protects and logs sensitive fields across every Fiori-based interface, not just the backend.",
+    f4_h:"Fiori-based control panel", f4_p:"A single, role-based control panel for configuring and monitoring masking policies.",
+    f5_h:"SAP TDMS", f5_p:"A high-speed Test Data Migration Server that moves business data while preserving privacy and consistency.",
+    f6_h:"SAP ILM", f6_p:"Information Lifecycle Management balances cost, risk and compliance across data archiving and retention.",
+    impl_badge:"End-to-end lifecycle", impl_h2:"From live data to compliant data, in four steps.",
+    impl_lead:"GNDLF Data Masking follows sensitive data from the moment it's created to the moment it's archived — compliance as evidence, not guesswork.",
+    impl_s1t:"Classify", impl_s1d:"Identify sensitive fields and data subjects across your SAP landscape.",
+    impl_s2t:"Mask", impl_s2d:"Apply dynamic, context-aware masking at the UI and data layer.",
+    impl_s3t:"Govern", impl_s3d:"Archive and retain data under ILM policy, balancing cost, risk and compliance.",
+    impl_s4t:"Audit", impl_s4d:"Every access is logged, so audits are evidence, not guesswork.",
+    dash_eyebrow:"The output", dash_h2:"From static field-locking to dynamic, audited protection.",
+    dash_lead:"Zooming out, GNDLF Data Masking gives you one Fiori-based control panel for every policy, every environment and every audit trail — so compliance becomes a live state, not a yearly scramble.",
+    dash_cta:"See it on your landscape",
+    band_h2:"Ready to make compliance invisible?",
+    band_lead:"Bring GDPR- and KVKK-aligned data masking to your SAP landscape — without breaking data integrity or slowing your teams down.",
+    band_cta1:"Request a demo", band_cta2:"See all capabilities",
+    con_eyebrow:"Contact us", con_h2:"Let's talk about your data masking strategy.",
+    con_lead:"Want to see GNDLF Data Masking on your own SAP landscape? Send us a note and our team will get back to you.",
+    con_reach:"Reaches our team directly",
+    cf_name:"Full name", cf_company:"Company", cf_email:"Work email", cf_interest:"I'm interested in",
+    cf_opt1:"A product demo", cf_opt2:"A GDPR/KVKK compliance assessment", cf_opt3:"Pricing & deployment options", cf_opt4:"Partnership",
+    cf_msg:"Message", cf_submit:"Send message",
+    cf_note:"Sends directly to our team. Prefer email? Write to us at info@gndlf.io.",
+    cf_sending:"Sending…",
+    cf_thanks:"Thank you{name}! We received your message and will get back to you shortly.",
+    cf_error:"Could not send. Please try again or email info@gndlf.io.",
+    cf_offline:"The form sends email only on the published site. For now you can email info@gndlf.io.",
+    ft_tag:"Automation by Heart. Enterprise AI for SAP operations, cost, compliance and project delivery.",
+    ft_prod:"Products", ft_dm:"Data Masking",
+    ft_page:"This page", ft_contact:"Contact",
+    ft_rights:"GNDLF Data Masking — SAP Data Protection, Masking & Compliance"
+  },
+  tr: {
+    nav_overview:"Genel Bakış", nav_how:"Nasıl Çalışır", nav_arch:"Yetenekler", nav_dash:"Panel", nav_contact:"İletişim", nav_cta:"Demo İsteyin",
+    hero_badge:"GNDLF · SAP Veri Maskeleme ve Uyumluluk",
+    hero_h1a:"Hiçbir hassas veriyi", hero_h1b:"asla açığa çıkarmayan SAP veri katmanı.",
+    hero_lead:"GNDLF Veri Maskeleme, hassas kurumsal verilerin ve kişisel bilgilerin güvenliğini en üst seviyeye taşıyan SAP çözümleriyle, veri gizliliği ve siber güvenlik süreçlerini tek bir akıllı stratejide birleştirir. Verinin oluşturulmasından raporlanmasına kadar tüm yaşam döngüsünde yetkisiz erişimleri dinamik olarak engellerken; GDPR ve KVKK gibi yasal regülasyonlara tam uyumu, veri bütünlüğünü bozmadan ve operasyonel süreçleri aksatmadan güçlendirir.",
+    hero_cta1:"Bize ulaşın", hero_cta2:"Nasıl çalıştığını görün",
+    hero_n1:"GDPR ve KVKK uyumluluğu", hero_n2:"Uçtan uca veri yaşam döngüsü kapsamı", hero_n3:"Sıfır veri bütünlüğü kaybı",
+    st1_n:"%100", st1_l:"Tüm pazarlarda uyumluluk", st2_n:"%50", st2_l:"Daha hızlı veri yönetimi", st3_n:"%30", st3_l:"Daha yüksek tahmin doğruluğu", st4_n:"%25", st4_l:"SAP ILM ile daha kısa planlama döngüsü",
+    prob_eyebrow:"Sorun", prob_h2:"Hassas veri, sizi ne yavaşlatmalı ne de açığa çıkmalı.",
+    prob_lead:"GDPR ve KVKK, Avrupa Birliği ve Türkiye'de veri güvenliği denetimlerinin çıtasını belirgin şekilde yükseltti. Birçok SAP ortamı hâlâ statik erişim kurallarına dayanıyor — bu kurallar ya hassas alanları gereğinden fazla kısıtlayıp operasyonu yavaşlatıyor ya da onları yetkisiz erişime açık bırakıp para cezası ve itibar kaybı riski doğuruyor.",
+    how_eyebrow:"Neden GNDLF?", how_h2:"Statik kısıtlamadan dinamik, denetlenebilir korumaya.",
+    how_lead:"GNDLF Veri Maskeleme, SAP ortamınızdaki hassas verileri uçtan uca korur — oluşturulduğu andan raporlandığı ve arşivlendiği ana kadar; uyumluluk, esneklik ve hesap verebilirlik arasında denge kurarak.",
+    pl_in_t:"SAP Ortamı", pl_out_t:"Maskeleme Paneli",
+    l1_h:"Tasarımla Uyumluluk", l1_cap:"Sonradan eklenmiş değil, doğrudan SAP'nin içine inşa edilmiş.",
+    l1_a:"GDPR ve KVKK'ya uyumlu tam SAP Data Protection Masking (DPM) kapsamı.",
+    l1_b:"Sadece tek bir modülde değil, her süreçte uyumluluğu destekler.",
+    l1_c:"Tek bir işlemle sınırlı kalmadan, tüm SAP arayüzlerinde korumayı birleştirir.",
+    l1_d:"Mevcut iş akışlarını bozmadan hassas verilerin korunmasını güçlendirir.",
+    l2_h:"Dinamik Koruma", l2_cap:"Sabit alan kilitleri değil, bağlama duyarlı erişim kuralları.",
+    l2_a:"Bağlamsal yetkilendirmeyle Dinamik Veri Maskeleme (DDM) — toptan kısıtlama değil.",
+    l2_b:"Her Fiori tabanlı ekranda UI Data Protection Masking &amp; Logging.",
+    l2_c:"Operasyonu yavaşlatmadan yasal ve düzenleyici gerekliliklere uyum.",
+    l2_d:"Esnekliği ve hesap verebilirliği korurken finansal ve itibar risklerini en aza indirir.",
+    l3_h:"Yaşam Döngüsü Yönetişimi", l3_cap:"Sadece veritabanını değil, oluşturmadan arşivlemeye kadar tüm veriyi kapsar.",
+    l3_a:"Yüksek hızlı ve gizlilik korumalı veri aktarımı için SAP Test Data Migration Server (TDMS).",
+    l3_b:"Şirket koduna özel tam veri aktarımı ve zaman tasarrufu.",
+    l3_c:"Maliyet, risk ve uyumluluk arasında denge kuran SAP Information Lifecycle Management (ILM).",
+    l3_d:"Veri yönetimi politikalarını tanımlar ve arşivlemeyi uçtan uca yönetir.",
+    feat_eyebrow:"Platformun içinde", feat_h2:"SAP bileşenleri, tek bir panelde birleşiyor.",
+    f1_h:"SAP Data Protection Masking (DPM)", f1_p:"GDPR ve KVKK'ya uyumlu maskeleme, doğrudan SAP ortamınızın içine inşa edilir.",
+    f2_h:"Dinamik Veri Maskeleme (DDM)", f2_p:"Bağlama duyarlı maskeleme ve yetkilendirme — aynı ekran, role göre farklı düzeyde detay gösterir.",
+    f3_h:"UI koruma, maskeleme ve loglama", f3_p:"Sadece arka planda değil, her Fiori tabanlı arayüzde hassas alanları korur ve kaydeder.",
+    f4_h:"Fiori tabanlı kontrol paneli", f4_p:"Maskeleme politikalarını yapılandırmak ve izlemek için tek, role dayalı bir kontrol paneli.",
+    f5_h:"SAP TDMS", f5_p:"Yüksek hızlı Test Data Migration Server, gizliliği ve tutarlılığı koruyarak iş verisini taşır.",
+    f6_h:"SAP ILM", f6_p:"Information Lifecycle Management, veri arşivleme ve saklamada maliyet, risk ve uyumluluğu dengeler.",
+    impl_badge:"Uçtan uca yaşam döngüsü", impl_h2:"Canlı veriden uyumlu veriye, dört adımda.",
+    impl_lead:"GNDLF Veri Maskeleme, hassas veriyi oluşturulduğu andan arşivlendiği ana kadar takip eder — tahmin değil, kanıta dayalı bir uyumluluk süreci.",
+    impl_s1t:"Sınıflandır", impl_s1d:"SAP ortamınızdaki hassas alanları ve veri sahiplerini belirleyin.",
+    impl_s2t:"Maskele", impl_s2d:"Arayüz ve veri katmanında bağlama duyarlı, dinamik maskeleme uygulayın.",
+    impl_s3t:"Yönet", impl_s3d:"Maliyet, risk ve uyumluluğu dengeleyerek verileri ILM politikasına göre arşivleyin ve saklayın.",
+    impl_s4t:"Denetle", impl_s4d:"Her erişim kayıt altına alınır; denetimler tahmin değil, kanıta dayanır.",
+    dash_eyebrow:"Çıktı", dash_h2:"Statik alan kilitlemeden, dinamik ve denetlenebilir korumaya.",
+    dash_lead:"Uzaktan bakıldığında GNDLF Veri Maskeleme; her politika, her ortam ve her denetim izi için tek bir Fiori tabanlı kontrol paneli sunar — böylece uyumluluk yıllık bir koşuşturma değil, canlı bir durum hâline gelir.",
+    dash_cta:"Kendi ortamınızda görün",
+    band_h2:"Uyumluluğu görünmez kılmaya hazır mısınız?",
+    band_lead:"GDPR ve KVKK'ya uyumlu veri maskelemeyi, veri bütünlüğünü bozmadan ve ekiplerinizi yavaşlatmadan SAP ortamınıza getirin.",
+    band_cta1:"Demo isteyin", band_cta2:"Tüm yetenekleri görün",
+    con_eyebrow:"İletişim", con_h2:"Veri maskeleme stratejinizi konuşalım.",
+    con_lead:"GNDLF Veri Maskeleme'yi kendi SAP ortamınızda görmek ister misiniz? Bize bir not bırakın, ekibimiz size dönsün.",
+    con_reach:"Doğrudan ekibimize ulaşır",
+    cf_name:"Ad Soyad", cf_company:"Şirket", cf_email:"İş e-postası", cf_interest:"İlgilendiğim konu",
+    cf_opt1:"Ürün demosu", cf_opt2:"GDPR/KVKK uyumluluk değerlendirmesi", cf_opt3:"Fiyatlandırma ve kurulum seçenekleri", cf_opt4:"İş ortaklığı",
+    cf_msg:"Mesaj", cf_submit:"Mesajı gönder",
+    cf_note:"Mesajınız doğrudan ekibimize gönderilir. E-postayı mı tercih edersiniz? info@gndlf.io adresine yazabilirsiniz.",
+    cf_sending:"Gönderiliyor…",
+    cf_thanks:"Teşekkürler{name}! Mesajınızı aldık, en kısa sürede dönüş yapacağız.",
+    cf_error:"Gönderilemedi. Lütfen tekrar deneyin ya da info@gndlf.io adresine yazın.",
+    cf_offline:"Form yalnızca yayınlanmış sitede e-posta gönderir. Şimdilik info@gndlf.io adresine yazabilirsiniz.",
+    ft_tag:"Automation by Heart. SAP operasyonları, maliyet, uyum ve proje teslimatı için kurumsal yapay zekâ.",
+    ft_prod:"Ürünler", ft_dm:"Veri Maskeleme",
+    ft_page:"Bu sayfa", ft_contact:"İletişim",
+    ft_rights:"GNDLF Data Masking — SAP Veri Koruma, Maskeleme ve Uyumluluk"
+  }
+};
+
+const SVGNS = "http://www.w3.org/2000/svg";
+
+function applyLang(lang){
+  const dict = I18N[lang] || I18N.en;
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key = el.getAttribute("data-i18n");
+    if(dict[key] === undefined) return;
+    if(el.namespaceURI === SVGNS || el.tagName === "OPTION") el.textContent = dict[key];
+    else el.innerHTML = dict[key];
+  });
+  document.querySelectorAll(".lang button").forEach(b=>{
+    b.classList.toggle("active", b.getAttribute("data-set-lang") === lang);
+  });
+  document.title = (lang === "tr")
+    ? "GNDLF Data Masking — SAP Veri Koruma, Maskeleme ve Uyumluluk"
+    : "GNDLF Data Masking — SAP Data Protection, Masking & Compliance";
+}
+
+document.body.classList.remove("no-js");
+document.body.classList.add("js");
+
+document.querySelectorAll(".lang button").forEach(b=>{
+  b.addEventListener("click", ()=> applyLang(b.getAttribute("data-set-lang")));
+});
+
+// Mobile menu
+const navLinks = document.querySelector(".nav-links");
+const menuToggle = document.getElementById("menuToggle");
+menuToggle.addEventListener("click", ()=>{
+  const open = navLinks.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+});
+navLinks.querySelectorAll("a").forEach(a=>{
+  a.addEventListener("click", ()=>{ navLinks.classList.remove("open"); menuToggle.setAttribute("aria-expanded","false"); });
+});
+
+// Scroll reveal
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+},{threshold:.12, rootMargin:"0px 0px -40px 0px"});
+document.querySelectorAll(".reveal").forEach((el,i)=>{ el.style.transitionDelay=(Math.min(i%3,3)*70)+"ms"; io.observe(el); });
+
+// Contact form -> send directly via /api/contact (Brevo)
+document.getElementById("contactForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const lang = document.documentElement.lang || "en";
+  const dict = I18N[lang] || I18N.en;
+  const f = e.target;
+  const note = document.getElementById("dmNote");
+  const btn = f.querySelector("button[type=submit]");
+  const name = (f.name.value||"").trim();
+  const company = (f.company.value||"").trim();
+  const email = (f.email.value||"").trim();
+  const interest = f.interest.value||"";
+  const message = (f.message.value||"").trim();
+
+  note.hidden = false;
+  note.style.color = "";
+  note.textContent = dict.cf_sending;
+  if(btn) btn.disabled = true;
+
+  fetch("/api/contact", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, email, message, company, interest, source: "data-masking" })
+  }).then(function(res){
+    if(res.ok){
+      note.style.color = "";
+      note.textContent = dict.cf_thanks.replace("{name}", name ? " "+name : "");
+      f.reset();
+    } else {
+      note.style.color = "#c0392b";
+      note.textContent = dict.cf_error;
+    }
+  }).catch(function(){
+    note.style.color = "#c0392b";
+    note.textContent = dict.cf_offline;
+  }).then(function(){
+    if(btn) btn.disabled = false;
+  });
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Default language: English
+applyLang("en");
+</script>
+</body>
+</html>
